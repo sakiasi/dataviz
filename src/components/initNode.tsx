@@ -11,7 +11,7 @@ export const initialNodes = [
         </div>
       ) 
     },
-    style: { background: '#FEF3C7', border: '1px solid #F59E0B', borderRadius: '8px', padding: '10px', width: 280 }
+    style: { borderRadius: '8px', padding: '10px', width: 280 }
   },
   {
     id: '2',
@@ -24,7 +24,7 @@ export const initialNodes = [
         </div>
       ) 
     },
-    style: { background: '#FFEDD5', border: '1px solid #F97316', borderRadius: '8px', padding: '10px', width: 280 }
+    style: {  borderRadius: '8px', padding: '10px', width: 280 }
   },
   {
     id: '3',
@@ -37,7 +37,7 @@ export const initialNodes = [
         </div>
       ) 
     },
-    style: { background: '#DCFCE7', border: '1px solid #22C55E', borderRadius: '8px', padding: '10px', width: 280 }
+    style: {  borderRadius: '8px', padding: '10px', width: 280 }
   },
   {
     id: '4',
@@ -50,7 +50,7 @@ export const initialNodes = [
         </div>
       ) 
     },
-    style: { background: '#E0F2FE', border: '1px solid #0284C7', borderRadius: '8px', padding: '10px', width: 250 }
+    style: {  borderRadius: '8px', padding: '10px', width: 250 }
   },
   {
     id: '5',
@@ -63,7 +63,7 @@ export const initialNodes = [
         </div>
       ) 
     },
-    style: { background: '#E0F2FE', border: '1px solid #0284C7', borderRadius: '8px', padding: '10px', width: 250 }
+    style: {  borderRadius: '8px', padding: '10px', width: 250 }
   },
   {
     id: '6',
@@ -76,7 +76,7 @@ export const initialNodes = [
         </div>
       ) 
     },
-    style: { background: '#FEE2E2', border: '1px solid #EF4444', borderRadius: '8px', padding: '10px', width: 280 }
+    style: {  borderRadius: '8px', padding: '10px', width: 280 }
   },
 ];
 

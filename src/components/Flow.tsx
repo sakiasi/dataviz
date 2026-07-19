@@ -7,7 +7,7 @@ export default function ClimateProcessFlow() {
   const [edges, , onEdgesChange] = useEdgesState(initialEdges);
 
   return (
-    <div className='h-70 md:h-100 w-full'>
+    <div className='h-90 md:h-100 w-full'>
       <ReactFlow
         nodes={nodes}
         edges={edges}

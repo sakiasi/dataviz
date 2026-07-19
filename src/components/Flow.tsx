@@ -16,6 +16,7 @@ export default function ClimateProcessFlow() {
         panOnDrag={false}
         panOnScroll={true}
         selectionOnDrag={false}
+        preventScrolling={false} // 👈 This releases touch control back to the page
         fitView
       >
         <Controls />

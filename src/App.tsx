@@ -2,7 +2,7 @@ import ClimateProcessFlow from "./components/Flow";
 
 const App = () => {
   return (
-    <div className="mx-auto max-w-prose mt-5 mb-5">
+    <div className="mx-auto p-5 md:max-w-prose mt-5 mb-5">
       <div className=" pb-5 space-y-5">
         <h2>About This Story</h2>
         <p>
@@ -28,7 +28,7 @@ const App = () => {
         </ul>
       </div>
 
-      <div>
+      <div className="pb-5">
         <ClimateProcessFlow/>
       </div>
 

@@ -13,8 +13,10 @@ export default function ClimateProcessFlow() {
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
+        panOnDrag={false}
+        panOnScroll={true}
+        selectionOnDrag={false}
         fitView
-
       >
         <Controls />
         <Background gap={16} size={1} />

@@ -7,16 +7,16 @@ export default function ClimateProcessFlow() {
   const [edges, , onEdgesChange] = useEdgesState(initialEdges);
 
   return (
-    <div style={{ width: '100%', height: '800px' }}>
+    <div style={{ width: '100%', height: '800px', touchAction: 'pan-y' }}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         panOnDrag={false}
-        panOnScroll={true}
+        panOnScroll={false}
         selectionOnDrag={false}
-        preventScrolling={false} // 👈 This releases touch control back to the page
+        preventScrolling={false}
         fitView
       >
         <Controls />

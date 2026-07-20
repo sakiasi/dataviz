@@ -1,3 +1,4 @@
+import OceanWarmingComponent from "./components/SeaChart";
 import TemperatureGraph from "./components/Temp";
 import EnergyTimeline from "./components/TimeLine";
 
@@ -30,59 +31,6 @@ const App = () => {
       </div>
 
       <div>
-        <div className=" pb-5">
-          <h1 className="pb-5 text-2xl">The Energy Source is the Sun</h1>
-          <p>
-            The heat in our climate system originally comes from the Sun. Solar
-            energy travels to Earth as short-wave radiation (like visible light).
-            Most of this energy passes right through the atmosphere and hits the
-            ground, warming the Earth's surface.
-          </p>
-        </div>
-        
-        <div className=" pb-5">
-          <h1 className="pb-5 text-2xl">The Conversion to Heat</h1>
-          <p>
-            Once the ground absorbs this solar energy, it warms up and re-emits
-            that energy as long-wave infrared radiation (what we feel as heat).
-            This is the same way a hot stove or a radiator releases energy.
-          </p>
-        </div>
-        <div className=" pb-5">
-          <h1 className="pb-5 text-2xl">The "Trapping" Mechanism</h1>
-          <p>
-            This is where greenhouse gases (like CO2, methane, and water vapor)
-            come in:
-          </p>
-        </div>
-        <div className=" pb-5">
-          <h1 className="pb-5 text-2xl">Absorption</h1>
-          <p>
-            Unlike nitrogen and oxygen (which make up most of the atmosphere and
-            don't interact much with infrared radiation), GHG molecules have a
-            complex structure that allows them to absorb this rising infrared
-            heat.
-          </p>
-        </div>
-        <div className=" pb-5">
-          <h1 className="pb-5 text-2xl">Re-radiation</h1>
-          <p>
-            Once they absorb this heat, they don't hold it forever. They vibrate
-            and re-radiate that energy in all directions—including back down
-            toward the Earth's surface.
-          </p>
-        </div>
-        <div className=" pb-5">
-          <h1 className="pb-5 text-2xl">The Accumulation</h1>
-          <p>
-            Because some of this heat is sent back to the surface instead of
-            escaping into space, it builds up in the lower atmosphere and the
-            oceans, leading to global warming.
-          </p>
-        </div>
-      </div>
-
-      <div>
         <EnergyTimeline/>
       </div>
 
@@ -90,24 +38,8 @@ const App = () => {
         <TemperatureGraph/>
       </div>
 
-      <div className=" pb-5">
-        <h1 className="pb-5 text-2xl">Is Our Ocean Warming Up?</h1>
-        <p>
-          The ocean acts as the Earth’s thermal buffer, absorbing the vast
-          majority of excess atmospheric heat. Consequently, rising mean surface
-          temperatures translate directly into warmer oceans, establishing a
-          clear, ongoing trend in sea surface temperature anomalies.
-        </p>
-        <a
-          href="https://www.science.org/doi/10.1126/science.aav7619"
-          target="_blank"
-        >
-          Trenberth, K. E. (2019).
-        </a>
-        <p>
-          Data from Surface Temperature anomalies.csv and Sea Level
-          Anomalies.csv
-        </p>
+      <div>
+        <OceanWarmingComponent/>
       </div>
 
       <div className=" pb-5">
@@ -126,7 +58,7 @@ const App = () => {
       </div>
 
       <div className=" pb-5">
-        <h1 className="pb-5 text-2xl">Why Are Our Crop Yields Dropping?</h1>
+        <h1 className="pb-5 text-2xl">Does temperature affect Crop Yields ?</h1>
         <p>
           Every crop has an "optimal" temperature range for growth. When
           temperatures consistently exceed this—especially during sensitive
@@ -141,7 +73,7 @@ const App = () => {
 
       <div className=" pb-5">
         <h1 className="pb-5 text-2xl">
-          Why Our Livestock Yields Are Declining
+          Does temperature affect Livestock Yields ?
         </h1>
         <p>
           Climate change hits livestock just as hard as it hits crops, primarily

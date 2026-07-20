@@ -48,7 +48,7 @@ export default function EnergyTimeline() {
                 <span className="text-xs font-semibold text-amber-400 uppercase tracking-widest">
                   Phase 0{index + 1}
                 </span>
-                <div className="h-1.5 w-12 bg-amber-500/40 rounded-full" />
+                <div className="h-1.5 w-12 rounded-full" />
               </div>
               <h2 className="text-lg font-bold text-white mb-2 tracking-wide">
                 {step.title}

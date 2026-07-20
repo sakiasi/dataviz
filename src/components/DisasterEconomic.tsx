@@ -1,12 +1,11 @@
 import { ResponsiveContainer, Treemap, Tooltip } from "recharts";
 
-// Define the interface based on your specific column names
+// Define the interface with an index signature to satisfy Recharts' TreemapDataType requirements
 interface DisasterDataPoint {
   country: string;
   year: string;
   value: number;
-  // Adding an optional color property to customize tile appearance if needed
-  fill?: string;
+  [key: string]: any;
 }
 
 const data: DisasterDataPoint[] = [
@@ -47,7 +46,6 @@ const CustomTooltip = ({
 const CustomizedContent = (props: any) => {
   const { x, y, width, height, country, value, fill } = props;
 
-  // Defined colors matching your theme for contrast
   const bgColor = fill || "#f59e0b"; // Default amber
   const textColor = "#020617"; // slate-950 for high contrast against yellow
 
@@ -61,7 +59,7 @@ const CustomizedContent = (props: any) => {
           height={height}
           style={{
             fill: bgColor,
-            stroke: "#1e293b", // slate-800
+            stroke: "#1e293b",
             strokeWidth: 2,
             fillOpacity: 0.9,
           }}
@@ -80,7 +78,7 @@ const CustomizedContent = (props: any) => {
         height={height}
         style={{
           fill: bgColor,
-          stroke: "#1e293b", // slate-800
+          stroke: "#1e293b",
           strokeWidth: 2,
           fillOpacity: 0.9,
         }}
@@ -89,7 +87,7 @@ const CustomizedContent = (props: any) => {
       <text
         x={x + 8}
         y={y + 20}
-        fill={textColor} // Changed to dark color for visibility
+        fill={textColor}
         fontSize={12}
         fontWeight={600}
         className="pointer-events-none select-none"
@@ -99,7 +97,7 @@ const CustomizedContent = (props: any) => {
       <text
         x={x + 8}
         y={y + 36}
-        fill={textColor} // Changed to dark color for visibility
+        fill={textColor}
         fontSize={10}
         fillOpacity={0.9}
         className="pointer-events-none select-none"
@@ -117,7 +115,7 @@ export default function DisasterEconomicLossComponent() {
         <h1 className="text-2xl font-bold text-white tracking-tight">
           At what cost ?
         </h1>
-        <div className="h-1.5 w-16 rounded-full hidden sm:block " />
+        <div className="h-1.5 w-16 rounded-full hidden sm:block bg-amber-500/20" />
       </div>
 
       <div className="text-slate-300 text-sm leading-relaxed space-y-4 mb-10 max-w-3xl">
@@ -143,8 +141,7 @@ export default function DisasterEconomicLossComponent() {
             aspectRatio={4 / 3}
             stroke="#1e293b"
             content={<CustomizedContent />}
-            // Optionally add a gradient or background fill to the main container
-            style={{ backgroundColor: '#0f172a' }} 
+            style={{ backgroundColor: '#0f172a' }}
           >
             <Tooltip content={<CustomTooltip />} />
           </Treemap>

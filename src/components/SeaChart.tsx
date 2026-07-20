@@ -1,4 +1,3 @@
-import React from "react";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -10,7 +9,12 @@ import {
   ReferenceLine,
 } from "recharts";
 
-const data = [
+interface DataPoint {
+  year: string;
+  temp: number;
+}
+
+const data: DataPoint[] = [
   { year: "2010", temp: 0.45 },
   { year: "2011", temp: 0.41 },
   { year: "2012", temp: 0.53 },
@@ -29,7 +33,15 @@ const data = [
   { year: "2025", temp: 1.3 },
 ];
 
-const CustomTooltip = ({ active, payload, label }) => {
+const CustomTooltip = ({
+  active,
+  payload,
+  label,
+}: {
+  active?: boolean;
+  payload?: Array<{ value: number }>;
+  label?: string | number;
+}) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-slate-900 border border-slate-700 p-3 rounded-lg shadow-xl text-xs space-y-1">
@@ -51,7 +63,7 @@ export default function OceanWarmingComponent() {
         <h1 className="text-2xl font-bold text-white tracking-tight">
           Is Our Ocean Warming Up?
         </h1>
-        <div className="h-1.5 w-16  rounded-full hidden sm:block" />
+        <div className="h-1.5 w-16 rounded-full hidden sm:block" />
       </div>
 
       <div className="text-slate-300 text-sm leading-relaxed space-y-4 mb-10 max-w-3xl">
@@ -63,14 +75,13 @@ export default function OceanWarmingComponent() {
             target="_blank"
             rel="noopener noreferrer"
           >
-             Trenberth, K. E. (2019)
+            Trenberth, K. E. (2019)
           </a>
           , The ocean acts as the Earth’s thermal buffer, absorbing the vast
           majority of excess atmospheric heat. Consequently, rising mean surface
           temperatures translate directly into warmer oceans, establishing a
           clear, ongoing trend in sea surface temperature anomalies.
         </p>
-        
       </div>
 
       <div>
@@ -134,10 +145,10 @@ export default function OceanWarmingComponent() {
           </AreaChart>
         </ResponsiveContainer>
       </div>
-        <p className="text-xs text-slate-400 italic">
-          Data from Surface Temperature anomalies.csv and Sea Level
-          Anomalies.csv
-        </p>
+
+      <p className="text-xs text-slate-400 italic">
+        Data from Surface Temperature anomalies.csv and Sea Level Anomalies.csv
+      </p>
 
       <div className="text-slate-300 text-sm">
         Data shows annual temperature variations and thermal anomaly trends.

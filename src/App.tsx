@@ -1,5 +1,7 @@
 import CropYieldChart from "./components/CropYeildChart";
+import DisasterEconomicLossComponent from "./components/DisasterEconomic";
 import ImpactPersonChart from "./components/ImpactPersonChart";
+import LivestockCropTemperatureComponent from "./components/LivestockCropTemperatureComponent";
 import OceanWarmingComponent from "./components/SeaChart";
 import TemperatureGraph from "./components/Temp";
 import EnergyTimeline from "./components/TimeLine";
@@ -52,50 +54,12 @@ const App = () => {
         <CropYieldChart/>
       </div>
 
-      <div className=" pb-5">
-        <h1 className="pb-5 text-2xl">Does temperature affect Crop Yields ?</h1>
-        <p>
-          Every crop has an "optimal" temperature range for growth. When
-          temperatures consistently exceed this—especially during sensitive
-          reproductive stages like flowering—it can cause pollen to lose its
-          vitality, leading to smaller harvests or total crop failure.
-        </p>
-        <a href="https://www.mdpi.com/2073-4433/13/1/140" target="_blank">
-          (Chaturvedi et al., 2021).
-        </a>
-        <p>Data from Crop yield - disaggregated.csv</p>
+      <div>
+        <LivestockCropTemperatureComponent/>
       </div>
 
-      <div className=" pb-5">
-        <h1 className="pb-5 text-2xl">
-          Does temperature affect Livestock Yields ?
-        </h1>
-        <p>
-          Climate change hits livestock just as hard as it hits crops, primarily
-          through direct heat stress and the decline of the food they rely on.
-          When temperatures climb, animals struggle to maintain their core body
-          temperature, which forces their bodies to shift energy away from
-          growth, milk production, and reproduction just to survive. It’s not
-          just the heat, either; erratic rainfall and drought dry up pastures
-          and reduce the quality of forage, while warmer, wetter conditions
-          create a perfect breeding ground for new pests and diseases that
-          compromise animal health.
-        </p>
-        <a href="https://www.mdpi.com/2073-4433/13/1/140" target="_blank">
-          (Cheng et al., 2022).
-        </a>
-        <p>Data from </p>
-      </div>
-
-      <div className=" pb-5">
-        <h1 className="pb-5 text-2xl">At what cost ?</h1>
-        <p>
-          Because oceans absorb most of the excess heat trapped by greenhouse
-          gases, we are seeing more intense storms and rising sea levels. Today,
-          immense financial resources are being deployed to mitigate these
-          severe climate impacts.
-        </p>
-        <p>Data from Direct disaster economic loss, average annual loss.csv</p>
+      <div>
+        <DisasterEconomicLossComponent/>
       </div>
 
       <div className=" pb-5">

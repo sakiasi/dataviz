@@ -1,3 +1,4 @@
+import TemperatureGraph from "./components/Temp";
 import EnergyTimeline from "./components/TimeLine";
 
 const App = () => {
@@ -85,25 +86,10 @@ const App = () => {
         <EnergyTimeline/>
       </div>
 
-      <div className=" pb-5">
-        <h1 className="pb-5 text-2xl">Is the Temperature Actually Rising?</h1>
-        <p>
-          The data tells a clear story: our climate has moved into uncharted
-          territory. For over 150 years—from 1850 to 2010—global temperatures
-          remained relatively stable and predictable. However, starting in 2011,
-          we broke through that historical ceiling. We aren't just seeing a
-          slight shift; we are seeing temperatures consistently push beyond the
-          "normal" range we’ve relied on for generations, signaling that the
-          warming trend is no longer a future prediction—it’s our current
-          reality.
-        </p>
-        <a
-          href="https://berkeleyearth.org/global-temperature-report-for-2025/"
-          target="_blank"
-        >
-          Berkeley Earth. (2026)
-        </a>
+      <div>
+        <TemperatureGraph/>
       </div>
+
       <div className=" pb-5">
         <h1 className="pb-5 text-2xl">Is Our Ocean Warming Up?</h1>
         <p>

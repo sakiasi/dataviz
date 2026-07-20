@@ -10,7 +10,7 @@ import EnergyTimeline from "./components/TimeLine";
 const App = () => {
   return (
     <div className="mx-auto space-y-10 max-w-prose mt-5 mb-5 p-5">
-      <div className=" pb-5 space-y-5">
+      <div className="space-y-5">
         <h2>About This Story</h2>
         <p>
           This visualization explores the mechanics of climate change and its
@@ -67,10 +67,11 @@ const App = () => {
         <EnvironmentTaxesComponent />
       </div>
 
-      <div className=" pb-5 space-y-5 max-w-3xl">
-        <h1 className="pb-5 text-2xl font-bold text-white tracking-tight">
+      <div className="space-y-5 max-w-3xl">
+        <h1 className="text-2xl font-bold text-white tracking-tight">
           From Awareness to Action
         </h1>
+        <div className="border-b border-slate-800"></div>
         <p className="text-slate-300 text-sm leading-relaxed">
           The data confirms that climate change is already re-shaping our
           economic and physical landscapes. However, this is not just a reason
@@ -144,10 +145,10 @@ const App = () => {
         </ul>
       </div>
 
-      <div className=" pb-5 space-y-5 max-w-3xl">
-        <h2 className="text-xl font-bold text-white tracking-tight">
+      <div className=" space-y-5 max-w-3xl">
+        <h1 className="text-2xl font-bold text-white tracking-tight">
           Methodology
-        </h2>
+        </h1>
 
         <div className="space-y-5 text-slate-300 text-sm leading-relaxed">
           <div>

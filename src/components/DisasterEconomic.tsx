@@ -35,7 +35,10 @@ const CustomTooltip = ({
         <p className="font-semibold text-white">Country: {item.country}</p>
         <p className="text-slate-400">Year: {item.year}</p>
         <p className="text-amber-400">
-          Economic Loss: <span className="font-bold">${(item.value / 1000000000).toFixed(2)} Billion</span>
+          Economic Loss:{" "}
+          <span className="font-bold">
+            ${(item.value / 1000000000).toFixed(2)} Billion
+          </span>
         </p>
       </div>
     );
@@ -111,12 +114,11 @@ const CustomizedContent = (props: any) => {
 export default function DisasterEconomicLossComponent() {
   return (
     <div className="text-slate-100 space-y-5 w-full overflow-hidden">
-      <div className="flex items-center justify-between mb-8 gap-4 border-b border-slate-800 pb-5">
-        <h1 className="text-2xl font-bold text-white tracking-tight">
-          At what cost ?
-        </h1>
-        <div className="h-1.5 w-16 rounded-full hidden sm:block" />
-      </div>
+      <h1 className="text-2xl font-bold text-white tracking-tight">
+        At what cost ?
+      </h1>
+
+      <div className="border-b border-slate-800"></div>
 
       <div className="text-slate-300 text-sm leading-relaxed space-y-5 mb-10 max-w-3xl">
         <p>
@@ -141,7 +143,7 @@ export default function DisasterEconomicLossComponent() {
             aspectRatio={4 / 3}
             stroke="#1e293b"
             content={<CustomizedContent />}
-            style={{ backgroundColor: '#0f172a' }}
+            style={{ backgroundColor: "#0f172a" }}
           >
             <Tooltip content={<CustomTooltip />} />
           </Treemap>
@@ -153,7 +155,8 @@ export default function DisasterEconomicLossComponent() {
       </p>
 
       <div className="text-slate-300 text-sm">
-        Data shows country, year, and value (dollar USD) details for direct disaster economic losses.
+        Data shows country, year, and value (dollar USD) details for direct
+        disaster economic losses.
       </div>
     </div>
   );

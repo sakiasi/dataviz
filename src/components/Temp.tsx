@@ -54,12 +54,11 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
 export default function TemperatureGraph() {
   return (
     <div className=" text-slate-100 space-y-5">
-      <div className="flex items-center justify-between mb-8 gap-4 border-b border-slate-800 pb-5">
-        <h1 className="text-2xl font-bold text-white tracking-tight">
-          Is the Temperature Actually Rising?
-        </h1>
-        <div className="h-1.5 w-16 rounded-full hidden sm:block" />
-      </div>
+      <h1 className="text-2xl font-bold text-white tracking-tight">
+        Is the Temperature Actually Rising?
+      </h1>
+
+      <div className="border-b border-slate-800"></div>
 
       <div className="text-slate-300 text-sm leading-relaxed space-y-5 mb-10 max-w-3xl">
         <p>
@@ -79,7 +78,9 @@ export default function TemperatureGraph() {
       </div>
 
       <div>
-        <h1>Top 5 most increased temperature in the pacific island countries</h1>
+        <h1>
+          Top 5 most increased temperature in the pacific island countries
+        </h1>
       </div>
 
       <div className="h-[400px] w-full -ml-5">
@@ -126,8 +127,8 @@ export default function TemperatureGraph() {
       </div>
 
       <div className="text-slate-300">
-        Data shows the mean surface temperature for the pacific islands. Click each country to view them individually.
-        data shows...
+        Data shows the mean surface temperature for the pacific islands. Click
+        each country to view them individually. data shows...
       </div>
     </div>
   );

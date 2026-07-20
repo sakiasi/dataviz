@@ -60,20 +60,19 @@ const CustomTooltip = ({
 export default function ImpactPersonChart() {
   return (
     <div className="text-slate-100 space-y-5">
-      <div className="pb-5 border-b border-slate-800">
-        <h1 className=" text-2xl font-bold text-white tracking-tight">
-          How Is This Changing Our Daily Lives?
-        </h1>
+      <h1 className=" text-2xl font-bold text-white tracking-tight">
+        How Is This Changing Our Daily Lives?
+      </h1>
+      <div className="border-b border-slate-800"></div>
+      <div className="text-slate-300 text-sm leading-relaxed space-y-5 max-w-3xl">
+        <p>
+          Climate change is not just a global statistic—it is a personal
+          reality. From the immediate destruction of homes by intensifying
+          cyclones to the silent, creeping threat of rising sea levels and the
+          subsequent surge in health crises, these impacts are fundamentally
+          altering the daily lives, safety, and future of Pacific families.
+        </p>
       </div>
-        <div className="text-slate-300 text-sm leading-relaxed space-y-5 max-w-3xl">
-          <p>
-            Climate change is not just a global statistic—it is a personal
-            reality. From the immediate destruction of homes by intensifying
-            cyclones to the silent, creeping threat of rising sea levels and the
-            subsequent surge in health crises, these impacts are fundamentally
-            altering the daily lives, safety, and future of Pacific families.
-          </p>
-        </div>
 
       <div className="pt-2">
         <h2 className="text-lg font-semibold text-white mb-2">
@@ -125,7 +124,8 @@ export default function ImpactPersonChart() {
       </div>
 
       <p className="text-xs text-slate-400 italic">
-        Data from Number of directly affected persons attributed to disasters.csv
+        Data from Number of directly affected persons attributed to
+        disasters.csv
       </p>
     </div>
   );

@@ -71,7 +71,9 @@ const App = () => {
         <h1 className="text-2xl font-bold text-white tracking-tight">
           From Awareness to Action
         </h1>
+
         <div className="border-b border-slate-800"></div>
+
         <p className="text-slate-300 text-sm leading-relaxed">
           The data confirms that climate change is already re-shaping our
           economic and physical landscapes. However, this is not just a reason
@@ -90,6 +92,8 @@ const App = () => {
         <h1 className="text-2xl font-bold text-white tracking-tight">
           References
         </h1>
+        <div className="border-b border-slate-800"></div>
+
         <ul className="text-slate-300  text-xs leading-relaxed space-y-5 list-none pl-0">
           <li className="pl-4 -indent-4">
             Berkeley Earth. (2026). <em>Global temperature report for 2025</em>.{" "}
@@ -149,6 +153,8 @@ const App = () => {
         <h1 className="text-2xl font-bold text-white tracking-tight">
           Methodology
         </h1>
+
+        <div className="border-b border-slate-800"></div>
 
         <div className="space-y-5 text-slate-300 text-sm leading-relaxed">
           <div>

@@ -49,10 +49,19 @@ const CustomTooltip = ({
       <div className="bg-slate-900 border border-slate-700 p-3 rounded-lg shadow-xl text-xs space-y-1">
         <p className="font-semibold text-white">Year: {label}</p>
         <p className="text-amber-400">
-          Crop Yield: <span className="font-bold">{payload.find(p => p.dataKey === 'yieldKg')?.value.toLocaleString()} kg</span>
+          Crop Yield:{" "}
+          <span className="font-bold">
+            {payload
+              .find((p) => p.dataKey === "yieldKg")
+              ?.value.toLocaleString()}{" "}
+            kg
+          </span>
         </p>
         <p className="text-emerald-400">
-          Temperature: <span className="font-bold">+{payload.find(p => p.dataKey === 'temp')?.value}°C</span>
+          Temperature:{" "}
+          <span className="font-bold">
+            +{payload.find((p) => p.dataKey === "temp")?.value}°C
+          </span>
         </p>
       </div>
     );
@@ -63,17 +72,16 @@ const CustomTooltip = ({
 export default function CropYieldTemperatureComponent() {
   return (
     <div className="text-slate-100 space-y-5 w-full overflow-hidden">
-      <div className="flex items-center justify-between mb-8 gap-4 border-b border-slate-800 pb-5">
-        <h1 className="text-2xl font-bold text-white tracking-tight">
-          Does Temperature Affect Crop Yields ?
-        </h1>
-        <div className="h-1.5 w-16 rounded-full hidden sm:block" />
-      </div>
+      <h1 className="text-2xl font-bold text-white tracking-tight">
+        Does Temperature Affect Crop Yields ?
+      </h1>
+
+      <div className="border-b border-slate-800"></div>
 
       <div className="text-slate-300 text-sm leading-relaxed space-y-5 mb-10 max-w-3xl">
         <p>
-          Every crop has an &quot;optimal&quot; temperature range for growth. When
-          temperatures consistently exceed this—especially during sensitive
+          Every crop has an &quot;optimal&quot; temperature range for growth.
+          When temperatures consistently exceed this—especially during sensitive
           reproductive stages like flowering—it can cause pollen to lose its
           vitality, leading to smaller harvests or total crop failure.
           <a
@@ -155,7 +163,12 @@ export default function CropYieldTemperatureComponent() {
               dot={{ r: 2, fill: "#34d399" }}
               activeDot={{ r: 4, fill: "#34d399", stroke: "#fff" }}
             />
-            <ReferenceLine yAxisId="right" y={0} stroke="#94a3b8" strokeDasharray="3 3" />
+            <ReferenceLine
+              yAxisId="right"
+              y={0}
+              stroke="#94a3b8"
+              strokeDasharray="3 3"
+            />
           </ComposedChart>
         </ResponsiveContainer>
       </div>
@@ -165,7 +178,8 @@ export default function CropYieldTemperatureComponent() {
       </p>
 
       <div className="text-slate-300 text-sm">
-        Data shows annual crop yield production alongside temperature anomaly trends.
+        Data shows annual crop yield production alongside temperature anomaly
+        trends.
       </div>
     </div>
   );

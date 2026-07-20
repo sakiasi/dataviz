@@ -7,7 +7,7 @@ export default function ClimateProcessFlow() {
   const [edges, , onEdgesChange] = useEdgesState(initialEdges);
 
   return (
-    <div style={{ width: '100%', height: '800px', touchAction: 'pan-y' }}>
+    <div style={{ width: '100%', height: '400px', touchAction: 'pan-y' }}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -17,9 +17,14 @@ export default function ClimateProcessFlow() {
         panOnScroll={false}
         selectionOnDrag={false}
         preventScrolling={false}
+        proOptions={{ hideAttribution: true }}
         fitView
       >
-        <Controls />
+        <Controls 
+          showZoom={false} 
+          showFitView={false} 
+          showInteractive={false} 
+        />
         <Background gap={16} size={1} />
       </ReactFlow>
     </div>

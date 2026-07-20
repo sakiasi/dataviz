@@ -1,3 +1,4 @@
+import ImpactPersonChart from "./components/ImpactPersonChart";
 import OceanWarmingComponent from "./components/SeaChart";
 import TemperatureGraph from "./components/Temp";
 import EnergyTimeline from "./components/TimeLine";
@@ -40,6 +41,10 @@ const App = () => {
 
       <div>
         <OceanWarmingComponent/>
+      </div>
+
+      <div>
+        <ImpactPersonChart/>
       </div>
 
       <div className=" pb-5">

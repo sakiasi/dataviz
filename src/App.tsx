@@ -48,21 +48,6 @@ const App = () => {
       </div>
 
       <div className=" pb-5">
-        <h1 className="pb-5 text-2xl">How Is This Changing Our Daily Lives?</h1>
-        <p>
-          Climate change is not just a global statistic—it is a personal
-          reality. From the immediate destruction of homes by intensifying
-          cyclones to the silent, creeping threat of rising sea levels and the
-          subsequent surge in health crises, these impacts are fundamentally
-          altering the daily lives, safety, and future of Pacific families.
-        </p>
-        <p>
-          Data from Number of directly affected persons attributed to
-          disasters.csv
-        </p>
-      </div>
-
-      <div className=" pb-5">
         <h1 className="pb-5 text-2xl">Does temperature affect Crop Yields ?</h1>
         <p>
           Every crop has an "optimal" temperature range for growth. When

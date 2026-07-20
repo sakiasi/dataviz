@@ -70,7 +70,7 @@ export default function LivestockYieldTemperatureComponent() {
         <div className="h-1.5 w-16 rounded-full hidden sm:block" />
       </div>
 
-      <div className="text-slate-300 text-sm leading-relaxed space-y-4 mb-10">
+      <div className="text-slate-300 text-sm leading-relaxed space-y-5 mb-10">
         <p>
           Climate change hits livestock just as hard as it hits crops, primarily
           through direct heat stress and the decline of the food they rely on.

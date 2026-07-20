@@ -67,7 +67,7 @@ const App = () => {
         <EnvironmentTaxesComponent />
       </div>
 
-      <div className=" pb-5 space-y-4 max-w-3xl">
+      <div className=" pb-5 space-y-5 max-w-3xl">
         <h1 className="pb-5 text-2xl font-bold text-white tracking-tight">
           From Awareness to Action
         </h1>
@@ -85,11 +85,11 @@ const App = () => {
         </p>
       </div>
 
-      <div className="space-y-4 max-w-3xl">
+      <div className="space-y-5 max-w-3xl">
         <h1 className="text-2xl font-bold text-white tracking-tight">
           References
         </h1>
-        <ul className="text-slate-300  text-xs leading-relaxed space-y-3 list-none pl-0">
+        <ul className="text-slate-300  text-xs leading-relaxed space-y-5 list-none pl-0">
           <li className="pl-4 -indent-4">
             Berkeley Earth. (2026). <em>Global temperature report for 2025</em>.{" "}
             <a
@@ -144,12 +144,12 @@ const App = () => {
         </ul>
       </div>
 
-      <div className=" pb-5 space-y-4 max-w-3xl">
+      <div className=" pb-5 space-y-5 max-w-3xl">
         <h2 className="text-xl font-bold text-white tracking-tight">
           Methodology
         </h2>
 
-        <div className="space-y-3 text-slate-300 text-sm leading-relaxed">
+        <div className="space-y-5 text-slate-300 text-sm leading-relaxed">
           <div>
             <h3 className="font-semibold text-white">1. Data Sources</h3>
             <ul className="list-disc pl-5 space-y-1 mt-1">

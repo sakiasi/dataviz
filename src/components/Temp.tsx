@@ -61,7 +61,7 @@ export default function TemperatureGraph() {
         <div className="h-1.5 w-16 rounded-full hidden sm:block" />
       </div>
 
-      <div className="text-slate-300 text-sm leading-relaxed space-y-4 mb-10 max-w-3xl">
+      <div className="text-slate-300 text-sm leading-relaxed space-y-5 mb-10 max-w-3xl">
         <p>
           <a
             className="text-xs text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"

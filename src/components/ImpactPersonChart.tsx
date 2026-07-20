@@ -65,7 +65,7 @@ export default function ImpactPersonChart() {
           How Is This Changing Our Daily Lives?
         </h1>
       </div>
-        <div className="text-slate-300 text-sm leading-relaxed space-y-4 max-w-3xl">
+        <div className="text-slate-300 text-sm leading-relaxed space-y-5 max-w-3xl">
           <p>
             Climate change is not just a global statistic—it is a personal
             reality. From the immediate destruction of homes by intensifying

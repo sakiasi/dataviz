@@ -82,7 +82,7 @@ export default function EnvironmentTaxesComponent() {
         <div className="h-1.5 w-16 rounded-full hidden sm:block " />
       </div>
 
-      <div className="text-slate-300 text-sm leading-relaxed space-y-4 mb-10 max-w-3xl">
+      <div className="text-slate-300 text-sm leading-relaxed space-y-5 mb-10 max-w-3xl">
         <p>
           We know from our data that climate change is already causing massive
           <strong>annual economic losses</strong>. These taxes are our way of

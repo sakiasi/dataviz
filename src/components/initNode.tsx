@@ -7,9 +7,9 @@ export const initialNodes = [
       label: (
         <div>
           <h3 className="font-bold text-base mb-1">The Energy Source is the Sun</h3>
-          <p className="text-xs text-gray-600">Solar energy travels to Earth as short-wave radiation, warming the surface.</p>
+          <p className="text-md text-gray-600">Solar energy travels to Earth as short-wave radiation, warming the surface.</p>
         </div>
-      ) 
+      )
     },
     style: { borderRadius: '12px', padding: '14px', width: 280, background: '#ffffff', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.05)' }
   },

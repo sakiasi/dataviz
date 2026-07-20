@@ -115,7 +115,7 @@ export default function DisasterEconomicLossComponent() {
         <h1 className="text-2xl font-bold text-white tracking-tight">
           At what cost ?
         </h1>
-        <div className="h-1.5 w-16 rounded-full hidden sm:block bg-amber-500/20" />
+        <div className="h-1.5 w-16 rounded-full hidden sm:block" />
       </div>
 
       <div className="text-slate-300 text-sm leading-relaxed space-y-4 mb-10 max-w-3xl">

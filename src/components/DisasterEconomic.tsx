@@ -115,7 +115,7 @@ export default function DisasterEconomicLossComponent() {
   return (
     <div className="text-slate-100 space-y-5 w-full overflow-hidden">
       <h1 className="text-2xl font-bold text-white tracking-tight">
-        At what cost ?
+        What is the cost of rising temperature ?
       </h1>
 
       <div className="border-b border-slate-800"></div>

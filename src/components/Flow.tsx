@@ -13,10 +13,10 @@ export default function ClimateProcessFlow() {
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
-        panOnDrag={false}
-        panOnScroll={false}
-        selectionOnDrag={false}
-        preventScrolling={false}
+        panOnDrag={true}
+        panOnScroll={true}
+        selectionOnDrag={true}
+        preventScrolling={true}
         fitView
         proOptions={{ hideAttribution: true }}
       >

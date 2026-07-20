@@ -4,7 +4,6 @@ const App = () => {
   return (
     <div className="mx-auto p-5 md:max-w-prose mt-5 mb-5">
       <div className=" pb-5 space-y-5">
-        <h2>About This Story</h2>
         <p>
           This visualization explores the mechanics of climate change and its
           impact on our communities. While our narrative draws on established

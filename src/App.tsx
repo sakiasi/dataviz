@@ -1,3 +1,4 @@
+import CropYieldChart from "./components/CropYeildChart";
 import ImpactPersonChart from "./components/ImpactPersonChart";
 import OceanWarmingComponent from "./components/SeaChart";
 import TemperatureGraph from "./components/Temp";
@@ -45,6 +46,10 @@ const App = () => {
 
       <div>
         <ImpactPersonChart/>
+      </div>
+
+      <div>
+        <CropYieldChart/>
       </div>
 
       <div className=" pb-5">

@@ -59,7 +59,7 @@ const CustomTooltip = ({
 
 export default function ImpactPersonChart() {
   return (
-    <div className="text-slate-100 pb-5 space-y-5">
+    <div className="text-slate-100 space-y-5">
       <div className="pb-5 border-b border-slate-800">
         <h1 className=" text-2xl font-bold text-white tracking-tight">
           How Is This Changing Our Daily Lives?

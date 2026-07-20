@@ -9,7 +9,7 @@ import EnergyTimeline from "./components/TimeLine";
 
 const App = () => {
   return (
-    <div className="mx-auto max-w-prose mt-5 mb-5 p-5">
+    <div className="mx-auto space-y-10 max-w-prose mt-5 mb-5 p-5">
       <div className=" pb-5 space-y-5">
         <h2>About This Story</h2>
         <p>
@@ -67,7 +67,7 @@ const App = () => {
         <EnvironmentTaxesComponent />
       </div>
 
-      <div className="pt-6 border-t border-slate-800 pb-5 space-y-4 max-w-3xl">
+      <div className=" pb-5 space-y-4 max-w-3xl">
         <h1 className="pb-5 text-2xl font-bold text-white tracking-tight">
           From Awareness to Action
         </h1>
@@ -85,11 +85,11 @@ const App = () => {
         </p>
       </div>
 
-      <div className="pt-6 space-y-4 max-w-3xl">
+      <div className="space-y-4 max-w-3xl">
         <h1 className="text-2xl font-bold text-white tracking-tight">
           References
         </h1>
-        <ul className="text-slate-300 border-t border-slate-800 text-xs leading-relaxed space-y-3 list-none pl-0">
+        <ul className="text-slate-300  text-xs leading-relaxed space-y-3 list-none pl-0">
           <li className="pl-4 -indent-4">
             Berkeley Earth. (2026). <em>Global temperature report for 2025</em>.{" "}
             <a
@@ -144,7 +144,7 @@ const App = () => {
         </ul>
       </div>
 
-      <div className="pt-6 border-t border-slate-800 pb-5 space-y-4 max-w-3xl">
+      <div className=" pb-5 space-y-4 max-w-3xl">
         <h2 className="text-xl font-bold text-white tracking-tight">
           Methodology
         </h2>

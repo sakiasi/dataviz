@@ -62,7 +62,7 @@ const CustomTooltip = ({
 
 export default function LivestockYieldTemperatureComponent() {
   return (
-    <div className="text-slate-100 pb-5 space-y-5 w-full overflow-hidden">
+    <div className="text-slate-100 space-y-5 w-full overflow-hidden">
       <div className="flex items-center justify-between mb-8 border-b border-slate-800">
         <h1 className="text-2xl font-bold text-white ">
           Does temperature affect Livestock Yields ?

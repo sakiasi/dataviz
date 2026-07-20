@@ -58,7 +58,7 @@ const CustomTooltip = ({
 
 export default function OceanWarmingComponent() {
   return (
-    <div className="text-slate-100 pb-5 space-y-5">
+    <div className="text-slate-100 space-y-5">
       <div className="flex items-center justify-between mb-8 gap-4 border-b border-slate-800 pb-5">
         <h1 className="text-2xl font-bold text-white tracking-tight">
           Is Our Ocean Warming Up?

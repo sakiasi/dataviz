@@ -1,4 +1,3 @@
-
 import {
   ResponsiveContainer,
   ComposedChart,
@@ -61,14 +60,14 @@ const CustomTooltip = ({
   return null;
 };
 
-export default function CropYieldChart() {
+export default function CropYieldTemperatureComponent() {
   return (
-    <div className="text-slate-100 pb-5 space-y-5">
+    <div className="text-slate-100 pb-5 space-y-5 w-full overflow-hidden">
       <div className="flex items-center justify-between mb-8 gap-4 border-b border-slate-800 pb-5">
         <h1 className="text-2xl font-bold text-white tracking-tight">
           Does Temperature Affect Crop Yields?
         </h1>
-        <div className="h-1.5 w-16 rounded-full hidden sm:block" />
+        <div className="h-1.5 w-16 rounded-full hidden sm:block bg-amber-500" />
       </div>
 
       <div className="text-slate-300 text-sm leading-relaxed space-y-4 mb-10 max-w-3xl">
@@ -94,11 +93,12 @@ export default function CropYieldChart() {
         </h2>
       </div>
 
-      <div className="h-[400px] w-full -ml-5">
+      {/* Added pl-3 or a small left padding wrapper so the axis labels have breathing room without squeezing the chart area */}
+      <div className="h-[400px] w-full pl-3 pr-0">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart
             data={data}
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
           >
             <CartesianGrid
               strokeDasharray="3 3"
@@ -108,27 +108,31 @@ export default function CropYieldChart() {
             <XAxis
               dataKey="year"
               stroke="#94a3b8"
-              tick={{ fontSize: 12 }}
-              interval={2}
+              tick={{ fontSize: 11 }}
+              interval={1}
               tickLine={false}
             />
             <YAxis
               yAxisId="left"
               stroke="#94a3b8"
-              tick={{ fontSize: 12 }}
-              tickFormatter={(value) => `${value} kg`}
+              tick={{ fontSize: 10 }}
+              tickFormatter={(value) => `${value}`}
               tickLine={false}
               axisLine={false}
+              width={38}
+              domain={[1500, 3000]}
+              allowDataOverflow={false}
             />
             <YAxis
               yAxisId="right"
               orientation="right"
               stroke="#94a3b8"
-              tick={{ fontSize: 12 }}
+              tick={{ fontSize: 10 }}
               domain={["auto", "dataMax + 0.2"]}
-              tickFormatter={(value) => `${value}°C`}
+              tickFormatter={(value) => `${value}°`}
               tickLine={false}
               axisLine={false}
+              width={22}
             />
             <Tooltip
               content={<CustomTooltip />}
@@ -148,8 +152,8 @@ export default function CropYieldChart() {
               dataKey="temp"
               stroke="#34d399"
               strokeWidth={2}
-              dot={{ r: 3, fill: "#34d399" }}
-              activeDot={{ r: 5, fill: "#34d399", stroke: "#fff" }}
+              dot={{ r: 2, fill: "#34d399" }}
+              activeDot={{ r: 4, fill: "#34d399", stroke: "#fff" }}
             />
             <ReferenceLine yAxisId="right" y={0} stroke="#94a3b8" strokeDasharray="3 3" />
           </ComposedChart>

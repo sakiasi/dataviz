@@ -5,8 +5,10 @@ const CropComponent = () => {
 
   return (
     <div className="grid grid-cols-5">
-      {uniqueGEOPict.map((d, i) => (
-          <p className="p-2 text-sm text-center hover:cursor-pointer hover:bg-slate-600 bg-slate-800 border border-slate-500">{d}</p>
+      {uniqueGEOPict.map((d) => (
+        <p className="p-2 text-center hover:cursor-pointer hover:bg-slate-600 bg-slate-800 border border-slate-500">
+          {d}
+        </p>
       ))}
     </div>
   );

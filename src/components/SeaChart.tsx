@@ -65,7 +65,7 @@ export default function OceanWarmingComponent() {
 
       <div className="border-b border-slate-800"></div>
 
-      <div className="text-slate-300 text-sm leading-relaxed space-y-5 mb-10 max-w-3xl">
+      <div className="text-slate-300 leading-relaxed space-y-5 mb-10 max-w-3xl">
         <p>
           According to
           <a
@@ -149,7 +149,7 @@ export default function OceanWarmingComponent() {
         Data from Surface Temperature anomalies.csv and Sea Level Anomalies.csv
       </p>
 
-      <div className="text-slate-300 text-sm">
+      <div className="text-slate-300">
         Data shows annual temperature variations and thermal anomaly trends.
       </div>
     </div>

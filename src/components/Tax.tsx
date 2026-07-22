@@ -198,7 +198,7 @@ export default function EnvironmentTaxesComponent() {
       </h1>
       <div className="border-b border-slate-800"></div>
 
-      <div className="text-slate-300 text-sm leading-relaxed space-y-5 mb-10 max-w-3xl">
+      <div className="text-slate-300 leading-relaxed space-y-5 mb-10 max-w-3xl">
         <p>
           We know from our data that climate change is already causing massive
           <strong>annual economic losses</strong>. These taxes are our way of
@@ -315,7 +315,7 @@ export default function EnvironmentTaxesComponent() {
         Data from Environmental tax revenue and types.csv
       </p>
 
-      <div className="text-slate-300 text-sm">
+      <div className="text-slate-300">
         Data shows annual breakdown of environmental tax types as a percentage
         share.
       </div>

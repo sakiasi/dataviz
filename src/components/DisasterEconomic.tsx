@@ -120,7 +120,7 @@ export default function DisasterEconomicLossComponent() {
 
       <div className="border-b border-slate-800"></div>
 
-      <div className="text-slate-300 text-sm leading-relaxed space-y-5 mb-10 max-w-3xl">
+      <div className="text-slate-300 leading-relaxed space-y-5 mb-10 max-w-3xl">
         <p>
           Because oceans absorb most of the excess heat trapped by greenhouse
           gases, we are seeing more intense storms and rising sea levels. Today,
@@ -154,7 +154,7 @@ export default function DisasterEconomicLossComponent() {
         Data from Direct disaster economic loss, average annual loss.csv
       </p>
 
-      <div className="text-slate-300 text-sm">
+      <div className="text-slate-300">
         Data shows country, year, and value (dollar USD) details for direct
         disaster economic losses.
       </div>

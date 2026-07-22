@@ -61,10 +61,10 @@ export default function TemperatureGraph() {
 
       <div className="border-b border-slate-800"></div>
 
-      <div className="text-slate-300 text-sm leading-relaxed space-y-5 mb-10 max-w-3xl">
+      <div className="text-slate-300 leading-relaxed space-y-5 mb-10 max-w-3xl">
         <p>
           <a
-            className="text-xs text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
+            className="text text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
             href="https://berkeleyearth.org/global-temperature-report-for-2025/"
           >
             According to Berkeley Earth's 2025 report

@@ -78,7 +78,7 @@ export default function LivestockYieldTemperatureComponent() {
 
       <div className="border-b border-slate-800"></div>
 
-      <div className="text-slate-300 text-sm leading-relaxed space-y-5 mb-10">
+      <div className="text-slate-300 leading-relaxed space-y-5 mb-10">
         <p>
           Climate change hits livestock just as hard as it hits crops, primarily
           through direct heat stress and the decline of the food they rely on.
@@ -182,7 +182,7 @@ export default function LivestockYieldTemperatureComponent() {
         Data from Livestock - disaggregated.csv
       </p>
 
-      <div className="text-slate-300 text-sm">
+      <div className="text-slate-300 ">
         Data shows annual livestock yield production alongside temperature
         anomaly trends.
       </div>

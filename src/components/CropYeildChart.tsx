@@ -78,7 +78,7 @@ export default function CropYieldTemperatureComponent() {
 
       <div className="border-b border-slate-800"></div>
 
-      <div className="text-slate-300 text-sm leading-relaxed space-y-5 mb-10 max-w-3xl">
+      <div className="text-slate-300 leading-relaxed space-y-5 mb-10 max-w-3xl">
         <p>
           Every crop has an &quot;optimal&quot; temperature range for growth.
           When temperatures consistently exceed this—especially during sensitive
@@ -177,7 +177,7 @@ export default function CropYieldTemperatureComponent() {
         Data from Crop yield - disaggregated.csv
       </p>
 
-      <div className="text-slate-300 text-sm">
+      <div className="text-slate-300">
         Data shows annual crop yield production alongside temperature anomaly
         trends.
       </div>

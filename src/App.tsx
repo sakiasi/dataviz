@@ -6,12 +6,10 @@ import OceanWarmingComponent from "./components/SeaChart";
 import EnvironmentTaxesComponent from "./components/Tax";
 import TemperatureGraph from "./components/Temp";
 import EnergyTimeline from "./components/TimeLine";
-import GeoPictList from "./services/geoPict";
 import { useCrop } from "./services/getData";
 
-const App =() => {
-
-  useCrop()
+const App = () => {
+  useCrop();
 
   return (
     <div className="mx-auto space-y-10 max-w-prose mt-5 mb-5 p-5">
@@ -46,7 +44,6 @@ const App =() => {
 
       <div>
         <TemperatureGraph />
-        <GeoPictList/>
       </div>
 
       <div>

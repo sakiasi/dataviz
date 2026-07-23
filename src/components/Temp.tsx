@@ -8,7 +8,6 @@ import {
   ResponsiveContainer,
   ReferenceLine,
 } from "recharts";
-import CropComponent from "./Crop";
 
 interface TemperatureDataPoint {
   year: string;
@@ -127,7 +126,6 @@ export default function TemperatureGraph() {
         </ResponsiveContainer>
       </div>
 
-      <CropComponent />
 
       <div className="text-slate-300">
         Data shows the mean surface temperature for the pacific islands. Click

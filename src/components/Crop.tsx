@@ -1,12 +1,12 @@
 import { useCrop } from "../services/getData";
 
-const CropComponent = () => {
+const CropCountry = () => {
   const { uniqueGEOPict } = useCrop();
 
   return (
     <div className="grid grid-cols-5">
       {uniqueGEOPict.map((d) => (
-        <p className="p-2 text-center hover:cursor-pointer hover:bg-slate-600 bg-slate-800 border border-slate-500">
+        <p key={d} className="p-2 text-center hover:cursor-pointer hover:bg-slate-600 bg-slate-800 border border-slate-500">
           {d}
         </p>
       ))}
@@ -14,4 +14,4 @@ const CropComponent = () => {
   );
 };
 
-export default CropComponent;
+export default CropCountry;

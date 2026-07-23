@@ -1,7 +1,7 @@
 import {
   ResponsiveContainer,
   ComposedChart,
-  Bar,
+  Scatter,
   Line,
   XAxis,
   YAxis,
@@ -9,6 +9,8 @@ import {
   Tooltip,
   ReferenceLine,
 } from "recharts";
+import CropCountry from "./Crop";
+import { useCrop } from "../services/getData";
 
 interface DataPoint {
   year: string;
@@ -16,6 +18,7 @@ interface DataPoint {
   temp: number;
 }
 
+// Fallback data sample if the hook data structure maps to OBS_VALUE / TIME_PERIOD
 const data: DataPoint[] = [
   { year: "2010", yieldKg: 2400, temp: 0.45 },
   { year: "2011", yieldKg: 2500, temp: 0.41 },
@@ -41,26 +44,29 @@ const CustomTooltip = ({
   label,
 }: {
   active?: boolean;
-  payload?: Array<{ value: number; dataKey: string }>;
+  payload?: Array<{ value: number; dataKey: string; payload?: any }>;
   label?: string | number;
 }) => {
   if (active && payload && payload.length) {
+    // For scatter plots, payload[0].payload contains the full data object
+    const dataPoint = payload[0].payload;
+    const yearLabel = dataPoint?.TIME_PERIOD || dataPoint?.year || label;
+    const yieldVal = dataPoint?.OBS_VALUE ?? dataPoint?.yieldKg;
+    const tempVal = dataPoint?.temp;
+
     return (
       <div className="bg-slate-900 border border-slate-700 p-3 rounded-lg shadow-xl text-xs space-y-1">
-        <p className="font-semibold text-white">Year: {label}</p>
+        <p className="font-semibold text-white">Year: {yearLabel}</p>
         <p className="text-amber-400">
           Crop Yield:{" "}
           <span className="font-bold">
-            {payload
-              .find((p) => p.dataKey === "yieldKg")
-              ?.value.toLocaleString()}{" "}
-            kg
+            {typeof yieldVal === 'number' ? yieldVal.toLocaleString() : yieldVal} kg
           </span>
         </p>
         <p className="text-emerald-400">
           Temperature:{" "}
           <span className="font-bold">
-            +{payload.find((p) => p.dataKey === "temp")?.value}°C
+            {tempVal > 0 ? `+${tempVal}` : tempVal}°C
           </span>
         </p>
       </div>
@@ -70,6 +76,9 @@ const CustomTooltip = ({
 };
 
 export default function CropYieldTemperatureComponent() {
+  const { crop, yRange } = useCrop();
+
+
   return (
     <div className="text-slate-100 space-y-5 w-full overflow-hidden">
       <h1 className="text-2xl font-bold text-white tracking-tight">
@@ -101,11 +110,10 @@ export default function CropYieldTemperatureComponent() {
         </h2>
       </div>
 
-      {/* Added pl-3 or a small left padding wrapper so the axis labels have breathing room without squeezing the chart area */}
       <div className="h-[400px] w-full pl-3 pr-0">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart
-            data={data}
+            data={crop}
             margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
           >
             <CartesianGrid
@@ -114,7 +122,7 @@ export default function CropYieldTemperatureComponent() {
               vertical={false}
             />
             <XAxis
-              dataKey="year"
+              dataKey="TIME_PERIOD"
               stroke="#94a3b8"
               tick={{ fontSize: 11 }}
               interval={1}
@@ -128,7 +136,7 @@ export default function CropYieldTemperatureComponent() {
               tickLine={false}
               axisLine={false}
               width={38}
-              domain={[1500, 3000]}
+              domain={yRange}
               allowDataOverflow={false}
             />
             <YAxis
@@ -142,27 +150,35 @@ export default function CropYieldTemperatureComponent() {
               axisLine={false}
               width={22}
             />
+
             <Tooltip
               content={<CustomTooltip />}
-              cursor={{ fill: "rgba(148, 163, 184, 0.05)" }}
+              cursor={{ stroke: "rgba(148, 163, 184, 0.2)", strokeDasharray: "3 3" }}
             />
-            <Bar
-              yAxisId="left"
-              dataKey="yieldKg"
-              fill="#f59e0b"
-              radius={[4, 4, 0, 0]}
-              barSize={20}
-              fillOpacity={0.85}
-            />
+            
             <Line
+              yAxisId="left"
+              type="monotone"
+              dataKey="OBS_VALUE"
+              stroke="#f59e0b"
+              strokeWidth={2}
+              dot={{ r: 3, fill: "#f59e0b" }}
+              activeDot={{ r: 5, fill: "#f59e0b", stroke: "#fff" }}
+              isAnimationActive={false}
+            />
+
+            {/* <Line
               yAxisId="right"
               type="monotone"
+              data={sortedCropData}
               dataKey="temp"
               stroke="#34d399"
               strokeWidth={2}
               dot={{ r: 2, fill: "#34d399" }}
               activeDot={{ r: 4, fill: "#34d399", stroke: "#fff" }}
-            />
+              isAnimationActive={false}
+            /> */}
+
             <ReferenceLine
               yAxisId="right"
               y={0}
@@ -173,13 +189,15 @@ export default function CropYieldTemperatureComponent() {
         </ResponsiveContainer>
       </div>
 
+      <CropCountry />
+
       <p className="text-xs text-slate-400 italic">
         Data from Crop yield - disaggregated.csv
       </p>
 
       <div className="text-slate-300">
         Data shows annual crop yield production alongside temperature anomaly
-        trends.
+        trends. 32 crops
       </div>
     </div>
   );

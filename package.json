@@ -19,6 +19,7 @@
     "react-d3-tree": "^3.6.6",
     "react-dom": "^19.2.7",
     "recharts": "^3.9.2",
+    "simple-statistics": "^7.9.3",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {

@@ -1,4 +1,3 @@
-import CropYieldChart from "./components/CropYeildChart";
 import DisasterEconomicLossComponent from "./components/DisasterEconomic";
 import ImpactPersonChart from "./components/ImpactPersonChart";
 import LivestockCropTemperatureComponent from "./components/LivestockCropTemperatureComponent";
@@ -6,10 +5,8 @@ import OceanWarmingComponent from "./components/SeaChart";
 import EnvironmentTaxesComponent from "./components/Tax";
 import TemperatureGraph from "./components/Temp";
 import EnergyTimeline from "./components/TimeLine";
-import { useCrop } from "./services/getData";
 
 const App = () => {
-  useCrop();
 
   return (
     <div className="mx-auto space-y-10 max-w-prose mt-5 mb-5 p-5">
@@ -52,10 +49,6 @@ const App = () => {
 
       <div>
         <ImpactPersonChart />
-      </div>
-
-      <div>
-        <CropYieldChart />
       </div>
 
       <div>

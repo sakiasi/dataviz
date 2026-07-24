@@ -47,7 +47,7 @@ export const useCrop=()=>{
         acc.push(year)
       }
       return acc
-      
+
     }, [])
 
     //by year gap
@@ -72,15 +72,22 @@ export const useCrop=()=>{
       String(a['Agricultural product'] || '').localeCompare(String(b['Agricultural product'] || ''))
     );
     
-    const groupCrops = cropCountry.reduce<Record<string, [number, number][]>>((acc, d) => {
+    const groupCrops = result.reduce<Record<string, [number, number][]>>((acc, d) => {
+        const country = d.GEO_PICT;
         const product = d['Agricultural product'];
-        if (!product) return acc;
-        if (!acc[product]) acc[product] = [];
-        acc[product].push([Number(d.TIME_PERIOD), Number(d.OBS_VALUE)]);
+        if (!product || !country) return acc;
+
+        const key = `${country}|${product}`
+
+        if (!acc[key]) acc[key] = [];
+        acc[key].push([Number(d.TIME_PERIOD), Number(d.OBS_VALUE)]);
+
         return acc;
+
     }, {});
 
     const analyzedTrends = Object.entries(groupCrops).map(([product, points]) => {
+
         if (points.length < 2) return { product, trend: 'consolidate' };
         
         const regression = ss.linearRegression(points);

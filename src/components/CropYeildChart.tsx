@@ -1,7 +1,6 @@
 import {
   ResponsiveContainer,
   ComposedChart,
-  Scatter,
   Line,
   XAxis,
   YAxis,
@@ -11,12 +10,26 @@ import {
 } from "recharts";
 import CropCountry from "./Crop";
 import { useCrop } from "../services/getData";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface DataPoint {
   year: string;
   yieldKg: number;
   temp: number;
 }
+
+const items = [
+  { label: "Light", value: "light" },
+  { label: "Dark", value: "dark" },
+  { label: "System", value: "system" },
+];
 
 // Fallback data sample if the hook data structure maps to OBS_VALUE / TIME_PERIOD
 const data: DataPoint[] = [
@@ -60,7 +73,10 @@ const CustomTooltip = ({
         <p className="text-amber-400">
           Crop Yield:{" "}
           <span className="font-bold">
-            {typeof yieldVal === 'number' ? yieldVal.toLocaleString() : yieldVal} kg
+            {typeof yieldVal === "number"
+              ? yieldVal.toLocaleString()
+              : yieldVal}{" "}
+            kg
           </span>
         </p>
         <p className="text-emerald-400">
@@ -77,7 +93,6 @@ const CustomTooltip = ({
 
 export default function CropYieldTemperatureComponent() {
   const { crop, yRange } = useCrop();
-
 
   return (
     <div className="text-slate-100 space-y-5 w-full overflow-hidden">
@@ -102,6 +117,23 @@ export default function CropYieldTemperatureComponent() {
             (Chaturvedi et al., 2021)
           </a>
         </p>
+      </div>
+
+      <div>
+        <Select items={items}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Theme" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {items.map((item) => (
+                <SelectItem key={item.value} value={item.value}>
+                  {item.label}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
       </div>
 
       <div>
@@ -153,9 +185,12 @@ export default function CropYieldTemperatureComponent() {
 
             <Tooltip
               content={<CustomTooltip />}
-              cursor={{ stroke: "rgba(148, 163, 184, 0.2)", strokeDasharray: "3 3" }}
+              cursor={{
+                stroke: "rgba(148, 163, 184, 0.2)",
+                strokeDasharray: "3 3",
+              }}
             />
-            
+
             <Line
               yAxisId="left"
               type="monotone"

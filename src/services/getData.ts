@@ -12,7 +12,7 @@ export interface dataProps {
   "Agricultural product"?: string;
 }
 
-export const useCrop=()=>{
+export const useCrop = () => {
 
   const [crop, setCrop] = useState<dataProps[]>([])
   const [uniqueGEOPict, setUniqueGEOPict] = useState<(string | undefined)[]>([])
@@ -20,102 +20,102 @@ export const useCrop=()=>{
   const [selectedCrop, setSelectedCrop] = useState('Oranges') 
   const [yRange, setYRange] = useState<number[]>([])
 
-  useEffect(()=>{
+  useEffect(() => {
 
-    const fetchTemp=async ()=>{
-    const response = await fetch(cropData)
-    const result:dataProps[] = await response.json()
-    setUniqueGEOPict([...new Set(result.map(d => d.GEO_PICT))])
+    const fetchTemp = async () => {
+      const response = await fetch(cropData)
+      const result: dataProps[] = await response.json()
+      setUniqueGEOPict([...new Set(result.map(d => d.GEO_PICT))])
 
-    //by country
-    const cropCountry = result.filter(d => d.GEO_PICT?.includes(selectedCountry))
-    
-    //by crop name
-    const cropsByName = cropCountry.filter(d => d['Agricultural product']?.toLowerCase()===selectedCrop.toLowerCase())
-    const cropName = [...new Set(cropCountry.map(d => d['Agricultural product']))]
-    console.log('CROP NAME:', cropName)
-    
-    //define year gap
-    const gap = 2
-    const cropYears = cropsByName.map(y => Number(y.TIME_PERIOD))
-    console.log('CROP Years:', cropYears)
-    const uniqueSortedYears = [...new Set(cropYears)].sort((a, b) => a - b)
+      //by country
+      const cropCountry = result.filter(d => d.GEO_PICT?.includes(selectedCountry))
+      
+      //by crop name
+      const cropsByName = cropCountry.filter(d => d['Agricultural product']?.toLowerCase() === selectedCrop.toLowerCase())
+      const cropName = [...new Set(cropCountry.map(d => d['Agricultural product']))]
+      console.log('CROP NAME:', cropName)
+      
+      //define year gap
+      const gap = 2
+      const cropYears = cropsByName.map(y => Number(y.TIME_PERIOD))
+      console.log('CROP Years:', cropYears)
+      const uniqueSortedYears = [...new Set(cropYears)].sort((a, b) => a - b)
 
-    const yearGap = uniqueSortedYears.reduce((acc, year) => {
+      const yearGap = uniqueSortedYears.reduce<number[]>((acc, year) => {
+        if (acc.length === 0 || year - acc[acc.length - 1] >= gap) {
+          acc.push(year)
+        }
+        return acc
+      }, [])
 
-      if (acc.length === 0 || year - acc[acc.length - 1] >= gap) {
-        acc.push(year)
+      //by year gap
+      const cropsByYearGap = cropsByName.filter(d => d.TIME_PERIOD !== undefined && yearGap.includes(Number(d.TIME_PERIOD)));
+      console.log('CROP BY YEAR GAP:', cropsByYearGap)
+      setCrop(cropsByYearGap)
+
+      //define y
+      const cropsByValue = cropsByYearGap.map(d => d.OBS_VALUE).filter((val): val is number => val !== undefined)
+      if (cropsByValue.length > 0) {
+        const y = [cropsByValue[0], cropsByValue[cropsByValue.length - 1]]
+        setYRange(y)
+      } else {
+        setYRange([])
       }
-      return acc
 
-    }, [])
+      //define trend
+      const trendShape = cropsByYearGap.map(d => ([Number(d.TIME_PERIOD), Number(d.OBS_VALUE)]))
+      const trend = ss.linearRegression(trendShape)
+      const sign = Math.sign(trend.m)
+      console.log('TREND SHAPE:', trend.m)
+      console.log('SIGN:', sign)
+      
+      const groupCrops = result.reduce<Record<string, [number, number][]>>((acc, d) => {
+          const country = d.GEO_PICT;
+          const product = d['Agricultural product'];
+          if (!product || !country || d.TIME_PERIOD === undefined || d.OBS_VALUE === undefined) return acc;
 
-    //by year gap
-    const cropsByYearGap = cropsByName.filter(d => yearGap.includes(Number(d.TIME_PERIOD)));
-    console.log('CROP BY YEAR GAP:', cropsByYearGap)
-    setCrop(cropsByYearGap)
+          const key = `${country}|${product}`
 
-    //define y
-    const cropsByValue = cropsByYearGap.map(d => d.OBS_VALUE)
-    const y = [cropsByValue[0],cropsByValue[cropsByValue.length-1]]
-    setYRange(y)
+          if (!acc[key]) acc[key] = [];
+          acc[key].push([Number(d.TIME_PERIOD), Number(d.OBS_VALUE)]);
 
-    //define trend
-    const trendShape = cropsByYearGap.map(d => ([Number(d.TIME_PERIOD),Number(d.OBS_VALUE)]))
-    const trend = ss.linearRegression(trendShape)
-    const sign = Math.sign(trend.m)
-    console.log('TREND SHAPE:', trend.m)
-    console.log('SIGN:', sign)
+          return acc;
+      }, {});
 
-    //1. show all crops with down trend
-    const sortCrops = [...result].sort((a, b) => 
-      String(a['Agricultural product'] || '').localeCompare(String(b['Agricultural product'] || ''))
-    );
-    
-    const groupCrops = result.reduce<Record<string, [number, number][]>>((acc, d) => {
-        const country = d.GEO_PICT;
-        const product = d['Agricultural product'];
-        if (!product || !country) return acc;
+      const analyzedTrends = Object.entries(groupCrops).map(([product, points]) => {
+          if (points.length < 2) return { product, trend: 'consolidate' };
+          
+          const regression = ss.linearRegression(points);
+          const slope = regression.m;
+          const threshold = 0.001;
 
-        const key = `${country}|${product}`
+          let trend = 'consolidate';
+          if (slope > threshold) trend = 'up';
+          else if (slope < -threshold) trend = 'down';
 
-        if (!acc[key]) acc[key] = [];
-        acc[key].push([Number(d.TIME_PERIOD), Number(d.OBS_VALUE)]);
+          return { product, slope, trend };
+      });
 
-        return acc;
+      const downTrends = analyzedTrends.filter(item => item.trend === 'down');
+      const upTrends = analyzedTrends.filter(item => item.trend === 'up');
+      const consolidating = analyzedTrends.filter(item => item.trend === 'consolidate');
 
-    }, {});
-
-    const analyzedTrends = Object.entries(groupCrops).map(([product, points]) => {
-
-        if (points.length < 2) return { product, trend: 'consolidate' };
-        
-        const regression = ss.linearRegression(points);
-        const slope = regression.m;
-        const threshold = 0.001; // Adjust this threshold if needed
-
-        let trend = 'consolidate';
-        if (slope > threshold) trend = 'up';
-        else if (slope < -threshold) trend = 'down';
-
-        return { product, slope, trend };
-    });
-
-    const downTrends = analyzedTrends.filter(item => item.trend === 'down');
-    const upTrends = analyzedTrends.filter(item => item.trend === 'up');
-    const consolidating = analyzedTrends.filter(item => item.trend === 'consolidate');
-
-    console.log('DOWN TRENDS:', downTrends);
-    console.log('UP TRENDS:', upTrends);
-    console.log('CONSOLIDATING:', consolidating);
-
+      console.log('DOWN TRENDS:', downTrends);
+      console.log('UP TRENDS:', upTrends);
+      console.log('CONSOLIDATING:', consolidating);
     }
 
     fetchTemp()
 
-  },[selectedCountry,selectedCrop])
+  }, [selectedCountry, selectedCrop])
 
-  return {crop,uniqueGEOPict,selectedCountry,yRange}
-
+  return { 
+    crop, 
+    uniqueGEOPict, 
+    selectedCountry, 
+    setSelectedCountry, 
+    selectedCrop, 
+    setSelectedCrop, 
+    yRange 
+  }
 }
-

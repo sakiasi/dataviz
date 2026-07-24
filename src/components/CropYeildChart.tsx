@@ -10,46 +10,8 @@ import {
 } from "recharts";
 import CropCountry from "./Crop";
 import { useCrop } from "../services/getData";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
-interface DataPoint {
-  year: string;
-  yieldKg: number;
-  temp: number;
-}
 
-const items = [
-  { label: "Light", value: "light" },
-  { label: "Dark", value: "dark" },
-  { label: "System", value: "system" },
-];
-
-// Fallback data sample if the hook data structure maps to OBS_VALUE / TIME_PERIOD
-const data: DataPoint[] = [
-  { year: "2010", yieldKg: 2400, temp: 0.45 },
-  { year: "2011", yieldKg: 2500, temp: 0.41 },
-  { year: "2012", yieldKg: 2200, temp: 0.53 },
-  { year: "2013", yieldKg: 2600, temp: 0.6 },
-  { year: "2014", yieldKg: 2750, temp: 0.75 },
-  { year: "2015", yieldKg: 2300, temp: 0.88 },
-  { year: "2016", yieldKg: 2100, temp: 0.99 },
-  { year: "2017", yieldKg: 2450, temp: 0.91 },
-  { year: "2018", yieldKg: 2550, temp: 0.95 },
-  { year: "2019", yieldKg: 2350, temp: 1.08 },
-  { year: "2020", yieldKg: 2200, temp: 1.12 },
-  { year: "2021", yieldKg: 2050, temp: 1.05 },
-  { year: "2022", yieldKg: 2150, temp: 1.18 },
-  { year: "2023", yieldKg: 1900, temp: 1.32 },
-  { year: "2024", yieldKg: 1850, temp: 1.4 },
-  { year: "2025", yieldKg: 1950, temp: 1.3 },
-];
 
 const CustomTooltip = ({
   active,
@@ -117,23 +79,6 @@ export default function CropYieldTemperatureComponent() {
             (Chaturvedi et al., 2021)
           </a>
         </p>
-      </div>
-
-      <div>
-        <Select items={items}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Theme" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              {items.map((item) => (
-                <SelectItem key={item.value} value={item.value}>
-                  {item.label}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
       </div>
 
       <div>

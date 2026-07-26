@@ -51,7 +51,7 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   return null;
 };
 
-export default function TemperatureGraph() {
+export default function Temperature() {
   return (
     <div className=" text-slate-100 space-y-5">
       <h1 className="text-2xl font-bold text-white tracking-tight">
@@ -126,11 +126,12 @@ export default function TemperatureGraph() {
         </ResponsiveContainer>
       </div>
 
-
       <div className="text-slate-300">
         Data shows the mean surface temperature for the pacific islands. Click
         each country to view them individually. data shows...
       </div>
+      
     </div>
+
   );
 }

@@ -56,7 +56,7 @@ const CustomTooltip = ({
   return null;
 };
 
-export default function OceanWarmingComponent() {
+export default function OceanWarming() {
   return (
     <div className="text-slate-100 space-y-5">
       <h1 className="text-2xl font-bold text-white tracking-tight">

@@ -190,7 +190,7 @@ const CustomTooltip = ({
   return null;
 };
 
-export default function EnvironmentTaxesComponent() {
+export default function EnvironmentTaxes() {
   return (
     <div className="text-slate-100 space-y-5 w-full overflow-hidden">
       <h1 className="text-2xl font-bold text-white tracking-tight">

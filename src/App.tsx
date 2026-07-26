@@ -1,9 +1,10 @@
+import CropChart from "./components/Crop";
 import DisasterEconomicLossComponent from "./components/DisasterEconomic";
-import ImpactPersonChart from "./components/ImpactPersonChart";
-import LivestockCropTemperatureComponent from "./components/LivestockCropTemperatureComponent";
-import OceanWarmingComponent from "./components/SeaChart";
-import EnvironmentTaxesComponent from "./components/Tax";
-import TemperatureGraph from "./components/Temp";
+import ImpactPersonChart from "./components/ImpactPerson.tsx";
+import LivestockCropTemperatureComponent from "./components/LivestockCropTemperature.tsx";
+import OceanWarmingComponent from "./components/OceanWarming.tsx";
+import EnvironmentTaxesComponent from "./components/EnvironmentTaxes.tsx";
+import TemperatureGraph from "./components/Temperature.tsx";
 import EnergyTimeline from "./components/TimeLine";
 
 const App = () => {
@@ -49,6 +50,10 @@ const App = () => {
 
       <div>
         <ImpactPersonChart />
+      </div>
+
+      <div>
+        <CropChart/>
       </div>
 
       <div>

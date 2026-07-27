@@ -1,4 +1,3 @@
-import React from "react";
 import {
   ResponsiveContainer,
   ComposedChart,
@@ -9,6 +8,7 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
+import { tempFn } from "../services/cropAnalysis";
 
 interface CropDataPoint {
   year: string;
@@ -39,7 +39,7 @@ const CustomTooltip = ({
       <div className="bg-slate-900 border border-slate-700 p-3 rounded-lg shadow-xl text-xs space-y-1">
         <p className="font-semibold text-white">Year: {label}</p>
         <p className="text-amber-400">
-          Crop Yield:{" "}
+          Crop Yield:
           <span className="font-bold">
             {payload
               .find((p) => p.dataKey === "yieldKg")
@@ -60,6 +60,7 @@ const CustomTooltip = ({
 };
 
 export default function Crop() {
+  tempFn()
   return (
     <div className="text-slate-100 space-y-5 w-full overflow-hidden">
       <h1 className="text-2xl font-bold text-white tracking-tight">
@@ -163,8 +164,18 @@ export default function Crop() {
       </p>
 
       <div className="text-slate-300">
-        Data shows annual variations in kilograms per hectare (KGHA) alongside
-        temperature anomaly trends reflecting agricultural productivity impacts.
+        Our linear regression analysis reveals a significant, strong negative
+        association between mean surface temperature and crop yield,
+        demonstrating that rising temperatures reliably correspond with
+        declining agricultural output. Specifically, the model indicates that
+        for every 1°C increase in mean surface temperature, crop yield decreases
+        by [Insert Number] [Insert Unit, e.g., tons per hectare]. While this
+        clear downward trend provides a highly reliable indicator for
+        forecasting environmental heat stress on crops, it is important to note
+        that this model analyzes temperature in isolation; it maps a broader
+        environmental association rather than absolute causation, as it does not
+        control for unmeasured compounding seasonal variables such as rainfall
+        or soil moisture.
       </div>
     </div>
   );

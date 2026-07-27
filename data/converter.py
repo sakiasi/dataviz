@@ -5,8 +5,8 @@ import os
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Build the full paths
-csv_path = os.path.join(script_dir, "surface-temperature-anomalies.csv") # Or move it to public/data/ if needed
-json_path = os.path.join(script_dir, "surface-temperature-anomalies.json")
+csv_path = os.path.join(script_dir, "Crop_Yields.csv") # Or move it to public/data/ if needed
+json_path = os.path.join(script_dir, "Crop_Yields.json")
 
 # Read and convert
 df = pd.read_csv(csv_path)

@@ -1,56 +1,34 @@
+import { useState } from "react";
 import {
   ResponsiveContainer,
-  ComposedChart,
-  Bar,
+  ScatterChart,
+  Scatter,
   Line,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
 } from "recharts";
-import { tempFn } from "../services/cropAnalysis";
+import { cropAnalysis, getAvailableCountries } from "../services/cropAnalysis";
 
-interface CropDataPoint {
-  year: string;
-  yieldKg: number;
-  temp: number;
-}
+const availableCountries = getAvailableCountries();
 
-const data: CropDataPoint[] = [
-  { year: "2015", yieldKg: 3850, temp: 0.88 },
-  { year: "2017", yieldKg: 3720, temp: 0.91 },
-  { year: "2019", yieldKg: 3590, temp: 1.08 },
-  { year: "2021", yieldKg: 3410, temp: 1.05 },
-  { year: "2023", yieldKg: 3250, temp: 1.32 },
-  { year: "2025", yieldKg: 3100, temp: 1.3 },
-];
-
-const CustomTooltip = ({
-  active,
-  payload,
-  label,
-}: {
-  active?: boolean;
-  payload?: Array<{ value: number; dataKey: string }>;
-  label?: string | number;
-}) => {
+const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
+    const data = payload[0].payload;
     return (
       <div className="bg-slate-900 border border-slate-700 p-3 rounded-lg shadow-xl text-xs space-y-1">
-        <p className="font-semibold text-white">Year: {label}</p>
+        <p className="font-semibold text-white">
+          {data.country} ({data.year})
+        </p>
         <p className="text-amber-400">
-          Crop Yield:
-          <span className="font-bold">
-            {payload
-              .find((p) => p.dataKey === "yieldKg")
-              ?.value.toLocaleString()}{" "}
-            KG/HA
-          </span>
+          Crop Yield:{" "}
+          <span className="font-bold">{data.crop_value.toLocaleString()} KG/HA</span>
         </p>
         <p className="text-emerald-400">
-          Temperature:{" "}
+          Temperature Anomaly:{" "}
           <span className="font-bold">
-            +{payload.find((p) => p.dataKey === "temp")?.value}°C
+            {data.temp_value > 0 ? `+${data.temp_value}` : data.temp_value}°C
           </span>
         </p>
       </div>
@@ -60,22 +38,39 @@ const CustomTooltip = ({
 };
 
 export default function Crop() {
-  tempFn()
+  const [selectedCountry, setSelectedCountry] = useState("Vanuatu");
+  const { scatterData, trendLineData, slope } = cropAnalysis(selectedCountry);
+
+  const isNegative = slope < 0;
+  const actionWord = isNegative ? "decreases" : "increases";
+
   return (
     <div className="text-slate-100 space-y-5 w-full overflow-hidden">
-      <h1 className="text-2xl font-bold text-white tracking-tight">
-        How is Heat Stress Impacting Crop Yields?
-      </h1>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <h1 className="text-2xl font-bold text-white tracking-tight">
+          How is Heat Stress Impacting Crop Yields?
+        </h1>
+
+        <select
+          value={selectedCountry}
+          onChange={(e) => setSelectedCountry(e.target.value)}
+          className="bg-slate-800 border border-slate-700 text-slate-200 text-sm rounded-lg px-3 py-2 outline-none focus:border-amber-500"
+        >
+          {availableCountries.map((country) => (
+            <option key={country} value={country}>
+              {country}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <div className="border-b border-slate-800"></div>
 
       <div className="text-slate-300 leading-relaxed space-y-5 mb-10 max-w-3xl">
         <p>
-          Extreme heat is one of the biggest threats to the world's food supply
-          because it damages how plants grow and reproduce, often making them
-          sterile. When plants get too hot, important internal processes—like
-          how they handle sugars, fats, and natural hormones—break down, which
-          drastically lowers the amount of food they can produce.
+          Extreme heat is one of the biggest threats to agricultural productivity
+          because it disrupts plant growth, pollination, and natural internal processes,
+          ultimately lowering total crop yield.
           <a
             className="text-xs pl-1 text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
             target="_blank"
@@ -89,93 +84,55 @@ export default function Crop() {
 
       <div>
         <h2 className="text-lg font-semibold text-white">
-          Vanuatu Crop Yield and Temperature Anomaly Over Time
+          {selectedCountry}: Temperature Anomaly vs. Crop Yield Correlation
         </h2>
       </div>
 
       <div className="h-[400px] w-full pl-3 pr-0">
         <ResponsiveContainer width="100%" height="100%">
-          <ComposedChart
-            data={data}
-            margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
-          >
-            <CartesianGrid
-              strokeDasharray="3 3"
-              stroke="#334155"
-              vertical={false}
-            />
+          <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 10 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
             <XAxis
-              dataKey="year"
+              type="number"
+              dataKey="temp_value"
+              name="Temperature Anomaly"
+              unit="°C"
               stroke="#94a3b8"
               tick={{ fontSize: 11 }}
-              interval={0}
-              tickLine={false}
+              domain={["auto", "auto"]}
             />
             <YAxis
-              yAxisId="left"
+              type="number"
+              dataKey="crop_value"
+              name="Crop Yield"
+              unit=" KG/HA"
               stroke="#94a3b8"
-              tick={{ fontSize: 10 }}
-              tickFormatter={(value) => `${value}`}
-              tickLine={false}
-              axisLine={false}
-              width={42}
-              domain={[2800, 4200]}
-              allowDataOverflow={false}
+              tick={{ fontSize: 11 }}
+              domain={["auto", "auto"]}
             />
-            <YAxis
-              yAxisId="right"
-              orientation="right"
-              stroke="#94a3b8"
-              tick={{ fontSize: 10 }}
-              domain={[0, 2]}
-              tickFormatter={(value) => `${value}°`}
-              tickLine={false}
-              axisLine={false}
-              width={24}
-            />
-            <Tooltip
-              content={<CustomTooltip />}
-              cursor={{ fill: "rgba(148, 163, 184, 0.05)" }}
-            />
-            <Bar
-              yAxisId="left"
-              dataKey="yieldKg"
-              fill="#f59e0b"
-              radius={[4, 4, 0, 0]}
-              barSize={24}
-              fillOpacity={0.85}
-            />
+            <Tooltip content={<CustomTooltip />} />
+            <Scatter name={selectedCountry} data={scatterData} fill="#f59e0b" />
             <Line
-              yAxisId="right"
               type="monotone"
-              dataKey="temp"
+              dataKey="crop_value"
+              data={trendLineData}
               stroke="#34d399"
               strokeWidth={2}
-              dot={{ r: 3, fill: "#34d399" }}
-              activeDot={{ r: 5, fill: "#34d399", stroke: "#fff" }}
+              dot={false}
+              isAnimationActive={false}
             />
-          </ComposedChart>
+          </ScatterChart>
         </ResponsiveContainer>
       </div>
 
       <p className="text-xs text-slate-400 italic">
-        Data from Crop yield - disaggregated.csv (SPC Climate Change indicators
-        - Vanuatu)
+        Data from Crop yield - disaggregated.csv (SPC Climate Change indicators)
       </p>
 
       <div className="text-slate-300">
-        Our linear regression analysis reveals a significant, strong negative
-        association between mean surface temperature and crop yield,
-        demonstrating that rising temperatures reliably correspond with
-        declining agricultural output. Specifically, the model indicates that
-        for every 1°C increase in mean surface temperature, crop yield decreases
-        by [Insert Number] [Insert Unit, e.g., tons per hectare]. While this
-        clear downward trend provides a highly reliable indicator for
-        forecasting environmental heat stress on crops, it is important to note
-        that this model analyzes temperature in isolation; it maps a broader
-        environmental association rather than absolute causation, as it does not
-        control for unmeasured compounding seasonal variables such as rainfall
-        or soil moisture.
+        The data for {selectedCountry} shows a linear relationship between surface temperature
+        anomalies and agricultural yields. Every 1°C increase in surface temperature, average crop
+        yield {actionWord} by {Math.abs(slope).toFixed(2)} kilograms per hectare.
       </div>
     </div>
   );

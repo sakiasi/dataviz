@@ -1,29 +1,16 @@
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { useEffect, useState } from "react";
 import {
-  ResponsiveContainer,
-  ComposedChart,
   Bar,
+  CartesianGrid,
+  ComposedChart,
   Line,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
 } from "recharts";
-import { tempFn } from "../services/cropAnalysis";
-
-interface CropDataPoint {
-  year: string;
-  yieldKg: number;
-  temp: number;
-}
-
-const data: CropDataPoint[] = [
-  { year: "2015", yieldKg: 3850, temp: 0.88 },
-  { year: "2017", yieldKg: 3720, temp: 0.91 },
-  { year: "2019", yieldKg: 3590, temp: 1.08 },
-  { year: "2021", yieldKg: 3410, temp: 1.05 },
-  { year: "2023", yieldKg: 3250, temp: 1.32 },
-  { year: "2025", yieldKg: 3100, temp: 1.3 },
-];
+import { useCropAnalysis } from "../services/cropAnalysis";
 
 const CustomTooltip = ({
   active,
@@ -59,8 +46,25 @@ const CustomTooltip = ({
   return null;
 };
 
+// User should be able to see temp line chart
+// User should be able to see crop yield chart
+// User should be able to select each country
+
 export default function Crop() {
-  tempFn()
+
+  const [isCropSelectCountry, setIsCropSelectCountry] = useState(false);
+  const { cropYield, countryList } = useCropAnalysis();
+
+  useEffect(() => {
+    console.log("CROP YIELD:", cropYield);
+    console.log("COUNTRIES:", countryList);
+  }, [cropYield, countryList]);
+
+  const handleCropSelectCountry = () => {
+    setIsCropSelectCountry((prev) => !prev);
+    console.log("SELECT CROP COUNTRY");
+  };
+
   return (
     <div className="text-slate-100 space-y-5 w-full overflow-hidden">
       <h1 className="text-2xl font-bold text-white tracking-tight">
@@ -89,14 +93,37 @@ export default function Crop() {
 
       <div>
         <h2 className="text-lg font-semibold text-white">
-          Vanuatu Crop Yield and Temperature Anomaly Over Time
+          Crop Yield Declines at Least 50 kg/Hectare Annually
         </h2>
+      </div>
+
+      <div className="relative">
+        <div
+          onMouseDown={()=>setIsCropSelectCountry(prev => !prev)}
+          className="flex w-1/3 p-2 space-x-2 rounded-md hover:cursor-pointer hover:bg-slate-800 items-center border-slate-800 border-2"
+        >
+          <p>Select Country</p>
+          {isCropSelectCountry ? <ChevronDown /> : <ChevronUp />}
+        </div>
+        
+
+        <div className={`${isCropSelectCountry ? 'absolute top-15 z-10 flex-col border bg-slate-700 rounded-md border-slate-900 ' : 'hidden'}`}>
+          {countryList.map((d, index) => (
+            <ul key={index} onMouseDown={()=>setIsCropSelectCountry(false)} className="hover:cursor-pointer hover:bg-slate-900 p-2 ">
+              <li>{d}</li>
+            </ul>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <ul></ul>
       </div>
 
       <div className="h-[400px] w-full pl-3 pr-0">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart
-            data={data}
+            data={cropYield}
             margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
           >
             <CartesianGrid
@@ -105,7 +132,7 @@ export default function Crop() {
               vertical={false}
             />
             <XAxis
-              dataKey="year"
+              dataKey="TIME_PERIOD"
               stroke="#94a3b8"
               tick={{ fontSize: 11 }}
               interval={0}
@@ -133,13 +160,14 @@ export default function Crop() {
               axisLine={false}
               width={24}
             />
+
             <Tooltip
               content={<CustomTooltip />}
               cursor={{ fill: "rgba(148, 163, 184, 0.05)" }}
             />
             <Bar
               yAxisId="left"
-              dataKey="yieldKg"
+              dataKey="crop_yield"
               fill="#f59e0b"
               radius={[4, 4, 0, 0]}
               barSize={24}
@@ -147,8 +175,8 @@ export default function Crop() {
             />
             <Line
               yAxisId="right"
-              type="monotone"
               dataKey="temp"
+              type="monotone"
               stroke="#34d399"
               strokeWidth={2}
               dot={{ r: 3, fill: "#34d399" }}
@@ -164,18 +192,9 @@ export default function Crop() {
       </p>
 
       <div className="text-slate-300">
-        Our linear regression analysis reveals a significant, strong negative
-        association between mean surface temperature and crop yield,
-        demonstrating that rising temperatures reliably correspond with
-        declining agricultural output. Specifically, the model indicates that
-        for every 1°C increase in mean surface temperature, crop yield decreases
-        by [Insert Number] [Insert Unit, e.g., tons per hectare]. While this
-        clear downward trend provides a highly reliable indicator for
-        forecasting environmental heat stress on crops, it is important to note
-        that this model analyzes temperature in isolation; it maps a broader
-        environmental association rather than absolute causation, as it does not
-        control for unmeasured compounding seasonal variables such as rainfall
-        or soil moisture.
+        The data shows a decline of crop yield across all countries and
+        territories in the pacific annually. Tonga shows the least decline of 50
+        kg/hectare while fiji shows the highest decline of 90 kg/hectare.
       </div>
     </div>
   );

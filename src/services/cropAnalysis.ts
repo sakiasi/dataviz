@@ -19,7 +19,7 @@ interface commonProps{
 
 export const useCropAnalysis=()=>{
 
-    const [selectCountry, setSelectCountry] = useState(null)
+    const [selectCountry, setSelectCountry] = useState<string>('Fiji')
     const [cropYield, setCropYield] = useState<commonProps[]>([])
     const [countryList, setCountryList] = useState<string[]>([])
 
@@ -62,16 +62,18 @@ export const useCropAnalysis=()=>{
                 const timePeriod = d.TIME_PERIOD
         
                 if(tempMap.has(timePeriod)){
-                    const cropValue = tempMap.get(timePeriod)
+                    const temp = tempMap.get(timePeriod)
         
                     combineData.push({
                         year: timePeriod,
-                        tempValue: Number(d.OBS_VALUE),
-                        cropValue: Number(cropValue.OBS_VALUE),
+                        tempValue: Number(temp.OBS_VALUE),
+                        cropValue: Number(d.OBS_VALUE),
                         country: d['Pacific Island Countries and territories']
                     })
                 }
             })
+
+            console.log('ANALYSIS:', combineData)
         
             setCropYield(combineData)
         }

@@ -29,7 +29,7 @@ const CustomTooltip = ({
           Crop Yield:
           <span className="font-bold">
             {payload
-              .find((p) => p.dataKey === "yieldKg")
+              .find((p) => p.dataKey === "cropValue")
               ?.value.toLocaleString()}{" "}
             KG/HA
           </span>
@@ -37,7 +37,7 @@ const CustomTooltip = ({
         <p className="text-emerald-400">
           Temperature:{" "}
           <span className="font-bold">
-            +{payload.find((p) => p.dataKey === "temp")?.value}°C
+            +{payload.find((p) => p.dataKey === "tempValue")?.value}°C
           </span>
         </p>
       </div>
@@ -53,7 +53,7 @@ const CustomTooltip = ({
 export default function Crop() {
 
   const [isCropSelectCountry, setIsCropSelectCountry] = useState(false);
-  const { cropYield, countryList } = useCropAnalysis();
+  const { cropYield, countryList, setSelectCountry } = useCropAnalysis();
 
   useEffect(() => {
     console.log("CROP YIELD:", cropYield);
@@ -97,13 +97,13 @@ export default function Crop() {
           onMouseDown={()=>setIsCropSelectCountry(prev => !prev)}
           className="flex justify-around md:w-3/6 p-2 rounded-md hover:cursor-pointer hover:bg-slate-800 items-center border-slate-800 border-2"
         >
-          <p>Select Country ({countryList.length}) </p>
+          <p> Select Country ({countryList.length}) </p>
           {isCropSelectCountry ? <ChevronDown /> : <ChevronUp />}
         </div>
 
         <div className={`${isCropSelectCountry ? 'absolute w-full top-15 h-90 overflow-y-auto z-10 flex-col border bg-slate-700 rounded-md border-slate-900 ' : 'hidden'}`}>
           {countryList.sort((a,b) => a.localeCompare(b) ).map((d, index) => (
-            <ul key={index} onMouseDown={()=>setIsCropSelectCountry(false)} className="hover:cursor-pointer hover:bg-slate-900 p-2 border-b border-slate-900 ">
+            <ul key={index} onMouseDown={()=>{setIsCropSelectCountry(false); setSelectCountry(d)}} className="hover:cursor-pointer hover:bg-slate-900 p-2 border-b border-slate-900 ">
               <li>{d}</li>
             </ul>
           ))}
@@ -125,7 +125,7 @@ export default function Crop() {
               dataKey="year"
               stroke="#94a3b8"
               tick={{ fontSize: 11 }}
-              interval={0}
+              interval={10}
               tickLine={false}
             />
             <YAxis
@@ -148,7 +148,8 @@ export default function Crop() {
               tickFormatter={(value) => `${value}°`}
               tickLine={false}
               axisLine={false}
-              width={24}
+              width={30}
+              dataKey={'tempValue'}
             />
 
             <Tooltip
@@ -157,7 +158,7 @@ export default function Crop() {
             />
             <Bar
               yAxisId="left"
-              dataKey="crop_yield"
+              dataKey="cropValue"
               fill="#f59e0b"
               radius={[4, 4, 0, 0]}
               barSize={24}
@@ -165,7 +166,7 @@ export default function Crop() {
             />
             <Line
               yAxisId="right"
-              dataKey="temp"
+              dataKey="tempValue"
               type="monotone"
               stroke="#34d399"
               strokeWidth={2}

@@ -95,15 +95,15 @@ export default function Crop() {
       <div className="relative">
         <div
           onMouseDown={()=>setIsCropSelectCountry(prev => !prev)}
-          className="flex justify-around w-3/6 p-2 space-x-5 rounded-md hover:cursor-pointer hover:bg-slate-800 items-center border-slate-800 border-2"
+          className="flex justify-around md:w-3/6 p-2 rounded-md hover:cursor-pointer hover:bg-slate-800 items-center border-slate-800 border-2"
         >
           <p>Select Country ({countryList.length}) </p>
           {isCropSelectCountry ? <ChevronDown /> : <ChevronUp />}
         </div>
 
-        <div className={`${isCropSelectCountry ? 'absolute top-15 h-90 overflow-y-auto z-10 flex-col border bg-slate-700 rounded-md border-slate-900 ' : 'hidden'}`}>
+        <div className={`${isCropSelectCountry ? 'absolute w-full top-15 h-90 overflow-y-auto z-10 flex-col border bg-slate-700 rounded-md border-slate-900 ' : 'hidden'}`}>
           {countryList.sort((a,b) => a.localeCompare(b) ).map((d, index) => (
-            <ul key={index} onMouseDown={()=>setIsCropSelectCountry(false)} className="hover:cursor-pointer hover:bg-slate-900 p-2 ">
+            <ul key={index} onMouseDown={()=>setIsCropSelectCountry(false)} className="hover:cursor-pointer hover:bg-slate-900 p-2 border-b border-slate-900 ">
               <li>{d}</li>
             </ul>
           ))}
@@ -122,7 +122,7 @@ export default function Crop() {
               vertical={false}
             />
             <XAxis
-              dataKey="TIME_PERIOD"
+              dataKey="year"
               stroke="#94a3b8"
               tick={{ fontSize: 11 }}
               interval={0}

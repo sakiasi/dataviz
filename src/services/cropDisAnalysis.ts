@@ -1,5 +1,4 @@
 
-import tempData from '../../public/data/surface-temperature-anomalies.json'
 import jsonUrl from '../../public/data/Crop_Yields_Disaggregated.json?url';
 
 
@@ -25,16 +24,6 @@ export const useCropDisAnalysis=()=>{
     const [selectCountry, setSelectCountry] = useState(null)
     const [cropDisaggregated, setCropDisaggregated] = useState<commonProps[]>([])
 
-    //1. clean data
-    const cleanTemp = tempData.filter(d => 
-        Number(d.OBS_VALUE) && 
-        Number(d.TIME_PERIOD) &&
-        d.OBS_VALUE !== null &&
-        d.TIME_PERIOD !== null &&
-        d.OBS_VALUE !== undefined &&
-        d.TIME_PERIOD !== undefined
-        
-    )
 
     useEffect(()=>{
 

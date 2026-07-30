@@ -60,11 +60,6 @@ export default function Crop() {
     console.log("COUNTRIES:", countryList);
   }, [cropYield, countryList]);
 
-  const handleCropSelectCountry = () => {
-    setIsCropSelectCountry((prev) => !prev);
-    console.log("SELECT CROP COUNTRY");
-  };
-
   return (
     <div className="text-slate-100 space-y-5 w-full overflow-hidden">
       <h1 className="text-2xl font-bold text-white tracking-tight">
@@ -100,24 +95,19 @@ export default function Crop() {
       <div className="relative">
         <div
           onMouseDown={()=>setIsCropSelectCountry(prev => !prev)}
-          className="flex w-1/3 p-2 space-x-2 rounded-md hover:cursor-pointer hover:bg-slate-800 items-center border-slate-800 border-2"
+          className="flex justify-around w-3/6 p-2 space-x-5 rounded-md hover:cursor-pointer hover:bg-slate-800 items-center border-slate-800 border-2"
         >
-          <p>Select Country</p>
+          <p>Select Country ({countryList.length}) </p>
           {isCropSelectCountry ? <ChevronDown /> : <ChevronUp />}
         </div>
-        
 
-        <div className={`${isCropSelectCountry ? 'absolute top-15 z-10 flex-col border bg-slate-700 rounded-md border-slate-900 ' : 'hidden'}`}>
-          {countryList.map((d, index) => (
+        <div className={`${isCropSelectCountry ? 'absolute top-15 h-90 overflow-y-auto z-10 flex-col border bg-slate-700 rounded-md border-slate-900 ' : 'hidden'}`}>
+          {countryList.sort((a,b) => a.localeCompare(b) ).map((d, index) => (
             <ul key={index} onMouseDown={()=>setIsCropSelectCountry(false)} className="hover:cursor-pointer hover:bg-slate-900 p-2 ">
               <li>{d}</li>
             </ul>
           ))}
         </div>
-      </div>
-
-      <div>
-        <ul></ul>
       </div>
 
       <div className="h-[400px] w-full pl-3 pr-0">

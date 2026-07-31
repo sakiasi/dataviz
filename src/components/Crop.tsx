@@ -51,7 +51,6 @@ const CustomTooltip = ({
 // User should be able to select each country
 
 export default function Crop() {
-
   const [isCropSelectCountry, setIsCropSelectCountry] = useState(false);
   const { cropYield, countryList, setSelectCountry } = useCropAnalysis();
 
@@ -94,19 +93,30 @@ export default function Crop() {
 
       <div className="relative">
         <div
-          onMouseDown={()=>setIsCropSelectCountry(prev => !prev)}
+          onMouseDown={() => setIsCropSelectCountry((prev) => !prev)}
           className="flex justify-around md:w-3/6 p-2 rounded-md hover:cursor-pointer hover:bg-slate-800 items-center border-slate-800 border-2"
         >
           <p> Select Country ({countryList.length}) </p>
           {isCropSelectCountry ? <ChevronDown /> : <ChevronUp />}
         </div>
 
-        <div className={`${isCropSelectCountry ? 'absolute w-full top-15 h-90 overflow-y-auto z-10 flex-col border bg-slate-700 rounded-md border-slate-900 ' : 'hidden'}`}>
-          {countryList.sort((a,b) => a.localeCompare(b) ).map((d, index) => (
-            <ul key={index} onMouseDown={()=>{setIsCropSelectCountry(false); setSelectCountry(d)}} className="hover:cursor-pointer hover:bg-slate-900 p-2 border-b border-slate-900 ">
-              <li>{d}</li>
-            </ul>
-          ))}
+        <div
+          className={`${isCropSelectCountry ? "absolute w-full top-15 h-90 overflow-y-auto z-10 flex-col border bg-slate-700 rounded-md border-slate-900 " : "hidden"}`}
+        >
+          {countryList
+            .sort((a, b) => a.localeCompare(b))
+            .map((d, index) => (
+              <ul
+                key={index}
+                onMouseDown={() => {
+                  setIsCropSelectCountry(false);
+                  setSelectCountry(d);
+                }}
+                className="hover:cursor-pointer hover:bg-slate-900 p-2 border-b border-slate-900 "
+              >
+                <li>{d}</li>
+              </ul>
+            ))}
         </div>
       </div>
 
@@ -149,7 +159,7 @@ export default function Crop() {
               tickLine={false}
               axisLine={false}
               width={30}
-              dataKey={'tempValue'}
+              dataKey={"tempValue"}
             />
 
             <Tooltip
@@ -182,11 +192,21 @@ export default function Crop() {
         - Vanuatu)
       </p>
 
+      <p>
+        Papua New Guinea (0.79) and Nauru (0.75) show the strongest positive
+        correlation between temperature and crop yields, whereas Niue (-0.66)
+        and Fiji (-0.48) exhibit the most significant negative relationships
+        where higher temperatures align with lower yields. Meanwhile, countries
+        like Vanuatu (0.07) and the Cook Islands (0.08) demonstrate virtually no
+        linear association between temperature anomalies and crop values.
+      </p>
+
       <div className="text-slate-300">
         The data shows a decline of crop yield across all countries and
         territories in the pacific annually. Tonga shows the least decline of 50
         kg/hectare while fiji shows the highest decline of 90 kg/hectare.
       </div>
+      
     </div>
   );
 }

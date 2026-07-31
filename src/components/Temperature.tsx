@@ -130,8 +130,12 @@ export default function Temperature() {
         Data shows the mean surface temperature for the pacific islands. Click
         each country to view them individually. data shows...
       </div>
+
+      <div>
+        run a linear regression of temperature over time to show exactly how
+        fast temperatures are rising (or changing) per decade for each country.
+      </div>
       
     </div>
-
   );
 }

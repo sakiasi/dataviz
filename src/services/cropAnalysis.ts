@@ -47,10 +47,10 @@ export const useCropAnalysis=()=>{
                 d.TIME_PERIOD !== null && 
                 d.OBS_VALUE !== undefined &&
                 d.TIME_PERIOD !== undefined &&
-                d['Pacific Island Countries and territories'] === selectCountry
+                d['Pacific Island Countries and territories']
             )
 
-             const groupCleanCrop = cropData.filter(d => 
+            const groupCleanCrop = cropData.filter(d => 
                 Number(d.OBS_VALUE) && 
                 Number(d.TIME_PERIOD) && 
                 d.OBS_VALUE !== null && 
@@ -60,15 +60,17 @@ export const useCropAnalysis=()=>{
                 d['Pacific Island Countries and territories']
             )
 
+            //extract countries
             const uniqueCountries = [...new Set(cropData.map(d => d['Pacific Island Countries and territories']))]
             setCountryList(uniqueCountries)
+
+            //combine temp & crop
+            const combineData = [] as commonProps[]
 
             const tempMap = new Map()
             cleanTemp.forEach(d => {
                 tempMap.set(d.TIME_PERIOD,d)
             })
-
-            const combineData = [] as commonProps[]
         
             cleanCrop.forEach(d => {
 
@@ -89,6 +91,9 @@ export const useCropAnalysis=()=>{
 
             setCropYield(combineData)
 
+            console.log('COMBINE DATA:' , combineData)
+
+            //group by countries
             const groupData = [] as commonProps[]
 
             groupCleanCrop.forEach(d => {
@@ -109,10 +114,7 @@ export const useCropAnalysis=()=>{
             })
 
             //calculate correlation
-            const temps = groupData.map(d => d.tempValue as number)
-            const cropsValue = groupData.map(d => d.cropValue as number)
-
-            const correlationData = groupData.reduce((acc,value) => {
+            const groupByCountry = groupData.reduce((acc,value) => {
 
                 if(!acc[value.country!]){
                     acc[value.country!] = {}
@@ -131,15 +133,15 @@ export const useCropAnalysis=()=>{
 
             const countryCorrelations: Record<string, number> = {}
 
-            for (const country in correlationData) {
+            for (const country in groupByCountry) {
             const countryTemps: number[] = [];
             const countryCrops: number[] = [];
 
             // Loop through each year object stored for the country
-            for (const year in correlationData[country]) {
+            for (const year in groupByCountry[country]) {
                     // Since each year can hold multiple records (e.g., different crops/types),
                     // loop through them to gather all data points
-                    correlationData[country][year].forEach(record => {
+                    groupByCountry[country][year].forEach(record => {
                         if (record.tempValue !== undefined && record.cropValue !== undefined) {
                             countryTemps.push(record.tempValue);
                             countryCrops.push(record.cropValue);
@@ -148,20 +150,16 @@ export const useCropAnalysis=()=>{
                 }
 
                 // Calculate correlation for this specific country
-                const corr = calculateCorrelation(countryTemps, countryCrops);
-                countryCorrelations[country] = corr;
+                const correlationData = calculateCorrelation(countryTemps, countryCrops);
+                countryCorrelations[country] = correlationData;
 
                 // Map the result back into your data or attach it to an object/state
                 // Example: If you want to store it back right into the country's node:
-                // (correlationData[country] as any).correlation = corr;
+                // (groupByCountry[country] as any).correlation = corr;
             }
 
             console.log('Per-Country Correlations:', countryCorrelations);
-
-            console.log('correlationData:', correlationData)
-
-            const correlation = calculateCorrelation(temps,cropsValue)
-            console.log('CORRELATION:', correlation)
+            console.log('groupByCountry:', groupByCountry)
 
         }    
 

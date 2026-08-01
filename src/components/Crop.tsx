@@ -1,5 +1,5 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Bar,
   CartesianGrid,
@@ -11,8 +11,10 @@ import {
   YAxis,
 } from "recharts";
 import { useCropAnalysis } from "../services/cropAnalysis";
+import CountryChart from "./CropReducedChart";
+import CorrelationChart from "./CropCorrelation";
 
-const CustomTooltip = ({
+export const CustomTooltip = ({
   active,
   payload,
   label,
@@ -53,11 +55,6 @@ const CustomTooltip = ({
 export default function Crop() {
   const [isCropSelectCountry, setIsCropSelectCountry] = useState(false);
   const { cropYield, countryList, setSelectCountry } = useCropAnalysis();
-
-  useEffect(() => {
-    console.log("CROP YIELD:", cropYield);
-    console.log("COUNTRIES:", countryList);
-  }, [cropYield, countryList]);
 
   return (
     <div className="text-slate-100 space-y-5 w-full overflow-hidden">
@@ -187,26 +184,12 @@ export default function Crop() {
         </ResponsiveContainer>
       </div>
 
-      <p className="text-xs text-slate-400 italic">
-        Data from Crop yield - disaggregated.csv (SPC Climate Change indicators
-        - Vanuatu)
-      </p>
-
-      <p>
-        Papua New Guinea (0.79) and Nauru (0.75) show the strongest positive
-        correlation between temperature and crop yields, whereas Niue (-0.66)
-        and Fiji (-0.48) exhibit the most significant negative relationships
-        where higher temperatures align with lower yields. Meanwhile, countries
-        like Vanuatu (0.07) and the Cook Islands (0.08) demonstrate virtually no
-        linear association between temperature anomalies and crop values.
-      </p>
-
-      <div className="text-slate-300">
-        The data shows a decline of crop yield across all countries and
-        territories in the pacific annually. Tonga shows the least decline of 50
-        kg/hectare while fiji shows the highest decline of 90 kg/hectare.
+      <div>
+        <CountryChart />
       </div>
-      
+
+      <CorrelationChart/>
+
     </div>
   );
 }

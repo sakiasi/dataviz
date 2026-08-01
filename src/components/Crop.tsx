@@ -132,7 +132,7 @@ export default function Crop() {
               vertical={false}
             />
             <XAxis
-              dataKey="year"
+              dataKey="TIME_PERIOD"
               stroke="#94a3b8"
               tick={{ fontSize: 11 }}
               interval={10}

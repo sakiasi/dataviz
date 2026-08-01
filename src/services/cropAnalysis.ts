@@ -3,7 +3,6 @@ import tempData from '../../public/data/surface-temperature-anomalies.json'
 import cropData from '../../public/data/Crop_Yields.json'
 
 import { useEffect, useState } from 'react'
-import { calculateCorrelation } from '../utils/calculateCorrelation'
 
 interface commonProps{
     TIME_PERIOD ?: number,
@@ -29,7 +28,7 @@ export const useCropAnalysis=()=>{
 
         const getData=()=>{
 
-            //1. clean data
+            // 1. Clean data (keeping your logic)
             const cleanTemp = tempData.filter(d => 
                 Number(d.OBS_VALUE) && 
                 Number(d.TIME_PERIOD) &&
@@ -50,123 +49,48 @@ export const useCropAnalysis=()=>{
                 d['Pacific Island Countries and territories']
             )
 
-            const groupCleanCrop = cropData.filter(d => 
-                Number(d.OBS_VALUE) && 
-                Number(d.TIME_PERIOD) && 
-                d.OBS_VALUE !== null && 
-                d.TIME_PERIOD !== null && 
-                d.OBS_VALUE !== undefined &&
-                d.TIME_PERIOD !== undefined &&
-                d['Pacific Island Countries and territories']
-            )
+            // 2. Index temperature data by a unique key (e.g., country + year)
+            const tempMap = new Map<string, number>();
+            cleanTemp.forEach(item => {
+                const countryKey = item['Pacific Island Countries and territories']?.trim().toLowerCase();
+                const yearKey = item.TIME_PERIOD;
+                const key = `${countryKey}-${yearKey}`;
+                tempMap.set(key, Number(item.OBS_VALUE));
+            });
 
-            //extract countries
-            const uniqueCountries = [...new Set(cropData.map(d => d['Pacific Island Countries and territories']))]
-            setCountryList(uniqueCountries)
+            // 3. Combine data efficiently
+            const combinedData: commonProps[] = cleanCrop.map(crop => {
+                const countryKey = crop['Pacific Island Countries and territories']?.trim().toLowerCase();
+                const yearKey = crop.TIME_PERIOD;
+                const lookupKey = `${countryKey}-${yearKey}`;
 
-            //combine temp & crop
-            const combineData = [] as commonProps[]
+                const tempValue = tempMap.get(lookupKey);
 
-            const tempMap = new Map()
-            cleanTemp.forEach(d => {
-                tempMap.set(d.TIME_PERIOD,d)
-            })
-        
-            cleanCrop.forEach(d => {
+                return {
+                    ...crop,
+                    cropValue: Number(crop.OBS_VALUE),
+                    tempValue: tempValue !== undefined ? tempValue : undefined,
+                };
+            });
 
-                const timePeriod = d.TIME_PERIOD
-        
-                if(tempMap.has(timePeriod)){
+            // 4. Filter for the selected country and update state
+            const filteredByCountry = combinedData.filter(
+                d => d['Pacific Island Countries and territories'] === selectCountry
+            );
 
-                    const temp = tempMap.get(timePeriod)
-        
-                    combineData.push({
-                        year: timePeriod,
-                        tempValue: Number(temp.OBS_VALUE),
-                        cropValue: Number(d.OBS_VALUE),
-                        country: d['Pacific Island Countries and territories'],
-                    })
-                }
-            })
+            setCropYield(filteredByCountry);
 
-            setCropYield(combineData)
-
-            console.log('COMBINE DATA:' , combineData)
-
-            //group by countries
-            const groupData = [] as commonProps[]
-
-            groupCleanCrop.forEach(d => {
-
-                const timePeriod = d.TIME_PERIOD
-
-                if(tempMap.has(timePeriod)){
-
-                    const temp = tempMap.get(timePeriod)
-
-                    groupData.push({
-                        year: timePeriod,
-                        tempValue: Number(temp.OBS_VALUE),
-                        cropValue: Number(d.OBS_VALUE),
-                        country: d['Pacific Island Countries and territories'],
-                    })
-                }
-            })
-
-            //calculate correlation
-            const groupByCountry = groupData.reduce((acc,value) => {
-
-                if(!acc[value.country!]){
-                    acc[value.country!] = {}
-                }
-
-                if(!acc[value.country!][value.year!]){
-                    acc[value.country!][value.year!] = []
-                }
-
-                
-                acc[value.country!][value.year!].push(value)
-
-                return acc
-
-            },{} as Record<string, Record<number, commonProps[]>>)
-
-            const countryCorrelations: Record<string, number> = {}
-
-            for (const country in groupByCountry) {
-            const countryTemps: number[] = [];
-            const countryCrops: number[] = [];
-
-            // Loop through each year object stored for the country
-            for (const year in groupByCountry[country]) {
-                    // Since each year can hold multiple records (e.g., different crops/types),
-                    // loop through them to gather all data points
-                    groupByCountry[country][year].forEach(record => {
-                        if (record.tempValue !== undefined && record.cropValue !== undefined) {
-                            countryTemps.push(record.tempValue);
-                            countryCrops.push(record.cropValue);
-                        }
-                    });
-                }
-
-                // Calculate correlation for this specific country
-                const correlationData = calculateCorrelation(countryTemps, countryCrops);
-                countryCorrelations[country] = correlationData;
-
-                // Map the result back into your data or attach it to an object/state
-                // Example: If you want to store it back right into the country's node:
-                // (groupByCountry[country] as any).correlation = corr;
-            }
-
-            console.log('Per-Country Correlations:', countryCorrelations);
-            console.log('groupByCountry:', groupByCountry)
+            // 5. Extract unique country list for UI dropdowns
+            const uniqueCountries = Array.from(
+                new Set(cleanCrop.map(d => d['Pacific Island Countries and territories']).filter(Boolean))
+            ) as string[];
+            setCountryList(uniqueCountries);
 
         }    
 
         //which country is showing the highest temp
 
         getData()
-
         
     },[selectCountry])
     

@@ -88,11 +88,10 @@ export const useCropAnalysis=()=>{
 
         }    
 
-        //which country is showing the highest temp
-
         getData()
         
     },[selectCountry])
+
     
     return {cropYield, countryList, selectCountry, setSelectCountry}
 

@@ -6,10 +6,12 @@ import { TemperatureChart } from "./TempChart";
 
 export default function Temperature() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
-  
+
   // Manage state at the parent level
-  const [selectedCountries, setSelectedCountries] = useState<string[]>(['Fiji']);
-  
+  const [selectedCountries, setSelectedCountries] = useState<string[]>([
+    "Fiji",
+  ]);
+
   // Pass selectedCountries into the hook so it re-filters dynamically
   const { countryList } = useTemperature(selectedCountries);
 
@@ -20,7 +22,6 @@ export default function Temperature() {
       </h1>
 
       <div className="border-b border-slate-800"></div>
-
       <div className="text-slate-300 leading-relaxed space-y-5 mb-10 max-w-3xl">
         <p>
           <a
@@ -30,7 +31,11 @@ export default function Temperature() {
             According to Berkeley Earth's 2025 report
           </a>
           , 2025 was the third warmest year on record since 1850, trailing only
-          2024 and 2023...
+          2024 and 2023, with global annual averages reaching 1.44 ± 0.09 °C
+          above pre-industrial levels. Despite beginning and ending with a
+          modest La Niña event, the year experienced continued extreme warmth
+          driven by greenhouse gases, natural variability, and factors like
+          reduced cloud cover and sulfur aerosols.
         </p>
       </div>
 
@@ -60,21 +65,19 @@ export default function Temperature() {
                   handleSelectCountries(
                     d,
                     setSelectedCountries,
-                    selectedCountries
+                    selectedCountries,
                   );
                 }}
               >
-                {selectedCountries.includes(d) && (
-                  <CircleCheck color="green" />
-                )}
+                {selectedCountries.includes(d) && <CircleCheck color="green" />}
                 <span>{d}</span>
               </div>
             ))}
         </div>
       </div>
-      {/* Pass selectedCountries down to the chart */}
-      <TemperatureChart selectedCountries={selectedCountries} />
 
+      <TemperatureChart selectedCountries={selectedCountries} />
+      
     </div>
   );
 }

@@ -23,7 +23,7 @@ export const useTemperature = (externalSelectedCountries?: string[]) => {
     );
 
     const allYears = Array.from(new Set(cleanData.map(d => Number(d.TIME_PERIOD)))).sort((a, b) => a - b);
-    
+
     const groupByCountry = cleanData.reduce<Record<string, DataPoint[]>>((acc, value) => {
         const country = value['Pacific Island Countries and territories'];
         if (!country) return acc;
@@ -43,8 +43,10 @@ export const useTemperature = (externalSelectedCountries?: string[]) => {
     Object.keys(groupByCountry).forEach(country => {
         groupByCountry[country].sort((a, b) => a.year - b.year);
     });
+
+    const interval = allYears.filter((d,index) => index % 10 === 0)
     
-    const chartData = allYears.map(year => {
+    const chartData = interval.map(year => {
         const row: Record<string, any> = { year };
         Object.entries(groupByCountry).forEach(([country, records]) => {
             const found = records.find(r => r.year === year);
@@ -55,9 +57,15 @@ export const useTemperature = (externalSelectedCountries?: string[]) => {
         return row;
     });
 
+    
+
+    console.log('CHART DATA:', chartData)    
+
     const lineData = Object.keys(groupByCountry).map(country => ({
         countryName: country
     }));
+
+    console.log('LINE DATA:', lineData)
 
     const countryList = Array.from(new Set(tempData.map(d => d['Pacific Island Countries and territories']))).filter(Boolean) as string[];
 

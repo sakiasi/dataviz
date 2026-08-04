@@ -10,9 +10,20 @@ import {
 import { CustomToolTip } from "./CustomToolTip";
 import { useTemperature } from "../services/tempAnalysis";
 
-const COLORS = ["#f59e0b", "#3b82f6", "#10b981", "#ef4444", "#8b5cf6", "#ec4899"];
+const COLORS = [
+  "#f59e0b",
+  "#3b82f6",
+  "#10b981",
+  "#ef4444",
+  "#8b5cf6",
+  "#ec4899",
+];
 
-export const TemperatureChart = ({ selectedCountries }: { selectedCountries: string[] }) => {
+export const TemperatureChart = ({
+  selectedCountries,
+}: {
+  selectedCountries: string[];
+}) => {
   const { chartData, lineData } = useTemperature(selectedCountries);
 
   return (
@@ -55,7 +66,7 @@ export const TemperatureChart = ({ selectedCountries }: { selectedCountries: str
           {lineData.map((d, i) => (
             <Line
               key={d.countryName}
-              type="monotone"
+              type="natural" // <-- Change from "monotone" to "natural" or "basis"
               dataKey={d.countryName}
               stroke={COLORS[i % COLORS.length]}
               strokeWidth={2}

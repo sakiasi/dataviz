@@ -1,7 +1,7 @@
 
 interface CustomTooltipProps {
   active?: boolean;
-  payload?: Array<{ value: number }>;
+  payload?: Array<{ value: number, color:string, name:string }>;
   label?: string;
 }
 

@@ -10,13 +10,22 @@ import {
 import { CustomToolTip } from "./CustomToolTip";
 import { useTemperature } from "../services/tempAnalysis";
 
-const COLORS = [
-  "#f59e0b",
-  "#3b82f6",
-  "#10b981",
-  "#ef4444",
-  "#8b5cf6",
-  "#ec4899",
+const colors = [
+  "crimson",
+  "teal",
+  "mediumpurple",
+  "darkorange",
+  "forestgreen",
+  "dodgerblue",
+  "hotpink",
+  "gold",
+  "tomato",
+  "slateblue",
+  "turquoise",
+  "orchid",
+  "sienna",
+  "steelblue",
+  "maroon",
 ];
 
 export const TemperatureChart = ({
@@ -25,6 +34,20 @@ export const TemperatureChart = ({
   selectedCountries: string[];
 }) => {
   const { chartData, lineData } = useTemperature(selectedCountries);
+
+  const color = lineData.map((d) => {
+    const hash = d.countryName
+      .toLowerCase()
+      .split("")
+      .reduce((acc, value) => {
+        return (acc = (acc * 33 + value.charCodeAt(0)) >>> 0);
+      }, 5381);
+
+    return colors[hash % colors.length];
+
+  });
+
+  console.log("HASHING", color);
 
   return (
     <div style={{ width: "100%", height: "400px" }}>
@@ -68,9 +91,9 @@ export const TemperatureChart = ({
               key={d.countryName}
               type="natural" // <-- Change from "monotone" to "natural" or "basis"
               dataKey={d.countryName}
-              stroke={COLORS[i % COLORS.length]}
+              stroke={color[i % color.length]}
               strokeWidth={2}
-              dot={{ fill: COLORS[i % COLORS.length], r: 4 }}
+              dot={{ fill: color[i % color.length], r: 4 }}
               activeDot={{ r: 6 }}
             />
           ))}

@@ -23,7 +23,7 @@ export const getRankedCropYieldCountries = (combinedData: commonProps[]) => {
         avgValue: data.total / data.count
     }));
 
-    // Sort ascending: Index [0] is the most reduced (lowest), 
+    // Sort ascending: Index [0] is the most reduced (lowest),
     // and the last index is the least reduced (highest)
     return countryAverages.sort((a, b) => a.avgValue - b.avgValue);
 };

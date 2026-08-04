@@ -13,18 +13,23 @@ export const useTemperature = (externalSelectedCountries?: string[]) => {
     const selectedCountries = externalSelectedCountries ?? internalSelected;
     const setSelectedCountries = setInternalSelected;
 
-    // Clean data dynamically based on selected countries
+    // Clean data dynamically based on conditions
     const cleanData = tempData.filter(d => 
         d.TIME_PERIOD !== undefined &&
         d.TIME_PERIOD !== null &&
         d.OBS_VALUE !== undefined &&
         d.OBS_VALUE !== null &&
-        (selectedCountries.length === 0 || selectedCountries.includes(d['Pacific Island Countries and territories']))
+        (selectedCountries.length === 0 || selectedCountries.includes(d['Pacific Island Countries and territories'])) &&
+        d.TIME_PERIOD % 15 === 0 &&
+        d.TIME_PERIOD
     );
 
-    const allYears = Array.from(new Set(cleanData.map(d => Number(d.TIME_PERIOD)))).sort((a, b) => a - b);
+    const allYears = Array.from(new Set(cleanData.
+        map(d => Number(d.TIME_PERIOD))))
+        .sort((a, b) => a - b)
 
     const groupByCountry = cleanData.reduce<Record<string, DataPoint[]>>((acc, value) => {
+
         const country = value['Pacific Island Countries and territories'];
         if (!country) return acc;
 
@@ -38,15 +43,14 @@ export const useTemperature = (externalSelectedCountries?: string[]) => {
         });
 
         return acc;
+
     }, {});
 
     Object.keys(groupByCountry).forEach(country => {
         groupByCountry[country].sort((a, b) => a.year - b.year);
     });
 
-    const interval = allYears.filter((d,index) => index % 10 === 0)
-    
-    const chartData = interval.map(year => {
+    const chartData = allYears.map(year => {
         const row: Record<string, any> = { year };
         Object.entries(groupByCountry).forEach(([country, records]) => {
             const found = records.find(r => r.year === year);

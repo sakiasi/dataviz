@@ -122,8 +122,6 @@ export const useCropAnalysis = () => {
         );
     }, [combinedData, selectCountry]);
 
-    console.log('CORRELATION:', countryCorrelations)
-
     return { cropYield,
         countryList,
         selectCountry,

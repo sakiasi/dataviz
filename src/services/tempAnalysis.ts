@@ -61,15 +61,9 @@ export const useTemperature = (externalSelectedCountries?: string[]) => {
         return row;
     });
 
-    
-
-    console.log('CHART DATA:', chartData)    
-
     const lineData = Object.keys(groupByCountry).map(country => ({
         countryName: country
     }));
-
-    console.log('LINE DATA:', lineData)
 
     const countryList = Array.from(new Set(tempData.map(d => d['Pacific Island Countries and territories']))).filter(Boolean) as string[];
 

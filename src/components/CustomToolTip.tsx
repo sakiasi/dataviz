@@ -7,20 +7,16 @@ interface CustomTooltipProps {
 
 export const CustomToolTip = ({ active, payload, label }: CustomTooltipProps) => {
 
-    console.log('ACTIVE:', active)
-    console.log('PAYLOAD', payload)
-    console.log('LABEL:', label)
-
   if (active && payload && payload.length) {
     return (
       <div className="bg-slate-900 border border-amber-500/50 p-3 rounded shadow-xl">
           <p className="text-amber-400 font-bold">Year: {label}</p>
         {
-            payload.sort((a,b) => b.value - a.value).map(d => 
-                <div className="flex items-center gap-2">
+            payload.sort((a,b) => b.value - a.value).map((d,i) => 
+                <div key={i} className="flex items-center gap-2">
                     <div style={{ backgroundColor: d.color }} className="w-3 h-3 rounded-full"></div> 
                     <p className="text-white text-sm">
-                    <div> {d.name} @ <span className="font-semibold">{d.value}°C</span> </div>                   
+                      {d.name} @ <span className="font-semibold">{d.value}°C</span>                  
                     </p>
                 </div>
             )

@@ -16,13 +16,13 @@ export const CustomToolTip = ({ active, payload, label }: CustomTooltipProps) =>
       <div className="bg-slate-900 border border-amber-500/50 p-3 rounded shadow-xl">
           <p className="text-amber-400 font-bold">Year: {label}</p>
         {
-            payload.map(d => 
-                <div>
+            payload.sort((a,b) => b.value - a.value).map(d => 
+                <div className="flex items-center gap-2">
+                    <div style={{ backgroundColor: d.color }} className="w-3 h-3 rounded-full"></div> 
                     <p className="text-white text-sm">
-                    <div>{d.name} @ <span className="font-semibold">{d.value}°C</span> </div>                   
+                    <div> {d.name} @ <span className="font-semibold">{d.value}°C</span> </div>                   
                     </p>
                 </div>
-
             )
         }
       </div>

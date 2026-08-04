@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import tempData from '../../public/data/surface-temperature-anomalies.json';
+import * as ss from 'simple-statistics'
 
 interface DataPoint {
     year: number;
@@ -7,7 +8,8 @@ interface DataPoint {
 }
 
 export const useTemperature = (externalSelectedCountries?: string[]) => {
-    const [internalSelected, setInternalSelected] = useState<string[]>(['Fiji']);
+
+    const [internalSelected, setInternalSelected] = useState<string[]>(['Papua New Guinea','Nauru']);
 
     // Use external state if passed from parent, otherwise fallback to internal
     const selectedCountries = externalSelectedCountries ?? internalSelected;
@@ -66,6 +68,23 @@ export const useTemperature = (externalSelectedCountries?: string[]) => {
     }));
 
     const countryList = Array.from(new Set(tempData.map(d => d['Pacific Island Countries and territories']))).filter(Boolean) as string[];
+
+    //temp analysis
+    const tempAnalysis = []
+
+    for(const [country,records] of Object.entries(groupByCountry)){
+
+        const linear = records.map(d => [d.year,d.value])
+
+        const slope = ss.linearRegression(linear)
+
+        tempAnalysis.push({
+            country,
+            trend:slope.m
+        })
+    }
+
+    console.log('TEMP ANALYSIS:', tempAnalysis.sort((a,b) => a.trend - b.trend  ))
 
     return { countryList, chartData, lineData, selectedCountries, setSelectedCountries };
 };

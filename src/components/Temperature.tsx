@@ -7,13 +7,14 @@ import { TemperatureChart } from "./TempChart";
 export default function Temperature() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
 
-  // Manage state at the parent level
-  const [selectedCountries, setSelectedCountries] = useState<string[]>([
-    "Fiji",
-  ]);
+  // // Manage state at the parent level
+  // const [selectedCountries, setSelectedCountries] = useState<string[]>([
+  //   "Fiji",
+  // ]);
 
   // Pass selectedCountries into the hook so it re-filters dynamically
-  const { countryList } = useTemperature(selectedCountries);
+  const { countryList, selectedCountries, setSelectedCountries } =
+    useTemperature();
 
   return (
     <div className="text-slate-100 space-y-5">
@@ -77,7 +78,14 @@ export default function Temperature() {
       </div>
 
       <TemperatureChart selectedCountries={selectedCountries} />
-      
+
+      <p>
+        The slope for all pacific island countries is positive, which means the mean surface
+        temperature is showing an upward trend. Papua New Guinea shows the
+        steepest slope of 0.0069, meaning the temperature is rising faster and more
+        aggressively over time. Meanwhile, Nauru shows the least steep slope of 0.0031
+        among all Pacific Island countries.
+      </p>
     </div>
   );
 }

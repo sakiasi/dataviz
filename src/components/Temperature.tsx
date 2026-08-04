@@ -80,11 +80,11 @@ export default function Temperature() {
       <TemperatureChart selectedCountries={selectedCountries} />
 
       <p>
-        The slope for all pacific island countries is positive, which means the mean surface
-        temperature is showing an upward trend. Papua New Guinea shows the
-        steepest slope of 0.0069, meaning the temperature is rising faster and more
-        aggressively over time. Meanwhile, Nauru shows the least steep slope of 0.0031
-        among all Pacific Island countries.
+        The slope for all pacific island countries is positive, which means
+        their mean surface temperature is showing an upward trend. Papua New
+        Guinea shows the steepest slope of 0.0069, meaning the temperature is
+        rising faster and more aggressively over time. Meanwhile, Nauru shows
+        the least steep slope of 0.0031 among all Pacific Island countries.
       </p>
     </div>
   );

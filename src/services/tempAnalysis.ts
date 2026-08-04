@@ -23,7 +23,7 @@ export const useTemperature = (externalSelectedCountries?: string[]) => {
         d.OBS_VALUE !== null &&
         (selectedCountries.length === 0 || selectedCountries.includes(d['Pacific Island Countries and territories'])) &&
         d.TIME_PERIOD % 15 === 0 &&
-        d.TIME_PERIOD
+        d.TIME_PERIOD 
     );
 
     const allYears = Array.from(new Set(cleanData.
@@ -83,8 +83,6 @@ export const useTemperature = (externalSelectedCountries?: string[]) => {
             trend:slope.m
         })
     }
-
-    console.log('TEMP ANALYSIS:', tempAnalysis.sort((a,b) => a.trend - b.trend  ))
 
     return { countryList, chartData, lineData, selectedCountries, setSelectedCountries };
 };

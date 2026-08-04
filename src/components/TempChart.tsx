@@ -21,7 +21,7 @@ export const TemperatureChart = ({
 
   return (
     <div style={{ width: "100%", height: "400px" }}>
-      <h1>Rising Temperature Over Time</h1>
+      <h1>Rising Mean Surface Temperature Over Time</h1>
 
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={chartData}>

@@ -29,12 +29,6 @@ export default function SeaComponent() {
         </p>
       </div>
 
-      <div>
-        <h2 className="text-lg font-semibold text-white">
-          Sea Surface Temperature Anomalies Over Time
-        </h2>
-      </div>
-
       <SeaChart/>
 
       <p className="text-xs text-slate-400 italic">

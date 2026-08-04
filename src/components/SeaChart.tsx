@@ -1,5 +1,13 @@
-import { Area, AreaChart, CartesianGrid, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
-
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  ReferenceLine,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 interface DataPoint {
   year: string;
@@ -24,7 +32,6 @@ const data: DataPoint[] = [
   { year: "2024", temp: 1.4 },
   { year: "2025", temp: 1.3 },
 ];
-
 
 const CustomTooltip = ({
   active,
@@ -51,62 +58,61 @@ const CustomTooltip = ({
 
 const SeaChart = () => {
   return (
-    <div className="h-[400px] w-full -ml-5">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart
-                data={data}
-                margin={{ top: 5, right: 20, left: 20, bottom: 5 }}
-              >
-                <defs>
-                  <linearGradient
-                    id="oceanTempGradient"
-                    x1="0"
-                    y1="0"
-                    x2="0"
-                    y2="1"
-                  >
-                    <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.4} />
-                    <stop offset="95%" stopColor="#f59e0b" stopOpacity={0.0} />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid
-                  strokeDasharray="3 3"
-                  stroke="#334155"
-                  vertical={false}
-                />
-                <XAxis
-                  dataKey="year"
-                  stroke="#94a3b8"
-                  tick={{ fontSize: 12 }}
-                  interval={2}
-                  tickLine={false}
-                />
-                <YAxis
-                  stroke="#94a3b8"
-                  tick={{ fontSize: 12 }}
-                  domain={["auto", "dataMax + 0.2"]}
-                  tickFormatter={(value) => `${value}°C`}
-                  tickLine={false}
-                  axisLine={false}
-                />
-                <Tooltip
-                  content={<CustomTooltip />}
-                  cursor={{ stroke: "#f59e0b", strokeWidth: 1 }}
-                />
-                <Area
-                  type="monotone"
-                  dataKey="temp"
-                  stroke="#f59e0b"
-                  strokeWidth={2}
-                  fillOpacity={1}
-                  fill="url(#oceanTempGradient)"
-                  activeDot={{ r: 5, fill: "#f59e0b", stroke: "#fff" }}
-                />
-                <ReferenceLine y={0} stroke="#94a3b8" strokeDasharray="3 3" />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-  )
-}
+    <div className="h-[400px] w-full -ml-5 space-y-5">
+      <div>
+        <h2 className="text-lg font-semibold text-white">
+          Rising Sea Surface Temperature Anomalies Over Time
+        </h2>
+      </div>
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart
+          data={data}
+          margin={{ top: 5, right: 20, left: 20, bottom: 5 }}
+        >
+          <defs>
+            <linearGradient id="oceanTempGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.4} />
+              <stop offset="95%" stopColor="#f59e0b" stopOpacity={0.0} />
+            </linearGradient>
+          </defs>
+          <CartesianGrid
+            strokeDasharray="3 3"
+            stroke="#334155"
+            vertical={false}
+          />
+          <XAxis
+            dataKey="year"
+            stroke="#94a3b8"
+            tick={{ fontSize: 12 }}
+            interval={2}
+            tickLine={false}
+          />
+          <YAxis
+            stroke="#94a3b8"
+            tick={{ fontSize: 12 }}
+            domain={["auto", "dataMax + 0.2"]}
+            tickFormatter={(value) => `${value}°C`}
+            tickLine={false}
+            axisLine={false}
+          />
+          <Tooltip
+            content={<CustomTooltip />}
+            cursor={{ stroke: "#f59e0b", strokeWidth: 1 }}
+          />
+          <Area
+            type="monotone"
+            dataKey="temp"
+            stroke="#f59e0b"
+            strokeWidth={2}
+            fillOpacity={1}
+            fill="url(#oceanTempGradient)"
+            activeDot={{ r: 5, fill: "#f59e0b", stroke: "#fff" }}
+          />
+          <ReferenceLine y={0} stroke="#94a3b8" strokeDasharray="3 3" />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  );
+};
 
-export default SeaChart
+export default SeaChart;

@@ -17,10 +17,10 @@ export const TemperatureChart = ({
   selectedCountries: string[];
 }) => {
   const { chartData, lineData } = useTemperature(selectedCountries);
-  const {hashColor} = useColors(selectedCountries)
+  const { hashColor } = useColors(selectedCountries);
 
   return (
-    <div style={{ width: "100%", height: "400px" }}>
+    <div className="h-100 w-full -ml-5 space-y-5 pb-10">
       <h1>Rising Mean Surface Temperature Over Time</h1>
 
       <ResponsiveContainer width="100%" height="100%">

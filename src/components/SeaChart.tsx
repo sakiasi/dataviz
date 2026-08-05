@@ -58,16 +58,14 @@ const CustomTooltip = ({
 
 const SeaChart = () => {
   return (
-    <div className="h-[400px] w-full -ml-5 space-y-5">
-      <div>
-        <h2 className="text-lg font-semibold text-white">
-          Rising Sea Surface Temperature Anomalies Over Time
-        </h2>
-      </div>
+    <div className="h-100 w-full space-y-5 pb-5">
+      <h1>
+        Rising Sea Surface Temperature Anomalies Over Time
+      </h1>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           data={data}
-          margin={{ top: 5, right: 20, left: 20, bottom: 5 }}
+          margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
         >
           <defs>
             <linearGradient id="oceanTempGradient" x1="0" y1="0" x2="0" y2="1">

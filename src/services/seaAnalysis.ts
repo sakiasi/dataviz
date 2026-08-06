@@ -10,7 +10,7 @@ export interface SeaInterface {
 
 export const useSeaAnalysis=(externalSelectedCountries:string[])=>{
 
-    const [internalSelected, setInternalSelected] = useState<string[]>(['Papua New Guinea','Nauru']);
+    const [internalSelected, setInternalSelected] = useState<string[]>(['Papua New Guinea','Solomon Islands','Tokelau','Northern Mariana Islands']);
     
     // Use external state if passed from parent, otherwise fallback to internal
     const selectedCountries = externalSelectedCountries ?? internalSelected;
@@ -98,7 +98,7 @@ export const useSeaAnalysis=(externalSelectedCountries:string[])=>{
         return {country:d.country,slope:slope.m,lineFunction,predictYear}
     })
 
-    console.log('Chart Data:', chartData)
+    console.log('Slope Data:', slope)
 
     //which has the most/least influence from temperature(regression)
 

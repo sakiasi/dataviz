@@ -5,9 +5,9 @@ import { handleSelectCountries } from "../services/handleSelectCountries";
 import { useSeaAnalysis } from "../services/seaAnalysis";
 
 export default function SeaComponent() {
-
   const [isCountrySelect, setIsCountrySelect] = useState(false);
-  const { selectedCountries, setSelectedCountries, countryList } = useSeaAnalysis();
+  const { selectedCountries, setSelectedCountries, countryList } =
+    useSeaAnalysis();
 
   return (
     <div className="text-slate-100 space-y-5">
@@ -70,7 +70,6 @@ export default function SeaComponent() {
               </div>
             ))}
         </div>
-
       </div>
 
       <SeaChart selectedCountries={selectedCountries} />
@@ -80,9 +79,14 @@ export default function SeaComponent() {
       </p>
 
       <div className="text-slate-300">
-        Data shows annual temperature variations and thermal anomaly trends.
+        Based on the data, the sea levels across all of these Pacific island
+        regions are steadily going up over time. Some places are seeing a much
+        faster climb than others: Papua New Guinea and the Solomon Islands are
+        experiencing the most rapid increases, meaning their water levels are
+        rising the quickest. On the other hand, places like Tokelau and the
+        Northern Mariana Islands have the slowest rise, meaning their changes
+        are happening at a much more gradual pace.
       </div>
-
     </div>
   );
 }

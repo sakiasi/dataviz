@@ -4,17 +4,11 @@ import { useTemperature } from "../services/tempAnalysis";
 import { handleSelectCountries } from "../services/handleSelectCountries";
 import { TemperatureChart } from "./TempChart";
 
-export default function Temperature() {
+export default function TempComponent() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
 
-  // // Manage state at the parent level
-  // const [selectedCountries, setSelectedCountries] = useState<string[]>([
-  //   "Fiji",
-  // ]);
-
   // Pass selectedCountries into the hook so it re-filters dynamically
-  const { countryList, selectedCountries, setSelectedCountries } =
-    useTemperature();
+  const { countryList, selectedCountries, setSelectedCountries } = useTemperature();
 
   return (
     <div className="text-slate-100 space-y-5">
@@ -86,6 +80,7 @@ export default function Temperature() {
         rising faster and more aggressively over time. Meanwhile, Nauru shows
         the least steep slope of 0.0031 among all Pacific Island countries.
       </p>
+
     </div>
   );
 }

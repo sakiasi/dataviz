@@ -3,9 +3,9 @@ import DisasterEconomicLossComponent from "./components/DisasterEconomic";
 import ImpactPersonChart from "./components/ImpactPerson.tsx";
 import LivestockCropTemperatureComponent from "./components/LivestockCropTemperature.tsx";
 import EnvironmentTaxesComponent from "./components/EnvironmentTaxes.tsx";
-import TemperatureGraph from "./components/Temperature.tsx";
 import EnergyTimeline from "./components/TimeLine";
 import SeaComponent from "./components/SeaComponent.tsx";
+import TempComponent from "./components/TempComponent.tsx";
 
 const App = () => {
 
@@ -41,7 +41,7 @@ const App = () => {
       </div>
 
       <div>
-        <TemperatureGraph />
+        <TempComponent />
       </div>
 
       <div>

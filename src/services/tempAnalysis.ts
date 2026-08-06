@@ -22,8 +22,7 @@ export const useTemperature = (externalSelectedCountries?: string[]) => {
         d.OBS_VALUE !== undefined &&
         d.OBS_VALUE !== null &&
         (selectedCountries.length === 0 || selectedCountries.includes(d['Pacific Island Countries and territories'])) &&
-        d.TIME_PERIOD % 15 === 0 &&
-        d.TIME_PERIOD 
+        d.TIME_PERIOD % 15 === 0 
     );
 
     const allYears = Array.from(new Set(cleanData.
@@ -60,7 +59,7 @@ export const useTemperature = (externalSelectedCountries?: string[]) => {
                 row[country] = found.value;
             }
         });
-        return row;
+        return row; 
     });
 
     const lineData = Object.keys(groupByCountry).map(country => ({
@@ -82,7 +81,9 @@ export const useTemperature = (externalSelectedCountries?: string[]) => {
             country,
             trend:slope.m
         })
+
     }
 
-    return { countryList, chartData, lineData, selectedCountries, setSelectedCountries };
+    return { countryList, chartData, lineData, selectedCountries, setSelectedCountries };   
+
 };

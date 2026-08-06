@@ -1,8 +1,14 @@
+import { useState } from "react";
 import SeaChart from "./SeaChart";
-
-
+import { ChevronUp, ChevronDown, CircleCheck } from "lucide-react";
+import { handleSelectCountries } from "../services/handleSelectCountries";
+import { useSeaAnalysis } from "../services/seaAnalysis";
 
 export default function SeaComponent() {
+
+  const [isCountrySelect, setIsCountrySelect] = useState(false);
+  const { selectedCountries, setSelectedCountries, countryList } = useSeaAnalysis();
+
   return (
     <div className="text-slate-100 space-y-5">
       <h1 className="text-2xl font-bold text-white tracking-tight">
@@ -11,7 +17,7 @@ export default function SeaComponent() {
 
       <div className="border-b border-slate-800"></div>
 
-      <div className="text-slate-300 leading-relaxed space-y-5 mb-10 max-w-3xl">
+      <div className="text-slate-300 leading-relaxed space-y-5 max-w-3xl">
         <p>
           According to
           <a
@@ -29,7 +35,45 @@ export default function SeaComponent() {
         </p>
       </div>
 
-      <SeaChart/>
+      <div className="relative">
+        <div
+          onMouseDown={() => setIsCountrySelect((prev) => !prev)}
+          className="flex justify-around md:w-3/6 p-2 rounded-md hover:cursor-pointer hover:bg-slate-800 items-center border-slate-800 border-2"
+        >
+          <p> Select Country ({selectedCountries.length} selected) </p>
+          {isCountrySelect ? <ChevronUp /> : <ChevronDown />}
+        </div>
+
+        <div
+          className={`${
+            isCountrySelect
+              ? "absolute w-full top-16 h-96 overflow-y-auto z-10 flex-col border bg-slate-700 rounded-md border-slate-900 shadow-xl"
+              : "hidden"
+          }`}
+        >
+          {countryList
+            .sort((a, b) => a.localeCompare(b))
+            .map((d, index) => (
+              <div
+                key={index}
+                className="hover:cursor-pointer hover:bg-slate-900 p-2 border-b border-slate-900 flex items-center gap-5"
+                onMouseDown={() => {
+                  handleSelectCountries(
+                    d,
+                    setSelectedCountries,
+                    selectedCountries,
+                  );
+                }}
+              >
+                {selectedCountries.includes(d) && <CircleCheck color="green" />}
+                <span>{d}</span>
+              </div>
+            ))}
+        </div>
+
+      </div>
+
+      <SeaChart selectedCountries={selectedCountries} />
 
       <p className="text-xs text-slate-400 italic">
         Data from Surface Temperature anomalies.csv and Sea Level Anomalies.csv
@@ -38,6 +82,7 @@ export default function SeaComponent() {
       <div className="text-slate-300">
         Data shows annual temperature variations and thermal anomaly trends.
       </div>
+
     </div>
   );
 }

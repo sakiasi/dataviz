@@ -91,9 +91,6 @@ export default function SeaLevelComponent() {
         are happening at a much more gradual pace.
       </div>
 
-      <div>
-        <h2>Is</h2>
-      </div>
     </div>
   );
 }

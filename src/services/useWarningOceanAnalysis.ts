@@ -10,7 +10,7 @@ export interface SeaInterface {
 
 export const useWarmingOceanAnalysis=(externalSelectedCountries?:string[])=>{
 
-    const [internalSelected, setInternalSelected] = useState<string[]>(['Papua New Guinea','Solomon Islands','Tokelau','Northern Mariana Islands']);
+    const [internalSelected, setInternalSelected] = useState<string[]>(['Kiribati','Tokelau','Palau','Nauru']);
     
     // Use external state if passed from parent, otherwise fallback to internal
     const selectedCountries = externalSelectedCountries ?? internalSelected;
@@ -22,7 +22,7 @@ export const useWarmingOceanAnalysis=(externalSelectedCountries?:string[])=>{
         d.OBS_VALUE !== undefined &&
         d.OBS_VALUE !== null &&
         (selectedCountries.length === 0 || selectedCountries.includes(d['Pacific Island Countries and territories']) ) &&
-        d.TIME_PERIOD % 3 === 0
+        d.TIME_PERIOD % 20 === 0
     )
     .sort((a,b) => a.TIME_PERIOD - b.TIME_PERIOD)    
 

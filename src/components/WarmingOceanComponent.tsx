@@ -5,14 +5,16 @@ import { useState } from "react";
 import { useWarmingOceanAnalysis } from "../services/useWarningOceanAnalysis";
 
 const WarmingOceanComponent = () => {
-    const [isCountrySelect, setIsCountrySelect] = useState(false);
-  
-    const { selectedCountries, setSelectedCountries, countryList } = useWarmingOceanAnalysis();
+  const [isCountrySelect, setIsCountrySelect] = useState(false);
+
+  const { selectedCountries, setSelectedCountries, countryList } =
+    useWarmingOceanAnalysis();
 
   return (
     <div className="text-slate-100 space-y-5">
-
-      <h1 className="text-2xl font-bold text-white tracking-tight">Dose Surface Heat Warms the Ocean ?</h1>
+      <h1 className="text-2xl font-bold text-white tracking-tight">
+        Dose Surface Heat Warms the Ocean ?
+      </h1>
 
       <div className="text-slate-300 leading-relaxed space-y-5 max-w-3xl">
         <p>
@@ -70,9 +72,18 @@ const WarmingOceanComponent = () => {
       </div>
 
       <div>
-        <WarmingOceanChart selectedCountries={selectedCountries}/>
+        <WarmingOceanChart selectedCountries={selectedCountries} />
       </div>
 
+      <div>
+        <p>
+          The data shows that sea surface temperatures across all of these
+          Pacific island regions are steadily warming over time. While every
+          area is experiencing an upward trend, Kiribati and Tokelau are seeing
+          the most rapid increases in sea temperatures, whereas Palau and Nauru
+          are experiencing the slowest warming rates.
+        </p>
+      </div>
     </div>
   );
 };

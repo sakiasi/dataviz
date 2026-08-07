@@ -39,12 +39,13 @@ const WarmingOceanChart = ({ selectedCountries }: { selectedCountries: string[] 
           <YAxis
             type="number"
             domain={[
-              (dataMin: number) => dataMin - 0.03,
-              (dataMax: number) => dataMax + 0.03,
+              (dataMin: number) => dataMin - 0.06,
+              (dataMax: number) => dataMax + 0.06,
             ]}
             stroke="#94a3b8"
             tick={{ fontSize: 11, fill: "#cbd5e1" }}
-            tickFormatter={(value) => `${value}m`}
+            tickFormatter={(value) => `${Number(value).toFixed(2)}°C`}
+            
             width={60}
             axisLine={false}
             tickLine={false}

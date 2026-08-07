@@ -104,8 +104,6 @@ export const useCropAnalysis=(externalSelectedCountries?:string[])=>{
         return {country:d.country,slope:slope.m,lineFunction,predictYear}
     })
 
-    console.log('Slope Data:', slope)
-
     //which has the most/least influence from temperature(regression)
 
     return {selectedCountries, setSelectedCountries, countryList, chartData, lineData, slope}

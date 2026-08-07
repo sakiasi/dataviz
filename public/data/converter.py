@@ -5,8 +5,8 @@ import os
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Build the full paths
-csv_path = os.path.join(script_dir, "WarmingOcean.csv") # Or move it to public/data/ if needed
-json_path = os.path.join(script_dir, "WarmingOcean.json")
+csv_path = os.path.join(script_dir, "Livestock Yield.csv") # Or move it to public/data/ if needed
+json_path = os.path.join(script_dir, "Livestock Yield.json")
 
 # Read and convert
 df = pd.read_csv(csv_path)

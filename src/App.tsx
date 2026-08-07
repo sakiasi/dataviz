@@ -2,7 +2,7 @@ import CropComponent from "./components/CropComponent.tsx";
 import DisasterEconomicLossComponent from "./components/DisasterEconomic";
 import EnvironmentTaxesComponent from "./components/EnvironmentTaxes.tsx";
 import ImpactPersonChart from "./components/ImpactPerson.tsx";
-import LivestockCropTemperatureComponent from "./components/LivestockCropTemperature.tsx";
+import LiveStockComponent from "./components/LiveStockComponent.tsx";
 import SeaLevelComponent from "./components/SeaLevelComponent.tsx";
 import TempComponent from "./components/TempComponent.tsx";
 import EnergyTimeline from "./components/TimeLine";
@@ -58,7 +58,7 @@ const App = () => {
       </div>
 
       <div>
-        <LivestockCropTemperatureComponent />
+        <LiveStockComponent/>
       </div>
 
       <div>

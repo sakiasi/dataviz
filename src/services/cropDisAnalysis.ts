@@ -1,86 +1,105 @@
+import { useState } from 'react'
+import seaData from '../../public/data/Crop_Yields.json'
+import * as ss from 'simple-statistics'
 
-import jsonUrl from '../../public/data/Crop_Yields_Disaggregated.json?url';
-
-
-import { useEffect, useState } from 'react'
-
-interface commonProps{
-    TIME_PERIOD ?: number,
-    OBS_VALUE ?: number,
-    ['Agricultural product'] ?: string,
-    ['Pacific Island Countries and territories'] ?: string,
-    AGRICULTURE_PRODUCTION_TYPE ?: string,
-    country ?: string,
-    year ?: number,
-    cropDisValue ?: number
+export interface SeaInterface {
+    value: number,
+    year: number,
+    country:string,
 }
 
-    //does crop yield decline in all countries ?
-    //which crop has the most reduction in yield and in which country ?
+export const useCropAnalysis=(externalSelectedCountries?:string[])=>{
 
-
-export const useCropDisAnalysis=()=>{
-
-    const [selectCountry, setSelectCountry] = useState(null)
-    const [cropDisaggregated, setCropDisaggregated] = useState<commonProps[]>([])
-
-
-    useEffect(()=>{
-
-        let isMounted = true;
-        async function fetchCrop() {
-            try {
-                const response = await fetch(jsonUrl);
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
-                const cropDisaggregatedResult = await response.json();
-                const dataArray = Array.isArray(cropDisaggregatedResult) ? cropDisaggregatedResult : Object.values(cropDisaggregatedResult);
-
-                // 1. Filter the data safely after it has fully loaded into memory
-                if(dataArray !== undefined){
-
-                    const cleanCropDisaggregated = dataArray.map((d: commonProps) => ({
-                        country: d['Pacific Island Countries and territories'],
-                        year: d.TIME_PERIOD,
-                        cropDisValue: d.OBS_VALUE,
-                        cropName: d['Agricultural product']
-                    }));
+    const [internalSelected, setInternalSelected] = useState<string[]>(['Papua New Guinea','Solomon Islands','Tokelau','Northern Mariana Islands']);
     
-                    if (isMounted) {
-                        setCropDisaggregated(cleanCropDisaggregated);
-                    }
-                }
+    // Use external state if passed from parent, otherwise fallback to internal
+    const selectedCountries = externalSelectedCountries ?? internalSelected;
+    const setSelectedCountries = setInternalSelected;
 
-            } catch (error) {
-                console.error("Error loading JSON data:", error);
-            }
+    const cleanData = seaData.filter(d => 
+        d.TIME_PERIOD !== null &&
+        d.TIME_PERIOD !== undefined &&
+        d.OBS_VALUE !== undefined &&
+        d.OBS_VALUE !== null &&
+        (selectedCountries.length === 0 || selectedCountries.includes(d['Pacific Island Countries and territories']) ) &&
+        d.TIME_PERIOD % 3 === 0
+    )
+    .sort((a,b) => a.TIME_PERIOD - b.TIME_PERIOD)    
+
+    const groupByCountry = cleanData.reduce<Record<string,SeaInterface[]>>((acc,value) => {
+
+        const country = value['Pacific Island Countries and territories']
+
+        if(!acc[country]){
+            acc[country] = []
         }
 
-        fetchCrop();
+        acc[country].push({country,value:value.OBS_VALUE,year:value.TIME_PERIOD})
 
-        //what is the correlation between temp and crop yield in all countries ?
+        return acc
 
-        //which country is showing strong correlation ?
+    },{})
 
-        //does crop yield decline in all countries ?
+    const chartData = Array.from(new Set((cleanData.map(d => d.TIME_PERIOD))))
+    .map(year => {
+        const row:Record<string,number> = {year}
+        Object.entries(groupByCountry).forEach(([country,records]) => {
+            const found = records.find(d => d.year === year)
+            if(found){
+                row[country] = found.value
+            }
+        })
 
-        //which countries has the most reduction ?
+        return row
 
-        //which crop has the most reduction in yield and in which country ?
+    })
 
-        return () => {
-            isMounted = false;
-        };
+    const countryList = Array.from(new Set(seaData.map(d => d['Pacific Island Countries and territories'])))
 
-    },[selectCountry])
+    const lineData = Object.keys(groupByCountry).map(d => ({countryName:d}))
 
+    const dataSlope = seaData.filter(d => 
+        d.TIME_PERIOD !== null &&
+        d.TIME_PERIOD !== undefined &&
+        d.OBS_VALUE !== undefined &&
+        d.OBS_VALUE !== null &&
+        d.TIME_PERIOD % 20
+    )
+    .sort((a,b) => a.TIME_PERIOD - b.TIME_PERIOD)
+    .reduce<Record<string,SeaInterface[]>>((acc,value) => {
 
-    return {cropDisaggregated, selectCountry, setSelectCountry}
-    
-    
+        const country = value['Pacific Island Countries and territories']
+
+        if(!acc[country]){
+            acc[country] = []
+        }
+
+        acc[country].push({country,value:value.OBS_VALUE,year:value.TIME_PERIOD})
+
+        return acc
+
+    },{})
+
+    const data = Object.entries(dataSlope).map(([country, records]) => {
+
+        const mData = records.map(d => [d.year,d.value])
+
+        const shapeData = {country,mData}
+
+        return shapeData
+
+    })
+ 
+    //which country is showing the most/least crop decline(slope)
+    const slope = data.map(d => {
+        const slope = ss.linearRegression(d.mData)
+        const lineFunction = ss.linearRegressionLine(slope)
+        const predictYear = lineFunction(2025)
+        return {country:d.country,slope:slope.m,lineFunction,predictYear}
+    })
+
+    //which has the most/least influence from temperature(regression)
+
+    return {selectedCountries, setSelectedCountries, countryList, chartData, lineData, slope}
 
 }
-
-
-
-

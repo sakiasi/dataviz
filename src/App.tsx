@@ -1,11 +1,11 @@
-import CropChart from "./components/Crop";
+import CropComponent from "./components/CropComponent.tsx";
 import DisasterEconomicLossComponent from "./components/DisasterEconomic";
+import EnvironmentTaxesComponent from "./components/EnvironmentTaxes.tsx";
 import ImpactPersonChart from "./components/ImpactPerson.tsx";
 import LivestockCropTemperatureComponent from "./components/LivestockCropTemperature.tsx";
-import EnvironmentTaxesComponent from "./components/EnvironmentTaxes.tsx";
-import EnergyTimeline from "./components/TimeLine";
-import TempComponent from "./components/TempComponent.tsx";
 import SeaLevelComponent from "./components/SeaLevelComponent.tsx";
+import TempComponent from "./components/TempComponent.tsx";
+import EnergyTimeline from "./components/TimeLine";
 import WarmingOceanComponent from "./components/WarmingOceanComponent.tsx";
 
 const App = () => {
@@ -54,15 +54,15 @@ const App = () => {
       </div>
 
       <div>
-        <ImpactPersonChart />
-      </div>
-
-      <div>
-        <CropChart/>
+        <CropComponent/>
       </div>
 
       <div>
         <LivestockCropTemperatureComponent />
+      </div>
+
+      <div>
+        <ImpactPersonChart />
       </div>
 
       <div>

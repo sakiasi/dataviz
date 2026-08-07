@@ -12,8 +12,8 @@ export default function TempComponent() {
 
   return (
     <div className="text-slate-100 space-y-5">
-      <h1 className="text-2xl font-bold text-white tracking-tight">
-        Is the Temperature Actually Rising?
+      <h1 className="text-2xl font-bold text-white tracking-tight normal-case">
+        Is the surface heat rising ?
       </h1>
 
       <div className="border-b border-slate-800"></div>

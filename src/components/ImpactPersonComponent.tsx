@@ -12,8 +12,8 @@ export default function ImpactPersonComponent() {
 
   return (
     <div className="text-slate-100 space-y-5">
-      <h1 className="text-2xl font-bold text-white tracking-tight capitalize">
-        Dose Surface Heat impact human lives ?
+      <h1 className="text-2xl font-bold text-white tracking-tight">
+        Does surface heat impact human lives ?
       </h1>
 
       <div className="border-b border-slate-800"></div>

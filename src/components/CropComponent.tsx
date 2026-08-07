@@ -13,7 +13,7 @@ export default function CropComponent() {
   return (
     <div className="text-slate-100 space-y-5">
       <h1 className="text-2xl font-bold text-white tracking-tight">
-        Dose Surface Heat Reduce Crop Yield ?
+        Does surface heat reduce crop yield ?
       </h1>
 
       <div className="border-b border-slate-800"></div>

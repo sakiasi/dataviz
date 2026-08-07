@@ -12,8 +12,8 @@ export default function LiveStockComponent() {
 
   return (
     <div className="text-slate-100 space-y-5">
-      <h1 className="text-2xl font-bold text-white tracking-tight capitalize">
-        Dose Surface Heat reduce Livestock yield ?
+      <h1 className="text-2xl font-bold text-white tracking-tight">
+        Does surface heat reduce livestock yield ?
       </h1>
 
       <div className="border-b border-slate-800"></div>

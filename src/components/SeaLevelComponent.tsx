@@ -1,38 +1,44 @@
 import { useState } from "react";
-import SeaChart from "./SeaChart";
+import SeaChart from "./SeaLevelChart";
 import { ChevronUp, ChevronDown, CircleCheck } from "lucide-react";
 import { handleSelectCountries } from "../services/handleSelectCountries";
-import { useSeaAnalysis } from "../services/seaAnalysis";
+import { useSeaLevelAnalysis } from "../services/seaLevelAnalysis";
 
-export default function SeaComponent() {
+export default function SeaLevelComponent() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
+
   const { selectedCountries, setSelectedCountries, countryList } =
-    useSeaAnalysis();
+    useSeaLevelAnalysis();
 
   return (
     <div className="text-slate-100 space-y-5">
+
       <h1 className="text-2xl font-bold text-white tracking-tight">
-        Is Our Ocean Warming Up?
+        Is the Sea Level Rising ?
       </h1>
 
       <div className="border-b border-slate-800"></div>
 
       <div className="text-slate-300 leading-relaxed space-y-5 max-w-3xl">
+
         <p>
           According to
           <a
             className="text-xs pl-1 text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
-            href="https://www.science.org/doi/10.1126/science.aav7619"
+            href="https://doi.org/10.1111/sjtg.12021"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Trenberth, K. E. (2019)
+            Nunn, P. D. (2013)
           </a>
-          , The ocean acts as the Earth’s thermal buffer, absorbing the vast
-          majority of excess atmospheric heat. Consequently, rising mean surface
-          temperatures translate directly into warmer oceans, establishing a
-          clear, ongoing trend in sea surface temperature anomalies.
+          , as the oceans absorb excess atmospheric heat, thermal expansion and
+          melting ice drive sea levels steadily upward. For low-lying island
+          communities, this creeping tide directly threatens coastal
+          infrastructure, freshwater sources, and agricultural land—establishing
+          the physical catalyst for the displacement and economic losses seen
+          across the region.
         </p>
+
       </div>
 
       <div className="relative">
@@ -86,6 +92,10 @@ export default function SeaComponent() {
         rising the quickest. On the other hand, places like Tokelau and the
         Northern Mariana Islands have the slowest rise, meaning their changes
         are happening at a much more gradual pace.
+      </div>
+
+      <div>
+        <h2>Is</h2>
       </div>
     </div>
   );

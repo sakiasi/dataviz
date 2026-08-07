@@ -8,13 +8,12 @@ import {
   YAxis,
 } from "recharts";
 
-import { useSeaAnalysis } from "../services/seaAnalysis";
 import { CustomToolTip } from "./CustomToolTip";
 import { useColors } from "../services/generateColors";
+import { useSeaLevelAnalysis } from "../services/seaLevelAnalysis";
 
-const SeaChart = ({ selectedCountries } : { selectedCountries: string[] }) => {
-
-  const { lineData, chartData } = useSeaAnalysis(selectedCountries);
+const SeaLevelChart = ({ selectedCountries }: { selectedCountries: string[] }) => {
+  const { lineData, chartData } = useSeaLevelAnalysis(selectedCountries);
   const { hashColor } = useColors(selectedCountries);
 
   return (
@@ -40,8 +39,8 @@ const SeaChart = ({ selectedCountries } : { selectedCountries: string[] }) => {
           <YAxis
             type="number"
             domain={[
-              (dataMin: number) => dataMin - 0.03, 
-              (dataMax: number) => dataMax + 0.03
+              (dataMin: number) => dataMin - 0.03,
+              (dataMax: number) => dataMax + 0.03,
             ]}
             stroke="#94a3b8"
             tick={{ fontSize: 11, fill: "#cbd5e1" }}
@@ -65,15 +64,12 @@ const SeaChart = ({ selectedCountries } : { selectedCountries: string[] }) => {
               strokeWidth={2}
               dot={{ fill: hashColor[i % hashColor.length], r: 4 }}
               activeDot={{ r: 6 }}
-            />))
-          }
-
+            />
+          ))}
         </LineChart>
       </ResponsiveContainer>
     </div>
   );
-
 };
 
-export default SeaChart;
-
+export default SeaLevelChart;

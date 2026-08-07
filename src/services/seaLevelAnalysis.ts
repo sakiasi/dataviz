@@ -8,7 +8,7 @@ export interface SeaInterface {
     country:string,
 }
 
-export const useSeaAnalysis=(externalSelectedCountries:string[])=>{
+export const useSeaLevelAnalysis=(externalSelectedCountries?:string[])=>{
 
     const [internalSelected, setInternalSelected] = useState<string[]>(['Papua New Guinea','Solomon Islands','Tokelau','Northern Mariana Islands']);
     
@@ -22,7 +22,7 @@ export const useSeaAnalysis=(externalSelectedCountries:string[])=>{
         d.OBS_VALUE !== undefined &&
         d.OBS_VALUE !== null &&
         (selectedCountries.length === 0 || selectedCountries.includes(d['Pacific Island Countries and territories']) ) &&
-        d.TIME_PERIOD % 5 === 0
+        d.TIME_PERIOD % 3 === 0
     )
     .sort((a,b) => a.TIME_PERIOD - b.TIME_PERIOD)    
 

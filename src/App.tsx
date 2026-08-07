@@ -4,8 +4,9 @@ import ImpactPersonChart from "./components/ImpactPerson.tsx";
 import LivestockCropTemperatureComponent from "./components/LivestockCropTemperature.tsx";
 import EnvironmentTaxesComponent from "./components/EnvironmentTaxes.tsx";
 import EnergyTimeline from "./components/TimeLine";
-import SeaComponent from "./components/SeaComponent.tsx";
 import TempComponent from "./components/TempComponent.tsx";
+import SeaLevelComponent from "./components/SeaLevelComponent.tsx";
+import WarmingOceanComponent from "./components/WarmingOcean.tsx";
 
 const App = () => {
 
@@ -45,7 +46,11 @@ const App = () => {
       </div>
 
       <div>
-        <SeaComponent />
+        <WarmingOceanComponent/>
+      </div>
+
+      <div>
+        <SeaLevelComponent/>
       </div>
 
       <div>

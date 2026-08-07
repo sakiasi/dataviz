@@ -19,8 +19,9 @@ const LiveStockChart = ({ selectedCountries }: { selectedCountries: string[] }) 
 
   return (
     <div className="h-100 w-full space-y-5 pb-5">
-      <h1>Reduced Crop Yield Over Time</h1>
+      <h1>Livestock Yield Over Time</h1>
       <ResponsiveContainer className={"w-100, h-100"}>
+      <p className="text-xs text-slate-500">Kg/Hectare</p>
         <LineChart data={chartData}>
           <CartesianGrid
             strokeDasharray="3 3"
@@ -45,7 +46,7 @@ const LiveStockChart = ({ selectedCountries }: { selectedCountries: string[] }) 
             ]}
             stroke="#94a3b8"
             tick={{ fontSize: 11, fill: "#cbd5e1" }}
-            tickFormatter={(value) => `${value}KGPH`}
+            tickFormatter={(value) => `${Math.ceil(value)}`}
             width={60}
             axisLine={false}
             tickLine={false}

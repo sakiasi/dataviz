@@ -10,20 +10,23 @@ import {
 
 import { CustomToolTip } from "./CustomToolTip";
 import { useColors } from "../services/generateColors";
-import { useCropAnalysis } from "../services/cropAnalysis";
+import { useImpactPersonAnalysis } from "../services/impactPersonAnalysis";
 
-const CropChart = ({ selectedCountries }: { selectedCountries: string[] }) => {
-  const { lineData, chartData } = useCropAnalysis(selectedCountries);
+const ImpactPersonChart = ({
+  selectedCountries,
+}: {
+  selectedCountries: string[];
+}) => {
+  const { lineData, chartData } = useImpactPersonAnalysis(selectedCountries);
   const { hashColor } = useColors(selectedCountries);
 
   return (
     <div className="h-100 w-full space-y-5 pb-5">
-      <h1>Crop Yield Over Time</h1>
+      <h1 className="normal-case">Number of individuals affected over time</h1>
       <ResponsiveContainer className={"w-100, h-100"}>
-      <p className="text-xs text-slate-500">Kg/Hectare</p>
         <LineChart
           data={chartData}
-          margin={{ top: 10, right: 10, left: 0, bottom: 25 }}
+          margin={{ top: 10, right: 10, left: 0, bottom: 20 }}
         >
           <CartesianGrid
             strokeDasharray="3 3"
@@ -74,4 +77,4 @@ const CropChart = ({ selectedCountries }: { selectedCountries: string[] }) => {
   );
 };
 
-export default CropChart;
+export default ImpactPersonChart;

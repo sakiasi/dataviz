@@ -89,7 +89,6 @@ export const useLivestockAnalysis = (externalSelectedCountries?: string[]) => {
         });
     }, []);
 
-    console.log('Livestock:', slope)
 
     return { selectedCountries, setSelectedCountries, countryList, chartData, lineData, slope };
 }

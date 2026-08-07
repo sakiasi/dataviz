@@ -1,42 +1,40 @@
 import { ChevronDown, ChevronUp, CircleCheck } from "lucide-react";
 import { useState } from "react";
 import { handleSelectCountries } from "../services/handleSelectCountries";
-import LiveStockChart from "./LivestockChart";
-import { useLivestockAnalysis } from "../services/liveStockAnalysis";
+import { useImpactPersonAnalysis } from "../services/impactPersonAnalysis";
+import ImpactPersonChart from "./ImpactPersonChart";
 
-export default function LiveStockComponent() {
+export default function ImpactPersonComponent() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
 
   const { selectedCountries, setSelectedCountries, countryList } =
-    useLivestockAnalysis();
+    useImpactPersonAnalysis();
 
   return (
     <div className="text-slate-100 space-y-5">
       <h1 className="text-2xl font-bold text-white tracking-tight capitalize">
-        Dose Surface Heat reduce Livestock yield ?
+        Dose Surface Heat impact human lives ?
       </h1>
 
       <div className="border-b border-slate-800"></div>
 
       <div className="text-slate-300 leading-relaxed space-y-5 max-w-3xl">
         <p>
-          Climate change hits livestock just as hard as it hits crops, primarily
-          through direct heat stress and the decline of the food they rely on.
-          When temperatures climb, animals struggle to maintain their core body
-          temperature, which forces their bodies to shift energy away from
-          growth, milk production, and reproduction just to survive. It’s not
-          just the heat, either; erratic rainfall and drought dry up pastures
-          and reduce the quality of forage, while warmer, wetter conditions
-          create a perfect breeding ground for new pests and diseases that
-          compromise animal health.
+          According to
           <a
             className="text-xs pl-1 text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
-            href="https://www.mdpi.com/2073-4433/13/1/140"
+            href="https://www.undrr.org/media/89310/download"
             target="_blank"
             rel="noopener noreferrer"
           >
-            (Cheng et al., 2022).
+            United Nations Office for Disaster Risk Reduction [UNDRR] (2023)
           </a>
+          , intensifying climate hazards translate directly into frequent
+          extreme weather events across the Pacific. As rising seas and changing
+          climatic patterns destabilize vulnerable communities, a growing number
+          of island residents face immediate displacement, property destruction,
+          and disruption to livelihoods—highlighting the critical human cost of
+          environmental change in the region.
         </p>
       </div>
 
@@ -78,7 +76,7 @@ export default function LiveStockComponent() {
       </div>
 
       <div>
-        <LiveStockChart selectedCountries={selectedCountries} />
+        <ImpactPersonChart selectedCountries={selectedCountries} />
       </div>
 
       <p className="text-xs text-slate-400 italic">
@@ -86,11 +84,12 @@ export default function LiveStockComponent() {
       </p>
 
       <div className="text-slate-300">
-        The data highlights a clear divergence in livestock trends across the
-        Pacific region, with nations like Kiribati, Micronesia, and Niue
-        experiencing positive growth trajectories over time. In contrast,
-        countries such as Fiji, French Polynesia, the Cook Islands, and Tuvalu
-        face steep downward slopes in their livestock metrics.
+        The data highlights sharp contrasts in the human impact of disasters
+        across the Pacific: nations like Fiji, the Solomon Islands, and Tonga
+        experience massive, steeply rising numbers of directly affected
+        individuals over time, whereas countries like Papua New Guinea show a
+        downward slope, and several territories report minimal or flat trend
+        lines.
       </div>
     </div>
   );

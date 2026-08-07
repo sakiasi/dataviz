@@ -1,41 +1,35 @@
-import { useState } from "react";
-import SeaChart from "./SeaLevelChart";
 import { ChevronUp, ChevronDown, CircleCheck } from "lucide-react";
 import { handleSelectCountries } from "../services/handleSelectCountries";
-import { useSeaLevelAnalysis } from "../services/seaLevelAnalysis";
+import WarmingOceanChart from "./WarmingOceanChart";
+import { useState } from "react";
+import { useWarmingOceanAnalysis } from "../services/useWarningOceanAnalysis";
 
-export default function SeaLevelComponent() {
-  const [isCountrySelect, setIsCountrySelect] = useState(false);
-
-  const { selectedCountries, setSelectedCountries, countryList } = useSeaLevelAnalysis();
+const WarmingOceanComponent = () => {
+    const [isCountrySelect, setIsCountrySelect] = useState(false);
+  
+    const { selectedCountries, setSelectedCountries, countryList } = useWarmingOceanAnalysis();
 
   return (
     <div className="text-slate-100 space-y-5">
 
-      <h1 className="text-2xl font-bold text-white tracking-tight">Is the Sea Level Rising ?</h1>
-
-      <div className="border-b border-slate-800"></div>
+      <h1 className="text-2xl font-bold text-white tracking-tight">Dose Surface Heat Warms the Ocean ?</h1>
 
       <div className="text-slate-300 leading-relaxed space-y-5 max-w-3xl">
-        
         <p>
           According to
           <a
             className="text-xs pl-1 text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
-            href="https://doi.org/10.1111/sjtg.12021"
+            href="https://www.science.org/doi/10.1126/science.aav7619"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Nunn, P. D. (2013)
+            Trenberth, K. E. (2019)
           </a>
-          , as the oceans absorb excess atmospheric heat, thermal expansion and
-          melting ice drive sea levels steadily upward. For low-lying island
-          communities, this creeping tide directly threatens coastal
-          infrastructure, freshwater sources, and agricultural land—establishing
-          the physical catalyst for the displacement and economic losses seen
-          across the region.
+          , The ocean acts as the Earth’s thermal buffer, absorbing the vast
+          majority of excess atmospheric heat. Consequently, rising mean surface
+          temperatures translate directly into warmer oceans, establishing a
+          clear, ongoing trend in sea surface temperature anomalies.
         </p>
-
       </div>
 
       <div className="relative">
@@ -75,25 +69,12 @@ export default function SeaLevelComponent() {
         </div>
       </div>
 
-      <SeaChart selectedCountries={selectedCountries} />
-
-      <p className="text-xs text-slate-400 italic">
-        Data from Surface Temperature anomalies.csv and Sea Level Anomalies.csv
-      </p>
-
-      <div className="text-slate-300">
-        Based on the data, the sea levels across all of these Pacific island
-        regions are steadily going up over time. Some places are seeing a much
-        faster climb than others: Papua New Guinea and the Solomon Islands are
-        experiencing the most rapid increases, meaning their water levels are
-        rising the quickest. On the other hand, places like Tokelau and the
-        Northern Mariana Islands have the slowest rise, meaning their changes
-        are happening at a much more gradual pace.
-      </div>
-
       <div>
-        <h2>Is</h2>
+        <WarmingOceanChart selectedCountries={selectedCountries}/>
       </div>
+
     </div>
   );
-}
+};
+
+export default WarmingOceanComponent;

@@ -6,7 +6,7 @@ import EnvironmentTaxesComponent from "./components/EnvironmentTaxes.tsx";
 import EnergyTimeline from "./components/TimeLine";
 import TempComponent from "./components/TempComponent.tsx";
 import SeaLevelComponent from "./components/SeaLevelComponent.tsx";
-import WarmingOceanComponent from "./components/WarmingOcean.tsx";
+import WarmingOceanComponent from "./components/WarmingOceanComponent.tsx";
 
 const App = () => {
 

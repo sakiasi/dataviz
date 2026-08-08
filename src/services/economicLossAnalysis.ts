@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import seaData from '../../public/data/EconimicLoss.json'
+import seaData from '../../public/data/EconomicLoss.json'
 import * as ss from 'simple-statistics'
 
 export interface SeaInterface {
@@ -123,3 +123,4 @@ export const useEconomicLossAnalysis = (externalSelectedCountries?: string[]) =>
 
     return { selectedCountries, setSelectedCountries, countryList, chartData, lineData, slope };
 }
+

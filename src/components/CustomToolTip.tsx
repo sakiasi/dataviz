@@ -8,8 +8,6 @@ interface CustomTooltipProps {
 
 export const CustomToolTip = ({ active, payload, label,units }: CustomTooltipProps) => {
 
-  console.log('PAYLOAD:', units)
-
   if (active && payload && payload.length) {
     return (
       <div className="bg-slate-900 border border-amber-500/50 p-3 rounded shadow-xl">

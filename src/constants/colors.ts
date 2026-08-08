@@ -3,7 +3,7 @@ import cropData from '../../public/data/Crop_Yields.json'
 import seaData from '../../public/data/Sea Level Anomalies.json'
 import oceanData from '../../public/data/WarmingOcean.json'
 import individualImpactData from '../../public/data/Number of directly affected persons attributed to disasters.json'
-import economicLossData from '../../public/data/EconimicLoss.json'
+import economicLossData from '../../public/data/EconomicLoss.json'
 
 export const colors = [
   "#e6194b", // Vibrant Red
@@ -48,7 +48,7 @@ export const countryColor = countries.reduce((acc,value,index) => {
 
   return acc
 
-},{} as Record<string, string>)
+}, {} as Record<string, string>)
 
 console.log('COUNTRY COLOR:', countryColor)
 

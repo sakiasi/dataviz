@@ -103,7 +103,6 @@ export const useImpactPersonAnalysis=(externalSelectedCountries?:string[])=>{
         return {country:d.country,slope:slope.m,lineFunction,predictYear}
     })
 
-    console.log('SLOPE:', slope)
 
     //which has the most/least influence from temperature(regression)
 

@@ -1,6 +1,5 @@
 import CropComponent from "./components/CropComponent.tsx";
-import DisasterEconomicLossComponent from "./components/DisasterEconomic";
-import EnvironmentTaxesComponent from "./components/EnvironmentTaxes.tsx";
+import EconomicLossComponent from "./components/EconomicLossComponent.tsx";
 import ImpactPersonChart from "./components/ImpactPersonComponent.tsx";
 import LiveStockComponent from "./components/LiveStockComponent.tsx";
 import SeaLevelComponent from "./components/SeaLevelComponent.tsx";
@@ -9,7 +8,6 @@ import EnergyTimeline from "./components/TimeLine";
 import WarmingOceanComponent from "./components/WarmingOceanComponent.tsx";
 
 const App = () => {
-
   return (
     <div className="mx-auto space-y-10 max-w-prose mt-5 mb-5 p-5">
       <div className="space-y-5">
@@ -46,19 +44,19 @@ const App = () => {
       </div>
 
       <div>
-        <WarmingOceanComponent/>
+        <WarmingOceanComponent />
       </div>
 
       <div>
-        <SeaLevelComponent/>
+        <SeaLevelComponent />
       </div>
 
       <div>
-        <CropComponent/>
+        <CropComponent />
       </div>
 
       <div>
-        <LiveStockComponent/>
+        <LiveStockComponent />
       </div>
 
       <div>
@@ -66,31 +64,27 @@ const App = () => {
       </div>
 
       <div>
-        <DisasterEconomicLossComponent />
-      </div>
-
-      <div>
-        <EnvironmentTaxesComponent />
+        <EconomicLossComponent />
       </div>
 
       <div className="space-y-5 max-w-3xl">
         <h1 className="text-2xl font-bold text-white tracking-tight">
-          From Awareness to Action
+          Conclusion
         </h1>
 
         <div className="border-b border-slate-800"></div>
 
         <p className="text-slate-300 text-sm leading-relaxed">
-          The data confirms that climate change is already re-shaping our
-          economic and physical landscapes. However, this is not just a reason
-          for concern—it is a directive for innovation. To protect our future,
-          we must move beyond observation. Our next phase of research must focus
-          on <strong>spatial-temporal adaptive strategies</strong>: utilizing
-          real-time tracking, predictive modeling for crop resilience, and
-          precise economic intervention. We have the data; now, we must engineer
-          the solutions that prioritize the safety and stability of our
-          communities. The path forward requires a fusion of rigorous data
-          collection and immediate, localized implementation.
+          The trends across the Pacific show that rising temperatures and
+          climbing sea levels do not impact every island equally, and physical
+          geography alone cannot explain the widening disparities in
+          agricultural decline and disaster recovery costs. Economic loss and
+          environmental vulnerability vary wildly by territory, proving that
+          localized infrastructure and administrative response systems play a
+          larger role in community resilience than climate exposure alone.
+          Addressing these regional divides requires moving past passive
+          monitoring toward active, system-level engineering and real-time
+          operational intervention.
         </p>
       </div>
 

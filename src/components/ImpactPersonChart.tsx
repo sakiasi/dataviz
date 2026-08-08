@@ -22,7 +22,7 @@ const ImpactPersonChart = ({
 
   return (
     <div className="h-100 w-full space-y-5 pb-5">
-      <h1 className="normal-case">Number of individuals affected over time</h1>
+      <h1 className="normal-case">Number of individuals affected by natural disaster over time</h1>
       <ResponsiveContainer className={"w-100, h-100"}>
         <LineChart
           data={chartData}

@@ -18,7 +18,7 @@ const WarmingOceanChart = ({ selectedCountries }: { selectedCountries: string[] 
 
   return (
     <div className="h-100 w-full space-y-5 pb-5">
-      <h1>Rising Sea Surface Temperature Anomalies Over Time</h1>
+      <h1>Rising sea surface temperature anomalies over time</h1>
       <ResponsiveContainer className={"w-100, h-100"}>
         <LineChart data={chartData}>
           <CartesianGrid

@@ -8,9 +8,9 @@ import {
   YAxis,
 } from "recharts";
 
-import { CustomToolTip } from "./CustomToolTip";
-import { useColors } from "../services/generateColors";
+import { countryColor } from "../constants/colors";
 import { useSeaLevelAnalysis } from "../services/seaLevelAnalysis";
+import { CustomToolTip } from "./CustomToolTip";
 
 const SeaLevelChart = ({
   selectedCountries,
@@ -18,7 +18,6 @@ const SeaLevelChart = ({
   selectedCountries: string[];
 }) => {
   const { lineData, chartData } = useSeaLevelAnalysis(selectedCountries);
-  const { hashColor } = useColors(selectedCountries);
 
   return (
     <div className="h-100 w-full flex flex-col gap-5">
@@ -60,14 +59,14 @@ const SeaLevelChart = ({
             cursor={{ fill: "rgba(255, 255, 255, 0.03)" }}
           />
 
-          {lineData.map((d, i) => (
+          {lineData.map((d) => (
             <Line
               key={d.countryName}
               type="natural" // <-- Change from "monotone" to "natural" or "basis"
               dataKey={d.countryName}
-              stroke={hashColor[i % hashColor.length]}
+              stroke={countryColor[d.countryName]}
               strokeWidth={2}
-              dot={{ fill: hashColor[i % hashColor.length], r: 4 }}
+              dot={{ fill: countryColor[d.countryName], r: 4 }}
               activeDot={{ r: 6 }}
             />
           ))}

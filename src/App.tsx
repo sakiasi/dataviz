@@ -74,7 +74,7 @@ const App = () => {
 
         <div className="border-b border-slate-800"></div>
 
-        <p className="text-slate-300 text-sm leading-relaxed">
+        <p className="text-slate-300 leading-relaxed">
           The trends across the Pacific show that rising temperatures and
           climbing sea levels do not impact every island equally, and physical
           geography alone cannot explain the widening disparities in
@@ -84,7 +84,7 @@ const App = () => {
           larger role in community resilience than climate exposure alone.
           Addressing these regional divides requires moving past passive
           monitoring toward active, system-level engineering and real-time
-          operational intervention.
+          operational intervention. 
         </p>
       </div>
 

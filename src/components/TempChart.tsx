@@ -20,9 +20,10 @@ export const TemperatureChart = ({
   const { hashColor } = useColors(selectedCountries);
 
   return (
-    <div className="h-100 w-full py-5">
+    <div className="h-100 w-full flex flex-col gap-5">
       <h1>Rising surface heat anomalies over time</h1>
       <ResponsiveContainer className={"w-100, h-full"}>
+        <p className="text-xs text-slate-600">Temperature</p>
         <LineChart data={chartData}>
           <CartesianGrid
             strokeDasharray="3 3"

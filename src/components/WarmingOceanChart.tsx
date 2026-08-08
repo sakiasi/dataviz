@@ -17,9 +17,10 @@ const WarmingOceanChart = ({ selectedCountries }: { selectedCountries: string[] 
   const { hashColor } = useColors(selectedCountries);
 
   return (
-    <div className="h-100 w-full space-y-5 pb-5">
+    <div className="h-100 w-full flex flex-col gap-5">
       <h1>Rising sea surface temperature anomalies over time</h1>
       <ResponsiveContainer className={"w-100, h-100"}>
+        <p className="text-xs text-slate-600">Temperature</p>
         <LineChart data={chartData}>
           <CartesianGrid
             strokeDasharray="3 3"

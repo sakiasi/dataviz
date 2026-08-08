@@ -11,12 +11,12 @@ const WarmingOceanComponent = () => {
     useWarmingOceanAnalysis();
 
   return (
-    <div className="text-slate-100 space-y-5">
+    <div className="text-slate-100 flex flex-col gap-5">
       <h1 className="text-2xl font-bold text-white tracking-tight">
         Does surface heat warm the ocean ?
       </h1>
 
-      <div className="text-slate-300 leading-relaxed space-y-5 max-w-3xl">
+      <div className="text-slate-300 leading-relaxed flex flex-col gap-5 max-w-3xl">
         <p>
           According to
           <a

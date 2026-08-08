@@ -11,14 +11,14 @@ export default function LiveStockComponent() {
     useLivestockAnalysis();
 
   return (
-    <div className="text-slate-100 space-y-5">
+    <div className="text-slate-100 flex flex-col gap-5">
       <h1 className="text-2xl font-bold text-white tracking-tight">
         Does surface heat reduce livestock yield ?
       </h1>
 
       <div className="border-b border-slate-800"></div>
 
-      <div className="text-slate-300 leading-relaxed space-y-5 max-w-3xl">
+      <div className="text-slate-300 leading-relaxed  max-w-3xl">
         <p>
           Climate change hits livestock just as hard as it hits crops, primarily
           through direct heat stress and the decline of the food they rely on.

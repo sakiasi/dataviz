@@ -11,13 +11,14 @@ export default function TempComponent() {
   const { countryList, selectedCountries, setSelectedCountries } = useTemperature();
 
   return (
-    <div className="text-slate-100 space-y-5">
+    <div className="text-slate-100 flex flex-col gap-5">
       <h1 className="text-2xl font-bold text-white tracking-tight normal-case">
         Is the surface heat rising ?
       </h1>
 
       <div className="border-b border-slate-800"></div>
-      <div className="text-slate-300 leading-relaxed space-y-5 mb-10 max-w-3xl">
+      
+      <div className="text-slate-300 leading-relaxed max-w-3xl">
         <p>
           <a
             className="text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"

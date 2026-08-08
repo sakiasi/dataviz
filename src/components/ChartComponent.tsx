@@ -40,7 +40,23 @@ const ChartComponent = ({ chartData, lineData, units }: ChartProps) => {
           domain={["auto", "auto"]}
           stroke="#94a3b8"
           tick={{ fontSize: 11, fill: "#cbd5e1" }}
-          tickFormatter={(value) => `${value} ${units ?? ""}`}
+          // tickFormatter={(value) => `${value} ${units ?? ""}`}
+          tickFormatter={(value) => {
+            // Skip formatting if it's temperature or small values
+            if (units === "°C" || units?.includes("°")) {
+              return `${value} ${units ?? ""}`;
+            }
+
+            // Format large numbers into thousands (k) or millions (M)
+            if (value >= 1_000_000) {
+              return `${(value / 1_000_000).toFixed(1)}M ${units ?? ""}`.trim();
+            }
+            if (value >= 1_000) {
+              return `${(value / 1_000).toFixed(0)}k ${units ?? ""}`.trim();
+            }
+
+            return `${value} ${units ?? ""}`.trim();
+          }}
           width={60}
           axisLine={false}
           tickLine={false}

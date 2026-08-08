@@ -55,7 +55,7 @@ const EconomicLossChart = ({
           />
 
           <Tooltip
-            content={<CustomToolTip />}
+            content={<CustomToolTip units="USD" />}
             cursor={{ fill: "rgba(255, 255, 255, 0.03)" }}
           />
 

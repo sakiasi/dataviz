@@ -18,7 +18,7 @@ const CropChart = ({ selectedCountries }: { selectedCountries: string[] }) => {
   return (
     <div className="h-100 w-full flex flex-col gap-5">
       <h1>Crop yield over time</h1>
-      <p className="text-xs text-slate-500">Kg/Ha</p>
+      <p className="text-xs text-slate-500">Kg/ha</p>
       <ResponsiveContainer className={"w-100, h-100"}>
         <LineChart
           data={chartData}
@@ -51,7 +51,7 @@ const CropChart = ({ selectedCountries }: { selectedCountries: string[] }) => {
           />
 
           <Tooltip
-            content={<CustomToolTip />}
+            content={<CustomToolTip units="kg/ha" />}
             cursor={{ fill: "rgba(255, 255, 255, 0.03)" }}
           />
 

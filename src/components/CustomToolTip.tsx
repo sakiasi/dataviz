@@ -3,9 +3,12 @@ interface CustomTooltipProps {
   active?: boolean;
   payload?: Array<{ value: number, color:string, name:string }>;
   label?: string;
+  units?: string
 }
 
-export const CustomToolTip = ({ active, payload, label }: CustomTooltipProps) => {
+export const CustomToolTip = ({ active, payload, label,units }: CustomTooltipProps) => {
+
+  console.log('PAYLOAD:', units)
 
   if (active && payload && payload.length) {
     return (
@@ -16,7 +19,7 @@ export const CustomToolTip = ({ active, payload, label }: CustomTooltipProps) =>
                 <div key={i} className="flex items-center gap-2">
                     <div style={{ backgroundColor: d.color }} className="w-3 h-3 rounded-full"></div> 
                     <p className="text-white text-sm">
-                      {d.name} @ <span className="font-semibold">{d.value}°C</span>                  
+                      {d.name} : <span className="font-semibold">{d.value.toLocaleString()} {units}</span>                  
                     </p>
                 </div>
             )

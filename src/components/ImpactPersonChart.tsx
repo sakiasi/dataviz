@@ -55,7 +55,7 @@ const ImpactPersonChart = ({
           />
 
           <Tooltip
-            content={<CustomToolTip />}
+            content={<CustomToolTip units="Person(s)" />}
             cursor={{ fill: "rgba(255, 255, 255, 0.03)" }}
           />
 

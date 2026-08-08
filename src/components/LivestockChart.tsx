@@ -55,7 +55,7 @@ const LiveStockChart = ({
           />
 
           <Tooltip
-            content={<CustomToolTip />}
+            content={<CustomToolTip units="kg/ha" />}
             cursor={{ fill: "rgba(255, 255, 255, 0.03)" }}
           />
 

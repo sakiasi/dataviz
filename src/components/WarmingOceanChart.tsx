@@ -52,7 +52,7 @@ const WarmingOceanChart = ({ selectedCountries }: { selectedCountries: string[] 
           />
 
           <Tooltip
-            content={<CustomToolTip />}
+            content={<CustomToolTip units="°C" />}
             cursor={{ fill: "rgba(255, 255, 255, 0.03)" }}
           />
 

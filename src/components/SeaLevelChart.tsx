@@ -12,15 +12,19 @@ import { CustomToolTip } from "./CustomToolTip";
 import { useColors } from "../services/generateColors";
 import { useSeaLevelAnalysis } from "../services/seaLevelAnalysis";
 
-const SeaLevelChart = ({ selectedCountries }: { selectedCountries: string[] }) => {
+const SeaLevelChart = ({
+  selectedCountries,
+}: {
+  selectedCountries: string[];
+}) => {
   const { lineData, chartData } = useSeaLevelAnalysis(selectedCountries);
   const { hashColor } = useColors(selectedCountries);
 
   return (
     <div className="h-100 w-full flex flex-col gap-5">
       <h1>Rising sea surface temperature anomalies over time</h1>
+      <p className="text-xs text-slate-600">Temperature</p>
       <ResponsiveContainer className={"w-100, h-100"}>
-        <p className="text-xs text-slate-600">Temperature</p>
         <LineChart data={chartData}>
           <CartesianGrid
             strokeDasharray="3 3"
@@ -69,6 +73,7 @@ const SeaLevelChart = ({ selectedCountries }: { selectedCountries: string[] }) =
           ))}
         </LineChart>
       </ResponsiveContainer>
+      <p className="text-xs text-center text-slate-600">Year</p>
     </div>
   );
 };

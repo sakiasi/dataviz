@@ -78,7 +78,7 @@ export default function CropComponent() {
         <CropChart selectedCountries={selectedCountries} />
       </div>
 
-      <p className="text-xs text-slate-400 italic">
+       <p className="text-xs text-slate-400 italic">
         Data from Surface Temperature anomalies.csv and Sea Level Anomalies.csv
       </p>
 

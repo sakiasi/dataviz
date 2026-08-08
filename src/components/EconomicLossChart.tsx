@@ -21,10 +21,10 @@ const EconomicLossChart = ({
   const { hashColor } = useColors(selectedCountries);
 
   return (
-    <div className="h-100 w-full space-y-5 pb-5">
+    <div className="h-100 w-full flex flex-col gap-5">
       <h1>Cost of damages over time</h1>
+      <p className="text-xs text-slate-700">USD</p>
       <ResponsiveContainer className={"w-100, h-100"}>
-        <p className="text-xs text-slate-700">USD</p>
         <LineChart data={chartData}>
           <CartesianGrid
             strokeDasharray="3 3"
@@ -74,6 +74,7 @@ const EconomicLossChart = ({
           ))}
         </LineChart>
       </ResponsiveContainer>
+      <p className="text-xs text-center text-slate-700">Year</p>
     </div>
   );
 };

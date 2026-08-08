@@ -22,8 +22,8 @@ export const TemperatureChart = ({
   return (
     <div className="h-100 w-full flex flex-col gap-5">
       <h1>Rising surface heat anomalies over time</h1>
-      <ResponsiveContainer className={"w-100, h-full"}>
         <p className="text-xs text-slate-600">Temperature</p>
+      <ResponsiveContainer className={"w-100, h-full"}>
         <LineChart data={chartData}>
           <CartesianGrid
             strokeDasharray="3 3"
@@ -69,6 +69,7 @@ export const TemperatureChart = ({
           ))}
         </LineChart>
       </ResponsiveContainer>
+        <p className="text-xs text-center text-slate-600">Year</p>
     </div>
   );
 };

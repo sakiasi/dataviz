@@ -12,8 +12,11 @@ import { CustomToolTip } from "./CustomToolTip";
 import { useColors } from "../services/generateColors";
 import { useLivestockAnalysis } from "../services/liveStockAnalysis";
 
-const LiveStockChart = ({ selectedCountries }: { selectedCountries: string[] }) => {
-
+const LiveStockChart = ({
+  selectedCountries,
+}: {
+  selectedCountries: string[];
+}) => {
   const { lineData, chartData } = useLivestockAnalysis(selectedCountries);
   const { hashColor } = useColors(selectedCountries);
 
@@ -21,7 +24,7 @@ const LiveStockChart = ({ selectedCountries }: { selectedCountries: string[] }) 
     <div className="h-100 w-full flex flex-col gap-5">
       <h1>Livestock yield over time</h1>
       <ResponsiveContainer className={"w-100, h-100"}>
-      <p className="text-xs text-slate-500">Kg/Hectare</p>
+        <p className="text-xs text-slate-500">Kg/Hectare</p>
         <LineChart data={chartData}>
           <CartesianGrid
             strokeDasharray="3 3"
@@ -70,6 +73,7 @@ const LiveStockChart = ({ selectedCountries }: { selectedCountries: string[] }) 
           ))}
         </LineChart>
       </ResponsiveContainer>
+      <p className="text-xs text-center text-slate-500">Year</p>
     </div>
   );
 };

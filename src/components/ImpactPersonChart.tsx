@@ -21,12 +21,12 @@ const ImpactPersonChart = ({
   const { hashColor } = useColors(selectedCountries);
 
   return (
-    <div className="h-100 w-full space-y-5 pb-5">
+    <div className="h-100 w-full flex flex-col gap-5">
       <h1 className="normal-case">Number of individuals affected by natural disaster over time</h1>
+      <p className="text-xs text-slate-500">Kg/Hectare</p>
       <ResponsiveContainer className={"w-100, h-100"}>
         <LineChart
           data={chartData}
-          margin={{ top: 10, right: 10, left: 0, bottom: 20 }}
         >
           <CartesianGrid
             strokeDasharray="3 3"
@@ -73,6 +73,7 @@ const ImpactPersonChart = ({
           ))}
         </LineChart>
       </ResponsiveContainer>
+      <p className="text-xs text-center text-slate-500">Year</p>
     </div>
   );
 };

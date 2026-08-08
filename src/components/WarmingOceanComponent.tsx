@@ -75,6 +75,10 @@ const WarmingOceanComponent = () => {
         <WarmingOceanChart selectedCountries={selectedCountries} />
       </div>
 
+       <p className="text-xs text-slate-400 italic">
+        Data from Surface Temperature anomalies.csv and Sea Level Anomalies.csv
+      </p>
+
       <div>
         <p>
           The data shows that sea surface temperatures across all of these

@@ -23,8 +23,8 @@ const LiveStockChart = ({
   return (
     <div className="h-100 w-full flex flex-col gap-5">
       <h1>Livestock yield over time</h1>
-      <ResponsiveContainer className={"w-100, h-100"}>
         <p className="text-xs text-slate-500">Kg/Hectare</p>
+      <ResponsiveContainer className={"w-100, h-100"}>
         <LineChart data={chartData}>
           <CartesianGrid
             strokeDasharray="3 3"

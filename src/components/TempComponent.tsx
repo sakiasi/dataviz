@@ -74,6 +74,10 @@ export default function TempComponent() {
 
       <TemperatureChart selectedCountries={selectedCountries} />
 
+       <p className="text-xs text-slate-400 italic">
+        Data from Surface Temperature anomalies.csv and Sea Level Anomalies.csv
+      </p>
+
       <p>
         The slope for all pacific island countries is positive, which means
         their mean surface temperature is showing an upward trend. Papua New

@@ -118,8 +118,6 @@ export const useEconomicLossAnalysis = (externalSelectedCountries?: string[]) =>
             return { country: d.country, slope: regression.m, lineFunction, predictYear };
         });
 
-        console.log('SLOPE:', slp)
-
         return { chartData: cData, lineData: lData, slope: slp };
     }, [selectedCountries]);
 

@@ -8,7 +8,8 @@ export default function TempComponent() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
 
   // Pass selectedCountries into the hook so it re-filters dynamically
-  const { countryList, selectedCountries, setSelectedCountries } = useTemperature();
+  const { countryList, selectedCountries, setSelectedCountries } =
+    useTemperature();
 
   return (
     <div className="text-slate-100 flex flex-col gap-5">
@@ -17,7 +18,7 @@ export default function TempComponent() {
       </h1>
 
       <div className="border-b border-slate-800"></div>
-      
+
       <div className="text-slate-300 leading-relaxed max-w-3xl">
         <p>
           <a
@@ -74,18 +75,20 @@ export default function TempComponent() {
 
       <TemperatureChart selectedCountries={selectedCountries} />
 
-       <p className="text-xs text-slate-400 italic">
+      <p className="text-xs text-slate-400 italic">
         Data from Surface Temperature anomalies.csv and Sea Level Anomalies.csv
       </p>
 
       <p>
-        The slope for all pacific island countries is positive, which means
-        their mean surface temperature is showing an upward trend. Papua New
-        Guinea shows the steepest slope of 0.0069, meaning the temperature is
-        rising faster and more aggressively over time. Meanwhile, Nauru shows
-        the least steep slope of 0.0031 among all Pacific Island countries.
+        Every Pacific Island territory and nation in the dataset shows
+        continuous temperature increases year after year, confirming a
+        widespread, regional warming trend without exception. French Polynesia,
+        Tokelau, and Papua New Guinea are heating up at the fastest rates, while
+        Pitcairn experiences the most gradual increase. The tight clustering of
+        growth speeds across nearly all the other islands points to a systemic
+        climate impact affecting the entire Pacific region rather than isolated
+        local variations.
       </p>
-
     </div>
   );
 }

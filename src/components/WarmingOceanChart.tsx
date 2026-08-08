@@ -18,7 +18,7 @@ const WarmingOceanChart = ({ selectedCountries }: { selectedCountries: string[] 
   return (
     <div className="h-100 w-full flex flex-col gap-5">
       <h1>Rising sea surface temperature anomalies over time</h1>
-        <p className="text-xs text-slate-600">Temperature</p>
+        <p className="text-xs text-slate-600">Temperatures</p>
       <ResponsiveContainer className={"w-100, h-100"}>
         <LineChart data={chartData}>
           <CartesianGrid
@@ -69,7 +69,7 @@ const WarmingOceanChart = ({ selectedCountries }: { selectedCountries: string[] 
           ))}
         </LineChart>
       </ResponsiveContainer>
-        <p className="text-xs text-center text-slate-600">Year</p>
+        <p className="text-xs text-center text-slate-600">Years</p>
     </div>
   );
 };

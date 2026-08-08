@@ -21,8 +21,8 @@ const SeaLevelChart = ({
 
   return (
     <div className="h-100 w-full flex flex-col gap-5">
-      <h1>Rising sea surface temperature anomalies over time</h1>
-      <p className="text-xs text-slate-600">Temperature</p>
+      <h1>Rising sea level anomalies over time</h1>
+      <p className="text-xs text-slate-600">Meters</p>
       <ResponsiveContainer className={"w-100, h-100"}>
         <LineChart data={chartData}>
           <CartesianGrid
@@ -72,7 +72,7 @@ const SeaLevelChart = ({
           ))}
         </LineChart>
       </ResponsiveContainer>
-      <p className="text-xs text-center text-slate-600">Year</p>
+      <p className="text-xs text-center text-slate-600">Years</p>
     </div>
   );
 };

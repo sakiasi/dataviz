@@ -72,7 +72,7 @@ const ImpactPersonChart = ({
           ))}
         </LineChart>
       </ResponsiveContainer>
-      <p className="text-xs text-center text-slate-500">Year</p>
+      <p className="text-xs text-center text-slate-500">Years</p>
     </div>
   );
 };

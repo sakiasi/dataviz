@@ -5,11 +5,12 @@ import * as ss from 'simple-statistics'
 interface DataPoint {
     year: number;
     value: number;
+    country?: string
 }
 
 export const useTemperature = (externalSelectedCountries?: string[]) => {
 
-    const [internalSelected, setInternalSelected] = useState<string[]>(['Papua New Guinea','Nauru']);
+    const [internalSelected, setInternalSelected] = useState<string[]>(['Papua New Guinea','French Polynesia','Tokelau','Pitcairn']);
 
     // Use external state if passed from parent, otherwise fallback to internal
     const selectedCountries = externalSelectedCountries ?? internalSelected;
@@ -83,6 +84,48 @@ export const useTemperature = (externalSelectedCountries?: string[]) => {
         })
 
     }
+
+     const dataSlope = tempData.filter(d => 
+            d.TIME_PERIOD !== null &&
+            d.TIME_PERIOD !== undefined &&
+            d.OBS_VALUE !== undefined &&
+            d.OBS_VALUE !== null &&
+            d.TIME_PERIOD % 20
+        )
+        .sort((a,b) => a.TIME_PERIOD - b.TIME_PERIOD)
+        .reduce<Record<string,DataPoint[]>>((acc,value) => {
+    
+            const country = value['Pacific Island Countries and territories']
+    
+            if(!acc[country]){
+                acc[country] = []
+            }
+    
+            acc[country].push({country,value:value.OBS_VALUE,year:value.TIME_PERIOD})
+    
+            return acc
+    
+        },{})
+
+    const data = Object.entries(dataSlope).map(([country, records]) => {
+    
+            const mData = records.map(d => [d.year,d.value])
+    
+            const shapeData = {country,mData}
+    
+            return shapeData
+    
+        })
+     
+    //which country is showing the most/least crop decline(slope)
+    const slope = data.map(d => {
+        const slope = ss.linearRegression(d.mData)
+        const lineFunction = ss.linearRegressionLine(slope)
+        const predictYear = lineFunction(2025)
+        return {country:d.country,slope:slope.m,lineFunction,predictYear}
+    })
+
+    console.log('SLOPE:', slope)
 
     return { countryList, chartData, lineData, selectedCountries, setSelectedCountries };   
 

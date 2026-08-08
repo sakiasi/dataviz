@@ -18,7 +18,7 @@ const CropChart = ({ selectedCountries }: { selectedCountries: string[] }) => {
   return (
     <div className="h-100 w-full flex flex-col gap-5">
       <h1>Crop yield over time</h1>
-      <p className="text-xs text-slate-500">Kg/Hectare</p>
+      <p className="text-xs text-slate-500">Kg/Ha</p>
       <ResponsiveContainer className={"w-100, h-100"}>
         <LineChart
           data={chartData}
@@ -68,7 +68,7 @@ const CropChart = ({ selectedCountries }: { selectedCountries: string[] }) => {
           ))}
         </LineChart>
       </ResponsiveContainer>
-      <p className="text-xs text-center text-slate-500">Year</p>
+      <p className="text-xs text-center text-slate-500">Years</p>
     </div>
   );
 };

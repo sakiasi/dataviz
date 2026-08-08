@@ -22,7 +22,7 @@ const EconomicLossChart = ({
   return (
     <div className="h-100 w-full flex flex-col gap-5">
       <h1>Cost of damages over time</h1>
-      <p className="text-xs text-slate-700">USD</p>
+      <p className="text-xs text-slate-700">US Dollars</p>
       <ResponsiveContainer className={"w-100, h-100"}>
         <LineChart data={chartData}>
           <CartesianGrid
@@ -73,7 +73,7 @@ const EconomicLossChart = ({
           ))}
         </LineChart>
       </ResponsiveContainer>
-      <p className="text-xs text-center text-slate-700">Year</p>
+      <p className="text-xs text-center text-slate-700">Years</p>
     </div>
   );
 };

@@ -1,47 +1,44 @@
-
 const MethodologyComponent = () => {
   return (
     <div className=" space-y-5 max-w-3xl">
-      <h1 className="text-2xl font-bold tracking-tight">
-        Methodology
-      </h1>
+      <h1 className="text-2xl font-bold tracking-tight">Methodology</h1>
 
       <div className="border-b border-slate-800"></div>
 
       <div className="space-y-5 text-sm leading-relaxed">
         <div>
-          <h3 className="font-semibold">1. Data Sources</h3>
-          <ul className="list-disc pl-5 space-y-1 mt-1">
-            <li>
+          <h3 className="font-semibold">Data Sources</h3>
+          <ul className="list-disc decoration-primary underline pl-5 space-y-1 mt-1">
+            <li className="hover:text-primary">
               <a href="https://stats.pacificdata.org/vis?lc=en&df[ds]=SPC2&df[id]=DF_AGRICULTURAL_PRODUCTION&df[ag]=SPC&df[vs]=1.0&av=true&dq=A...&pd=,&to[TIME_PERIOD]=false">
-                <strong>Crop yield - disaggregated</strong>
+                <p>Crop yield - disaggregated</p>
               </a>
             </li>
-            <li>
+            <li className="hover:text-primary">
               <a href="https://stats.pacificdata.org/vis?lc=en&df[ds]=SPC2&df[id]=DF_AGRICULTURAL_PRODUCTION&df[ag]=SPC&df[vs]=1.0&av=true&dq=A...&pd=,&to[TIME_PERIOD]=false">
-                <strong>Livestock yield - disaggregated</strong>
+                <p>Livestock yield - disaggregated</p>
               </a>
             </li>
-            <li>
+            <li className="hover:text-primary">
               <a href="https://stats.pacificdata.org/vis?lc=en&df[ds]=SPC2&df[id]=DF_CLIMATE_CHANGE&df[ag]=SPC&df[vs]=1.0&av=true&dq=A.SST_ANOM.&pd=,&to[TIME_PERIOD]=false">
-                <strong>Mean sea surface temperature anomalies</strong>
+                <p>Mean sea surface temperature anomalies</p>
               </a>
             </li>
-            <li>
+            <li className="hover:text-primary">
               <a href="https://stats.pacificdata.org/vis?lc=en&df[ds]=SPC2&df[id]=DF_CLIMATE_CHANGE&df[ag]=SPC&df[vs]=1.0&av=true&dq=A.ST_ANOM.&pd=,&to[TIME_PERIOD]=false">
-                <strong>Mean surface temperature anomalies</strong>
+                <p>Mean surface temperature anomalies</p>
               </a>
             </li>
-            <li>
+            <li className="hover:text-primary">
               <a href="https://stats.pacificdata.org/vis?lc=en&df[ds]=ds%3ASPC2&df[id]=DF_SDG_11&df[ag]=SPC&df[vs]=3.0&dq=A.VC_DSR_AFFCT.........&pd=,&to[TIME_PERIOD]=false&lb=bt">
-                <strong>
+                <p>
                   Number of directly affected persons attributed to disasters
-                </strong>
+                </p>
               </a>
             </li>
-            <li>
+            <li className="hover:text-primary">
               <a href="https://stats.pacificdata.org/vis?lc=en&df[ds]=ds%3ASPC2&df[id]=DF_SDG_11&df[ag]=SPC&df[vs]=3.0&dq=A.VC_DSR_AALT...._T.....&pd=,&to[TIME_PERIOD]=false">
-                <strong>Direct disaster economic loss</strong>
+                <p>Direct disaster economic loss</p>
               </a>
             </li>
           </ul>
@@ -51,23 +48,28 @@ const MethodologyComponent = () => {
           <h3 className="font-semibold">2. Technology Stack</h3>
           <ul className="list-disc pl-5 space-y-1 mt-1">
             <li>
-              <strong>Development:</strong> React, Vite, Tailwind CSS, and
-              shadcn/ui components.
+              <p>Development: React, Vite, Tailwind CSS, and shadcn/ui
+              components.
+              </p>
             </li>
             <li>
-              <strong>Visualizations:</strong> Recharts for rendering
-              interactive graphs and charts.
+              <p>
+                Visualizations: Recharts for rendering interactive graphs and
+                charts.
+              </p>
             </li>
             <li>
-              <strong>Source Code:</strong> Available on GitHub at{" "}
-              <a
-                className="text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
-                href="https://github.com/sakiasi/dataviz.git"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                https://github.com/sakiasi/dataviz.git
-              </a>
+              <p>
+                Source Code: Available on GitHub at{" "}
+                <a
+                  className=" hover:text-primary transition-colors underline decoration-primary underline-offset-2"
+                  href="https://github.com/sakiasi/dataviz.git"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  https://github.com/sakiasi/dataviz.git
+                </a>
+              </p>
             </li>
           </ul>
         </div>

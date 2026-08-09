@@ -30,7 +30,7 @@ export default function LiveStockComponent() {
           create a perfect breeding ground for new pests and diseases that
           compromise animal health.
           <a
-            className="text-xs pl-1 text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
+            className=" pl-1 hover:text-primary transition-colors underline decoration-primary underline-offset-2"
             href="https://www.mdpi.com/2073-4433/13/1/140"
             target="_blank"
             rel="noopener noreferrer"

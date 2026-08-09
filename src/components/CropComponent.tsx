@@ -12,7 +12,7 @@ export default function CropComponent() {
 
   return (
     <div className=" flex flex-col gap-5">
-      <h1 className="text-2xl font-bold text-white tracking-tight">
+      <h1 className="text-2xl font-bold tracking-tight">
         Does surface heat reduce crop yield ?
       </h1>
 
@@ -26,7 +26,7 @@ export default function CropComponent() {
           how they handle sugars, fats, and natural hormones—break down, which
           drastically lowers the amount of food they can produce.
           <a
-            className="text-xs pl-1 text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
+            className=" pl-1 hover:text-primary transition-colors underline decoration-primary underline-offset-2"
             target="_blank"
             rel="noopener noreferrer"
             href="https://doi.org/10.1111/pbi.13946"

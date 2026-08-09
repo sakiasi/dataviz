@@ -22,7 +22,7 @@ export default function ImpactPersonComponent() {
         <p>
           According to
           <a
-            className="text-xs pl-1 text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
+            className=" pl-1 hover:text-primary transition-colors underline decoration-primary underline-offset-2"
             href="https://www.undrr.org/media/89310/download"
             target="_blank"
             rel="noopener noreferrer"

@@ -22,7 +22,7 @@ export default function TempComponent() {
       <div className="text-foreground leading-relaxed max-w-3xl">
         <p>
           <a
-            className="text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
+            className=" hover:text-primary transition-colors underline decoration-primary underline-offset-2"
             href="https://berkeleyearth.org/global-temperature-report-for-2025/"
           >
             According to Berkeley Earth's 2025 report

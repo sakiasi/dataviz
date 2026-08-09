@@ -33,7 +33,10 @@ export default function EnergyTimeline() {
   ];
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-16">
+    <div className="max-w-3xl mx-auto flex flex-col gap-5 ">
+      <h1 className="text-2xl font-bold text-white tracking-tight normal-case">
+        How Global Warming Starts
+      </h1>
       <div className="relative border-l-2 border-dashed border-amber-300 ml-4 sm:ml-8 space-y-12">
         {steps.map((step, index) => (
           <div key={index} className="relative pl-8 sm:pl-12 group">

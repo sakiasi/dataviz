@@ -20,7 +20,7 @@ const WarmingOceanComponent = () => {
         <p>
           According to
           <a
-            className="text-xs pl-1 text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
+            className="pl-1 text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
             href="https://www.science.org/doi/10.1126/science.aav7619"
             target="_blank"
             rel="noopener noreferrer"

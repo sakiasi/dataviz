@@ -1,6 +1,7 @@
 import CropComponent from "./components/CropComponent.tsx";
 import EconomicLossComponent from "./components/EconomicLossComponent.tsx";
 import ImpactPersonChart from "./components/ImpactPersonComponent.tsx";
+import { IntroComponent } from "./components/Intro.tsx";
 import LiveStockComponent from "./components/LiveStockComponent.tsx";
 import SeaLevelComponent from "./components/SeaLevelComponent.tsx";
 import TempComponent from "./components/TempComponent.tsx";
@@ -9,47 +10,9 @@ import WarmingOceanComponent from "./components/WarmingOceanComponent.tsx";
 
 const App = () => {
   return (
-    <div className="mx-auto space-y-10 max-w-prose mt-5 mb-5 p-5">
-      <div className="space-y-8  p-6 ">
-        <h1 className="text-4xl font-bold text-slate-50 tracking-tight">
-          The Pacific Climate
-          <span className="block text-2xl text-sky-400 mt-1 font-medium">
-            Analyzing Regional Shifts & Socio-Economic Impact
-          </span>
-        </h1>
-
-        <div className="flex items-center gap-3 pt-2 text-slate-400 text-sm">
-          <div className="h-8 w-8 rounded-full bg-sky-950 border border-sky-700/50 flex items-center justify-center font-semibold text-sky-400">
-            SB
-          </div>
-          <div>
-            <p className="font-medium text-slate-200">Sakiasi B. Komai</p>
-            <p className="text-xs text-slate-500">
-              2026 Data Visualization Challenge
-            </p>
-          </div>
-        </div>
-
-        <ul className="space-y-4 text-slate-300">
-          <li>
-            <strong className="text-slate-100 font-semibold">Scope:</strong>{" "}
-            This narrative traces the cascading effects of global warming across
-            the Pacific—mapping how atmospheric heating and ocean warming drive
-            sea-level rise, and linking these physical shifts directly to
-            agricultural decline, human displacement, and mounting financial
-            losses.
-          </li>
-          <li>
-            <strong className="text-slate-100 font-semibold">
-              Limitations:
-            </strong>{" "}
-            Climate and socio-economic systems are driven by countless
-            intersecting variables. While these datasets clearly illustrate
-            widespread regional trends, disparities in damage and yield
-            highlight that vulnerabilities are also shaped by local
-            infrastructure and governance, rather than climate exposure alone.
-          </li>
-        </ul>
+    <div className="mx-auto max-w-prose mt-5 flex flex-col gap-5 ">
+      <div>
+        <IntroComponent />
       </div>
 
       <div>
@@ -218,11 +181,6 @@ const App = () => {
             <h3 className="font-semibold text-white">1. Data Sources</h3>
             <ul className="list-disc pl-5 space-y-1 mt-1">
               <li>
-                <a href="https://stats.pacificdata.org/vis?lc=en&df[ds]=SPC2&df[id]=DF_ENV_TAXES&df[ag]=SPC&df[vs]=1.0&av=true&dq=A..&pd=,&to[TIME_PERIOD]=false">
-                  <strong>Environmental taxes - disaggregated</strong>
-                </a>
-              </li>
-              <li>
                 <a href="https://stats.pacificdata.org/vis?lc=en&df[ds]=SPC2&df[id]=DF_AGRICULTURAL_PRODUCTION&df[ag]=SPC&df[vs]=1.0&av=true&dq=A...&pd=,&to[TIME_PERIOD]=false">
                   <strong>Crop yield - disaggregated</strong>
                 </a>
@@ -252,11 +210,6 @@ const App = () => {
               <li>
                 <a href="https://stats.pacificdata.org/vis?lc=en&df[ds]=ds%3ASPC2&df[id]=DF_SDG_11&df[ag]=SPC&df[vs]=3.0&dq=A.VC_DSR_AALT...._T.....&pd=,&to[TIME_PERIOD]=false">
                   <strong>Direct disaster economic loss</strong>
-                </a>
-              </li>
-              <li>
-                <a href="https://stats.pacificdata.org/vis?lc=en&df[ds]=SPC2&df[id]=DF_CLIMATE_CHANGE&df[ag]=SPC&df[vs]=1.0&av=true&dq=A.RAIN_ANOM.&pd=,&to[TIME_PERIOD]=false">
-                  <strong>Rainfall anomalies</strong>
                 </a>
               </li>
             </ul>

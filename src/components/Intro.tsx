@@ -1,3 +1,5 @@
+import me from '../../public/me.png'
+
 export const IntroComponent = () => {
   return (
     <div className="flex flex-col gap-5 pt-20">
@@ -9,8 +11,8 @@ export const IntroComponent = () => {
       </h1>
 
       <div className="flex items-center gap-3 pt-2  text-sm">
-        <div className="h-8 w-8 rounded-full bg-sky-950 border border-sky-700/50 flex items-center justify-center font-semibold text-sky-400">
-          SB
+        <div className="h-10 w-10 rounded-full flex items-center justify-center font-semibold text-sky-400">
+          <img className='rounded-full' height={90} width={90} src={`${me}`} />
         </div>
         <div>
           <p className="font-medium ">Sakiasi B. Komai</p>

@@ -12,9 +12,9 @@ export const TemperatureChart = ({
   return (
     <div className="h-100 w-full flex flex-col gap-5">
       <h1>Rising surface heat anomalies over time</h1>
-      <p className="text-xs text-slate-600">Temperature</p>
+      <p className="text-xs">Temperature</p>
       <ChartComponent chartData={chartData} lineData={lineData} />
-      <p className="text-xs text-center text-slate-600">Year</p>
+      <p className="text-xs text-center">Year</p>
     </div>
   );
 };

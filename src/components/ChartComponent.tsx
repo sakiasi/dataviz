@@ -22,7 +22,7 @@ const ChartComponent = ({ chartData, lineData, units }: ChartProps) => {
       <LineChart data={chartData}>
         <CartesianGrid
           strokeDasharray="3 3"
-          stroke="#1e293b"
+          // stroke="#1e293b"
           vertical={false}
         />
 
@@ -40,7 +40,6 @@ const ChartComponent = ({ chartData, lineData, units }: ChartProps) => {
           domain={["auto", "auto"]}
           stroke="#94a3b8"
           tick={{ fontSize: 11, fill: "#cbd5e1" }}
-          // tickFormatter={(value) => `${value} ${units ?? ""}`}
           tickFormatter={(value) => {
             // Skip formatting if it's temperature or small values
             if (units === "°C" || units?.includes("°")) {

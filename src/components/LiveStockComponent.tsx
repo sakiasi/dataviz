@@ -43,7 +43,7 @@ export default function LiveStockComponent() {
       <div className="relative">
         <div
           onMouseDown={() => setIsCountrySelect((prev) => !prev)}
-          className="flex justify-around md:w-3/6 p-2 rounded-md hover:cursor-pointer hover:bg-slate-800 items-center border-slate-800 border-2"
+          className="flex justify-around md:w-3/6 p-2 rounded-md hover:cursor-pointer hover:bg-primary items-center border-primary border"
         >
           <p> Select Country ({selectedCountries.length} selected) </p>
           {isCountrySelect ? <ChevronUp /> : <ChevronDown />}

@@ -10,27 +10,44 @@ import WarmingOceanComponent from "./components/WarmingOceanComponent.tsx";
 const App = () => {
   return (
     <div className="mx-auto space-y-10 max-w-prose mt-5 mb-5 p-5">
-      <div className="space-y-5">
-        <h2>About This Story</h2>
-        <p>
-          This visualization explores the mechanics of climate change and its
-          impact on our communities. While our narrative draws on established
-          climate data, it is important to note:
-        </p>
-        <ul>
+      <div className="space-y-8  p-6 ">
+        <h1 className="text-4xl font-bold text-slate-50 tracking-tight">
+          The Pacific Climate
+          <span className="block text-2xl text-sky-400 mt-1 font-medium">
+            Analyzing Regional Shifts & Socio-Economic Impact
+          </span>
+        </h1>
+
+        <div className="flex items-center gap-3 pt-2 text-slate-400 text-sm">
+          <div className="h-8 w-8 rounded-full bg-sky-950 border border-sky-700/50 flex items-center justify-center font-semibold text-sky-400">
+            SB
+          </div>
+          <div>
+            <p className="font-medium text-slate-200">Sakiasi B. Komai</p>
+            <p className="text-xs text-slate-500">
+              2026 Data Visualization Challenge
+            </p>
+          </div>
+        </div>
+
+        <ul className="space-y-4 text-slate-300">
           <li>
-            <strong>Scope:</strong> This story focuses on the link between
-            physical climate shifts and their socio-economic consequences.
+            <strong className="text-slate-100 font-semibold">Scope:</strong>{" "}
+            This narrative traces the cascading effects of global warming across
+            the Pacific—mapping how atmospheric heating and ocean warming drive
+            sea-level rise, and linking these physical shifts directly to
+            agricultural decline, human displacement, and mounting financial
+            losses.
           </li>
           <li>
-            <strong>Limitations:</strong> Climate systems are influenced by
-            countless variables; the datasets used here represent snapshots of
-            observed trends rather than exhaustive global models.
-          </li>
-          <li>
-            <strong>Purpose:</strong> Our goal is to translate technical data
-            into an actionable roadmap for spatial-temporal innovation and
-            localized resilience.
+            <strong className="text-slate-100 font-semibold">
+              Limitations:
+            </strong>{" "}
+            Climate and socio-economic systems are driven by countless
+            intersecting variables. While these datasets clearly illustrate
+            widespread regional trends, disparities in damage and yield
+            highlight that vulnerabilities are also shaped by local
+            infrastructure and governance, rather than climate exposure alone.
           </li>
         </ul>
       </div>
@@ -176,7 +193,7 @@ const App = () => {
               Thematic report on climate and disaster-resilient infrastructure
               in the Pacific
             </em>
-            .{" "}
+            .
             <a
               className="text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
               href="https://www.undrr.org/media/89310/download"
@@ -266,26 +283,6 @@ const App = () => {
                 >
                   https://github.com/sakiasi/dataviz.git
                 </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-white">
-              3. Analytical Approach & Narrative Design
-            </h3>
-            <ul className="list-disc pl-5 space-y-1 mt-1">
-              <li>
-                Placed different metrics side-by-side (like temperatures, crop
-                yields, and taxes) to highlight trends visually rather than
-                running complex statistical correlations.
-              </li>
-              <li>
-                <strong>Narrative Design:</strong> Built as a step-by-step
-                story: starting with the basics of climate science, moving to
-                regional impacts on crop and animal yields as well as direct
-                impacts on individuals, and concluding with economic solutions
-                and future action.
               </li>
             </ul>
           </div>

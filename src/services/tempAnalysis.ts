@@ -120,8 +120,6 @@ export const useTemperature = (externalSelectedCountries?: string[]) => {
         return {country:d.country,slope:slope.m,lineFunction,predictYear}
     })
 
-    console.log('SLOPE:', slope)
-
-    return { countryList, chartData, lineData, selectedCountries, setSelectedCountries };   
+    return { countryList, chartData, tempdata:data, slope, lineData, selectedCountries, setSelectedCountries };   
 
 };

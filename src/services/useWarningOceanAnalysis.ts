@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import seaData from '../../public/data/WarmingOcean.json'
-import * as ss from 'simple-statistics'
+import { useState } from 'react';
+import * as ss from 'simple-statistics';
+import seaData from '../../public/data/WarmingOcean.json';
 
 export interface SeaInterface {
     value: number,
@@ -94,8 +94,9 @@ export const useWarmingOceanAnalysis=(externalSelectedCountries?:string[])=>{
     const slope = data.map(d => {
         const slope = ss.linearRegression(d.mData)
         const lineFunction = ss.linearRegressionLine(slope)
+        const correlation = ss.sampleCorrelation(d.mData[0],d.mData[1])
         const predictYear = lineFunction(2025)
-        return {country:d.country,slope:slope.m,lineFunction,predictYear}
+        return {country:d.country,slope:slope.m,lineFunction,predictYear,correlation}
     })
 
     //which has the most/least influence from temperature(regression)

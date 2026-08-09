@@ -84,7 +84,7 @@ const App = () => {
           larger role in community resilience than climate exposure alone.
           Addressing these regional divides requires moving past passive
           monitoring toward active, system-level engineering and real-time
-          operational intervention. 
+          operational intervention.
         </p>
       </div>
 
@@ -119,6 +119,18 @@ const App = () => {
               https://doi.org/10.1126/science.aav7619
             </a>
           </li>
+          <li>
+            Nunn, P.D. (2013), The end of the Pacific? Effects of sea level rise
+            on Pacific Island livelihoods. Singap J Trop Geogr, 34: 143-171.
+            <a
+              className="text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
+              href="https://doi.org/10.1126/science.aav7619"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://doi.org/10.1111/sjtg.12021
+            </a>
+          </li>
           <li className="pl-4 -indent-4">
             Khan, A. H., Min, L., Ma, Y., Zeeshan, M., Jin, S., & Zhang, X.
             (2022). High‐temperature stress in crops: Male sterility, yield loss
@@ -133,10 +145,9 @@ const App = () => {
               https://doi.org/10.1111/pbi.13946
             </a>
           </li>
-          <li className="pl-4 -indent-4">
-            Cheng, M., McCarl, B., & Fei, C. (2022). Climate change and
-            livestock production: A literature review. <em>Atmosphere</em>,
-            13(1), 140.{" "}
+          <li>
+            Cheng, M., McCarl, B., & Fei, C. (2022). Climate Change and
+            Livestock Production: A Literature Review. Atmosphere, 13(1), 140.
             <a
               className="text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
               href="https://doi.org/10.3390/atmos13010140"
@@ -144,6 +155,35 @@ const App = () => {
               rel="noopener noreferrer"
             >
               https://doi.org/10.3390/atmos13010140
+            </a>
+          </li>
+          <li>
+            United Nations Office for Disaster Risk Reduction. (2023).{" "}
+            <p className="italic">
+              Thematic Report on Climate and Disaster-Resilient Infrastructure
+              in the Pacific
+            </p>
+            <a
+              className="text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
+              href="https://www.undrr.org/media/89310/download?startDownload=20260809"
+            >
+              [PDF/Report].
+            </a>
+          </li>
+          <li className="pl-4 -indent-4">
+            United Nations Office for Disaster Risk Reduction. (2021).{" "}
+            <em>
+              Thematic report on climate and disaster-resilient infrastructure
+              in the Pacific
+            </em>
+            .{" "}
+            <a
+              className="text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
+              href="https://www.undrr.org/media/89310/download"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://www.undrr.org/media/89310/download
             </a>
           </li>
         </ul>

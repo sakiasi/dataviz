@@ -11,15 +11,14 @@ export default function CropComponent() {
     useCropAnalysis();
 
   return (
-    <div className="text-slate-100 flex flex-col gap-5">
-      
+    <div className=" flex flex-col gap-5">
       <h1 className="text-2xl font-bold text-white tracking-tight">
         Does surface heat reduce crop yield ?
       </h1>
 
       <div className="border-b border-slate-800"></div>
 
-      <div className="text-slate-300 leading-relaxed  max-w-3xl">
+      <div className=" leading-relaxed  max-w-3xl">
         <p>
           Extreme heat is one of the biggest threats to the world's food supply
           because it damages how plants grow and reproduce, often making them
@@ -78,11 +77,11 @@ export default function CropComponent() {
         <CropChart selectedCountries={selectedCountries} />
       </div>
 
-       <p className="text-xs text-slate-400 italic">
+      <p className="text-xs  italic">
         Data from Surface Temperature anomalies.csv and Sea Level Anomalies.csv
       </p>
 
-      <div className="text-slate-300">
+      <div className="">
         The data reveals striking disparities in agricultural productivity
         trends across the Pacific region: nations like the Marshall Islands,
         Kiribati, and Papua New Guinea are experiencing the fastest-growing crop

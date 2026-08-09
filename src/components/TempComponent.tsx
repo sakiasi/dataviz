@@ -12,14 +12,14 @@ export default function TempComponent() {
     useTemperature();
 
   return (
-    <div className="text-slate-100 flex flex-col gap-5">
-      <h1 className="text-2xl font-bold text-white tracking-tight normal-case">
+    <div className="text-foreground flex flex-col gap-5">
+      <h1 className="text-2xl font-bold tracking-tight normal-case">
         Is the surface heat rising ?
       </h1>
 
       <div className="border-b border-slate-800"></div>
 
-      <div className="text-slate-300 leading-relaxed max-w-3xl">
+      <div className="text-foreground leading-relaxed max-w-3xl">
         <p>
           <a
             className="text-amber-400 hover:text-amber-300 transition-colors underline decoration-amber-500/30 underline-offset-2"
@@ -75,7 +75,7 @@ export default function TempComponent() {
 
       <TemperatureChart selectedCountries={selectedCountries} />
 
-      <p className="text-xs text-slate-400 italic">
+      <p className="text-xs text-foreground italic">
         Data from Surface Temperature anomalies.csv and Sea Level Anomalies.csv
       </p>
 

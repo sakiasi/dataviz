@@ -11,14 +11,14 @@ export default function EconomicLossComponent() {
     useEconomicLossAnalysis();
 
   return (
-    <div className="text-slate-100 flex flex-col gap-5">
-      <h1 className="text-2xl font-bold text-white tracking-tight">
+    <div className=" flex flex-col gap-5">
+      <h1 className="text-2xl font-bold tracking-tight">
         What is the cost of surface heat ?
       </h1>
 
       <div className="border-b border-slate-800"></div>
 
-      <div className="text-slate-300 leading-relaxed max-w-3xl">
+      <div className=" leading-relaxed max-w-3xl">
         <p>
           According to
           <a
@@ -77,11 +77,11 @@ export default function EconomicLossComponent() {
 
       <EconomicLossChart selectedCountries={selectedCountries} />
 
-      <p className="text-xs text-slate-400 italic">
+      <p className="text-xs  italic">
         Data from Surface Temperature anomalies.csv and Sea Level Anomalies.csv
       </p>
 
-      <div className="text-slate-300">
+      <div className="">
         The financial data reveals massive differences in how much disasters
         cost different Pacific islands over time: nations like Vanuatu and Fiji
         are facing skyrocketing costs with multi-million dollar upward spikes in

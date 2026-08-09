@@ -10,15 +10,15 @@ export default function SeaLevelComponent() {
   const { selectedCountries, setSelectedCountries, countryList } = useSeaLevelAnalysis();
 
   return (
-    <div className="text-slate-100 flex flex-col gap-5">
+    <div className=" flex flex-col gap-5">
 
-      <h1 className="text-2xl font-bold text-white tracking-tight">
+      <h1 className="text-2xl font-bold tracking-tight">
         Is the sea level rising ?
       </h1>
 
       <div className="border-b border-slate-800"></div>
 
-      <div className="text-slate-300 leading-relaxed max-w-3xl">
+      <div className=" leading-relaxed max-w-3xl">
         
         <p>
           According to
@@ -79,11 +79,11 @@ export default function SeaLevelComponent() {
 
       <SeaChart selectedCountries={selectedCountries} />
 
-      <p className="text-xs text-slate-400 italic">
+      <p className="text-xs  italic">
         Data from Surface Temperature anomalies.csv and Sea Level Anomalies.csv
       </p>
 
-      <div className="text-slate-300">
+      <div className="">
         Based on the data, the sea levels across all of these Pacific island
         regions are steadily going up over time. Some places are seeing a much
         faster climb than others: Papua New Guinea and the Solomon Islands are

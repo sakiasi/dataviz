@@ -33,30 +33,30 @@ export default function EnergyTimeline() {
   ];
 
   return (
-    <div className="max-w-3xl mx-auto flex flex-col gap-5 ">
-      <h1 className="text-2xl font-bold text-white tracking-tight normal-case">
+    <div className="max-w-3xl mx-auto flex flex-col gap-6">
+      <h1 className="text-2xl font-bold tracking-tight text-foreground">
         How Global Warming Starts
       </h1>
-      <div className="relative border-l-2 border-dashed border-amber-300 ml-4 sm:ml-8 space-y-12">
+      <div className="relative border-l-2 border-dashed border-primary/30 ml-4 sm:ml-8 space-y-10">
         {steps.map((step, index) => (
           <div key={index} className="relative pl-8 sm:pl-12 group">
-            {/* Solar/Warmth Styled Node Badge */}
-            <div className="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-amber-500 text-white font-bold text-xs flex items-center justify-center shadow-md ring-4 ring-white group-hover:bg-amber-600 transition-colors">
+            {/* Semantic TweakCN/Shadcn Node Badge */}
+            <div className="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-primary text-primary-foreground font-bold text-xs flex items-center justify-center shadow-md ring-4 ring-background transition-colors">
               {index + 1}
             </div>
 
-            {/* Clean, Executive Card Container */}
-            <div className="bg-slate-900 text-slate-100 p-6 rounded-xl shadow-lg border border-slate-800 hover:border-amber-500/50 transition-all duration-300">
+            {/* Semantic TweakCN/Shadcn Card Container */}
+            <div className="bg-card text-card-foreground p-6 rounded-xl shadow-lg border border-border hover:border-primary/50 transition-all duration-300">
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-semibold text-amber-400 uppercase tracking-widest">
+                <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                   Phase 0{index + 1}
                 </span>
-                <div className="h-1.5 w-12 rounded-full" />
               </div>
-              <h2 className="text-lg font-bold text-white mb-2 tracking-wide">
+              <h2 className="text-lg font-bold mb-2 tracking-wide text-card-foreground">
                 {step.title}
               </h2>
-              <p className="text-slate-300 text-sm leading-relaxed">
+              {/* Upgraded contrast to text-card-foreground/90 to fix faded look */}
+              <p className="text-sm leading-relaxed text-card-foreground/90">
                 {step.description}
               </p>
             </div>

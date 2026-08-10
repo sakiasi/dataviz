@@ -5,7 +5,7 @@ export const IntroComponent = () => {
     <div className="flex flex-col gap-5 pt-20">
       <h1 className="text-4xl font-bold tracking-tight">
         The Pacific Climate
-        <span className="block text-2xl text-sky-400 mt-1 font-medium">
+        <span className="block text-2xl text-primary mt-1 font-medium">
           Analyzing Regional Shifts & Socio-Economic Impact
         </span>
       </h1>

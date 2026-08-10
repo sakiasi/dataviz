@@ -13,7 +13,7 @@ import WarmingOceanComponent from "./components/WarmingOceanComponent.tsx";
 
 const App = () => {
   return (
-    <div className="mx-auto max-w-prose mt-5 mb-10 flex flex-col gap-5 ">
+    <div className="mx-auto max-w-prose mt-5 mb-10 p-2 flex flex-col gap-5 ">
       <div>
         <IntroComponent />
       </div>

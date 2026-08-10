@@ -52,7 +52,7 @@ export default function LiveStockComponent() {
         <div
           className={`${
             isCountrySelect
-              ? "absolute w-full top-16 h-96 overflow-y-auto z-10 flex-col border bg-slate-700 rounded-md border-slate-900 shadow-xl"
+              ? "absolute w-full top-16 h-96 overflow-y-auto z-10 flex-col border bg-primary-foreground rounded-md border-primary shadow-xl"
               : "hidden"
           }`}
         >
@@ -61,7 +61,7 @@ export default function LiveStockComponent() {
             .map((d, index) => (
               <div
                 key={index}
-                className="hover:cursor-pointer hover:bg-slate-900 p-2 border-b border-slate-900 flex items-center gap-5"
+                className="hover:cursor-pointer hover:bg-primary p-2 border-b border-secondary flex items-center gap-5"
                 onMouseDown={() => {
                   handleSelectCountries(
                     d,

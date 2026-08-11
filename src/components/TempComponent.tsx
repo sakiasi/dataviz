@@ -17,15 +17,17 @@ export default function TempComponent() {
         Is the surface heat rising ?
       </h1>
 
-      <div className="border-b border-slate-800"></div>
+      <div className="border-b border-primary"></div>
 
       <div className="text-foreground leading-relaxed max-w-3xl">
         <p>
+          {" "}
+          According to{" "}
           <a
             className=" hover:text-primary transition-colors underline decoration-primary underline-offset-2"
             href="https://berkeleyearth.org/global-temperature-report-for-2025/"
           >
-            According to Berkeley Earth's 2025 report
+            Berkeley Earth's 2025 report
           </a>
           , 2025 was the third warmest year on record since 1850, trailing only
           2024 and 2023, with global annual averages reaching 1.44 ± 0.09 °C
@@ -39,7 +41,7 @@ export default function TempComponent() {
       <div className="relative">
         <div
           onMouseDown={() => setIsCountrySelect((prev) => !prev)}
-          className="flex justify-around md:w-3/6 p-2 rounded-md hover:cursor-pointer hover:bg-primary items-center border-primary border"
+          className="flex justify-around md:w-3/6 p-2 hover:cursor-pointer hover:text-secondary hover:bg-primary items-center border-primary border-b"
         >
           <p> Select Country ({selectedCountries.length} selected) </p>
           {isCountrySelect ? <ChevronUp /> : <ChevronDown />}
@@ -75,8 +77,18 @@ export default function TempComponent() {
 
       <TemperatureChart selectedCountries={selectedCountries} />
 
-      <p className="text-xs text-foreground italic">
-        Data from Surface Temperature anomalies.csv and Sea Level Anomalies.csv
+      <p
+        style={{
+          fontSize: "0.85rem",
+          color: "#6c757d",
+          fontStyle: "italic",
+          marginTop: "8px",
+          lineHeight: "1.4",
+        }}
+      >
+        <strong>Note.</strong> Livestock yield data (Kg/Ha) spanning 1962–2022
+        generated from <em>Surface Temperature anomalies.csv</em> and{" "}
+        <em>Sea Level Anomalies.csv</em>.
       </p>
 
       <p>

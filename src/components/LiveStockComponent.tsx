@@ -3,6 +3,7 @@ import { useState } from "react";
 import { handleSelectCountries } from "../services/handleSelectCountries";
 import LiveStockChart from "./LivestockChart";
 import { useLivestockAnalysis } from "../services/liveStockAnalysis";
+import { cn } from "../lib/util";
 
 export default function LiveStockComponent() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
@@ -16,7 +17,7 @@ export default function LiveStockComponent() {
         Does surface heat reduce livestock yield ?
       </h1>
 
-      <div className="border-b border-slate-800"></div>
+      <div className="border-b border-primary"></div>
 
       <div className=" leading-relaxed  max-w-3xl">
         <p>
@@ -43,7 +44,7 @@ export default function LiveStockComponent() {
       <div className="relative">
         <div
           onMouseDown={() => setIsCountrySelect((prev) => !prev)}
-          className="flex justify-around md:w-3/6 p-2 rounded-md hover:cursor-pointer hover:bg-primary items-center border-primary border"
+          className="flex hover:text-secondary justify-around md:w-3/6 p-2 hover:cursor-pointer hover:bg-primary items-center border-primary border-b"
         >
           <p> Select Country ({selectedCountries.length} selected) </p>
           {isCountrySelect ? <ChevronUp /> : <ChevronDown />}
@@ -52,7 +53,7 @@ export default function LiveStockComponent() {
         <div
           className={`${
             isCountrySelect
-              ? "absolute w-full top-16 h-96 overflow-y-auto z-10 flex-col border bg-primary-foreground rounded-md border-primary shadow-xl"
+              ? "absolute w-full top-10 h-96 overflow-y-auto z-10 flex-col border bg-primary-foreground rounded-md border-primary shadow-xl"
               : "hidden"
           }`}
         >
@@ -81,8 +82,18 @@ export default function LiveStockComponent() {
         <LiveStockChart selectedCountries={selectedCountries} />
       </div>
 
-      <p className="text-xs  italic">
-        Data from Surface Temperature anomalies.csv and Sea Level Anomalies.csv
+      <p
+        style={{
+          fontSize: "0.85rem",
+          color: "#6c757d",
+          fontStyle: "italic",
+          marginTop: "8px",
+          lineHeight: "1.4",
+        }}
+      >
+        <strong>Note.</strong> Livestock yield data (Kg/Ha) spanning 1962–2022
+        generated from <em>Surface Temperature anomalies.csv</em> and{" "}
+        <em>Sea Level Anomalies.csv</em>.
       </p>
 
       <div className="">

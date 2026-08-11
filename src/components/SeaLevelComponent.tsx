@@ -7,19 +7,18 @@ import { useSeaLevelAnalysis } from "../services/seaLevelAnalysis";
 export default function SeaLevelComponent() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
 
-  const { selectedCountries, setSelectedCountries, countryList } = useSeaLevelAnalysis();
+  const { selectedCountries, setSelectedCountries, countryList } =
+    useSeaLevelAnalysis();
 
   return (
     <div className=" flex flex-col gap-5">
-
       <h1 className="text-2xl font-bold tracking-tight">
         Is the sea level rising ?
       </h1>
 
-      <div className="border-b border-slate-800"></div>
+      <div className="border-b border-primary"></div>
 
       <div className=" leading-relaxed max-w-3xl">
-        
         <p>
           According to
           <a
@@ -37,13 +36,12 @@ export default function SeaLevelComponent() {
           the physical catalyst for the displacement and economic losses seen
           across the region.
         </p>
-
       </div>
 
       <div className="relative">
         <div
           onMouseDown={() => setIsCountrySelect((prev) => !prev)}
-          className="flex justify-around md:w-3/6 p-2 rounded-md hover:cursor-pointer hover:bg-primary items-center border-primary border"
+          className="flex justify-around md:w-3/6 p-2 hover:text-secondary hover:cursor-pointer hover:bg-primary items-center border-primary border-b"
         >
           <p> Select Country ({selectedCountries.length} selected) </p>
           {isCountrySelect ? <ChevronUp /> : <ChevronDown />}
@@ -79,8 +77,18 @@ export default function SeaLevelComponent() {
 
       <SeaChart selectedCountries={selectedCountries} />
 
-      <p className="text-xs  italic">
-        Data from Surface Temperature anomalies.csv and Sea Level Anomalies.csv
+      <p
+        style={{
+          fontSize: "0.85rem",
+          color: "#6c757d",
+          fontStyle: "italic",
+          marginTop: "8px",
+          lineHeight: "1.4",
+        }}
+      >
+        <strong>Note.</strong> Livestock yield data (Kg/Ha) spanning 1962–2022
+        generated from <em>Surface Temperature anomalies.csv</em> and{" "}
+        <em>Sea Level Anomalies.csv</em>.
       </p>
 
       <div className="">
@@ -92,7 +100,6 @@ export default function SeaLevelComponent() {
         Northern Mariana Islands have the slowest rise, meaning their changes
         are happening at a much more gradual pace.
       </div>
-
     </div>
   );
 }

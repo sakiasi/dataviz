@@ -5,7 +5,7 @@ const ReferenceComponent = () => {
       <h1 className="text-2xl font-bold tracking-tight">
         References
       </h1>
-      <div className="border-b border-slate-800"></div>
+      <div className="border-b border-primary"></div>
 
       <div className=" text-sm leading-relaxed space-y-5 list-none pl-0">
         <p className="pl-4 ">
@@ -67,7 +67,7 @@ const ReferenceComponent = () => {
           > https://doi.org/10.3390/atmos13010140
           </a>
         </p>
-        <p className="pl-4 ">
+        <div className="pl-4 ">
           United Nations Office for Disaster Risk Reduction. (2023).{" "}
           <p className="italic">
             Thematic Report on Climate and Disaster-Resilient Infrastructure in
@@ -79,14 +79,13 @@ const ReferenceComponent = () => {
           >
             [PDF/Report].
           </a>
-        </p>
+        </div>
         <p className="pl-4 ">
           United Nations Office for Disaster Risk Reduction. (2021).{" "}
           <em>
             Thematic report on climate and disaster-resilient infrastructure in
-            the Pacific
+            the Pacific.
           </em>
-          .
           <a
             className=" hover:text-primary transition-colors underline decoration-primary underline-offset-2"
             href="https://www.undrr.org/media/89310/download"

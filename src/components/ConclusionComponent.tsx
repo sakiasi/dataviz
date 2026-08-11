@@ -6,7 +6,7 @@ const ConclusionComponent = () => {
         Conclusion
       </h1>
 
-      <div className="border-b border-slate-800"></div>
+      <div className="border-b border-primary"></div>
 
       <p className="leading-relaxed">
         The trends across the Pacific show that rising temperatures and climbing

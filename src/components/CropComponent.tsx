@@ -16,7 +16,7 @@ export default function CropComponent() {
         Does surface heat reduce crop yield ?
       </h1>
 
-      <div className="border-b border-slate-800"></div>
+      <div className="border-b border-primary"></div>
 
       <div className=" leading-relaxed  max-w-3xl">
         <p>
@@ -39,7 +39,7 @@ export default function CropComponent() {
       <div className="relative">
         <div
           onMouseDown={() => setIsCountrySelect((prev) => !prev)}
-          className="flex justify-around md:w-3/6 p-2 rounded-md hover:cursor-pointer hover:bg-primary items-center border-primary border"
+          className="flex justify-around md:w-3/6 p-2 hover:text-secondary hover:cursor-pointer hover:bg-primary items-center border-primary border-b"
         >
           <p> Select Country ({selectedCountries.length} selected) </p>
           {isCountrySelect ? <ChevronUp /> : <ChevronDown />}
@@ -77,8 +77,18 @@ export default function CropComponent() {
         <CropChart selectedCountries={selectedCountries} />
       </div>
 
-      <p className="text-xs  italic">
-        Data from Surface Temperature anomalies.csv and Sea Level Anomalies.csv
+      <p
+        style={{
+          fontSize: "0.85rem",
+          color: "#6c757d",
+          fontStyle: "italic",
+          marginTop: "8px",
+          lineHeight: "1.4",
+        }}
+      >
+        <strong>Note.</strong> Livestock yield data (Kg/Ha) spanning 1962–2022
+        generated from <em>Surface Temperature anomalies.csv</em> and{" "}
+        <em>Sea Level Anomalies.csv</em>.
       </p>
 
       <div className="">

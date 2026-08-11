@@ -113,8 +113,16 @@ const MethodologyComponent = () => {
             </li>
             <li>
               <p>
-                Visualizations: Recharts for rendering interactive graphs and
-                charts.
+                Visualizations:{" "}
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="decoration-primary underline"
+                  href="https://recharts.github.io/"
+                >
+                  Recharts
+                </a>{" "}
+                for rendering interactive graphs and charts.
               </p>
             </li>
             <li>

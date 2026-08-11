@@ -15,9 +15,10 @@ interface ChartProps {
   lineData: { countryName: string }[];
   chartData: Record<string, any>[];
   units?: string;
+  toolTipUnits?: string
 }
 
-const ChartComponent = ({ chartData, lineData, units }: ChartProps) => {
+const ChartComponent = ({ chartData, lineData, units, toolTipUnits }: ChartProps) => {
   return (
     <ResponsiveContainer className={"w-100, h-full"}>
       <LineChart data={chartData}>
@@ -63,7 +64,7 @@ const ChartComponent = ({ chartData, lineData, units }: ChartProps) => {
         />
 
         <Tooltip
-          content={<CustomToolTip units="°C" />}
+          content={<CustomToolTip units={toolTipUnits} />}
           cursor={{ fill: "rgba(255, 255, 255, 0.03)" }}
         />
 

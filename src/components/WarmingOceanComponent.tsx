@@ -102,6 +102,7 @@ const WarmingOceanComponent = () => {
           are experiencing the slowest warming rates.
         </p>
       </div>
+      
     </div>
   );
 };

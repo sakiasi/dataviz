@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import * as ss from 'simple-statistics';
 import seaData from '../../public/data/WarmingOcean.json';
+import { useTemperature } from './tempAnalysis';
 
 export interface SeaInterface {
     value: number,
@@ -92,9 +93,11 @@ export const useWarmingOceanAnalysis=(externalSelectedCountries?:string[])=>{
  
     //which country is showing the most/least crop decline(slope)
     const slope = data.map(d => {
+        const years = d.mData.map(d => d[0])
+        const values = d.mData.map(d => d[1])
         const slope = ss.linearRegression(d.mData)
         const lineFunction = ss.linearRegressionLine(slope)
-        const correlation = ss.sampleCorrelation(d.mData[0],d.mData[1])
+        const correlation = ss.sampleCorrelation(years,values)
         const predictYear = lineFunction(2025)
         return {country:d.country,slope:slope.m,lineFunction,predictYear,correlation}
     })

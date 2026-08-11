@@ -1,8 +1,9 @@
-import { ChevronUp, ChevronDown, CircleCheck } from "lucide-react";
-import { handleSelectCountries } from "../services/handleSelectCountries";
-import WarmingOceanChart from "./WarmingOceanChart";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
+import { handleSelectCountries } from "../services/handleSelectCountries";
 import { useWarmingOceanAnalysis } from "../services/useWarningOceanAnalysis";
+import { Switch } from "./ui/Switch";
+import WarmingOceanChart from "./WarmingOceanChart";
 
 const WarmingOceanComponent = () => {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
@@ -58,7 +59,7 @@ const WarmingOceanComponent = () => {
             .map((d, index) => (
               <div
                 key={index}
-                className="hover:cursor-pointer hover:bg-primary p-2 border-b border-secondary flex items-center gap-5"
+                className="hover:cursor-pointer hover:bg-secondary p-2 border-b border-secondary flex items-center gap-5"
                 onMouseDown={() => {
                   handleSelectCountries(
                     d,
@@ -67,7 +68,7 @@ const WarmingOceanComponent = () => {
                   );
                 }}
               >
-                {selectedCountries.includes(d) && <CircleCheck color="green" />}
+                <Switch checked={selectedCountries.includes(d)} />
                 <span>{d}</span>
               </div>
             ))}

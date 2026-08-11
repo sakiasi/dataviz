@@ -1,8 +1,9 @@
-import { ChevronDown, ChevronUp, CircleCheck } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { useEconomicLossAnalysis } from "../services/economicLossAnalysis";
 import { handleSelectCountries } from "../services/handleSelectCountries";
 import EconomicLossChart from "./EconomicLossChart";
+import { Switch } from "./ui/Switch";
 
 export default function EconomicLossComponent() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
@@ -60,7 +61,7 @@ export default function EconomicLossComponent() {
             .map((d, index) => (
               <div
                 key={index}
-                className="hover:cursor-pointer hover:bg-primary p-2 border-b border-secondary flex items-center gap-5"
+                className="hover:cursor-pointer hover:bg-secondary p-2 border-b border-secondary flex items-center gap-5"
                 onMouseDown={() => {
                   handleSelectCountries(
                     d,
@@ -69,7 +70,7 @@ export default function EconomicLossComponent() {
                   );
                 }}
               >
-                {selectedCountries.includes(d) && <CircleCheck color="green" />}
+                <Switch checked={selectedCountries.includes(d)} />
                 <span>{d}</span>
               </div>
             ))}

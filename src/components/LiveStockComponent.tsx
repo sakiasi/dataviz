@@ -1,9 +1,9 @@
-import { ChevronDown, ChevronUp, CircleCheck } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { handleSelectCountries } from "../services/handleSelectCountries";
-import LiveStockChart from "./LivestockChart";
 import { useLivestockAnalysis } from "../services/liveStockAnalysis";
-import { cn } from "../lib/util";
+import LiveStockChart from "./LivestockChart";
+import { Switch } from "./ui/Switch";
 
 export default function LiveStockComponent() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
@@ -63,7 +63,7 @@ export default function LiveStockComponent() {
             .map((d, index) => (
               <div
                 key={index}
-                className="hover:cursor-pointer hover:bg-primary p-2 border-b border-secondary flex items-center gap-5"
+                className="hover:cursor-pointer hover:bg-secondary p-2 border-b border-secondary flex items-center gap-5"
                 onMouseDown={() => {
                   handleSelectCountries(
                     d,
@@ -72,7 +72,7 @@ export default function LiveStockComponent() {
                   );
                 }}
               >
-                {selectedCountries.includes(d) && <CircleCheck color="green" />}
+                <Switch checked={selectedCountries.includes(d)} />
                 <span>{d}</span>
               </div>
             ))}

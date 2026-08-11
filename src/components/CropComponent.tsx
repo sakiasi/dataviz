@@ -46,9 +46,10 @@ export default function CropComponent() {
         </div>
 
         <div
+        onMouseLeave={()=>setIsCountrySelect(false)}
           className={`${
             isCountrySelect
-              ? "absolute w-full top-16 h-96 overflow-y-auto z-10 flex-col border bg-primary-foreground rounded-md border-primary shadow-xl"
+              ? "absolute w-full top-10 h-96 overflow-y-auto z-10 flex-col border bg-primary-foreground rounded-md border-primary shadow-xl"
               : "hidden"
           }`}
         >

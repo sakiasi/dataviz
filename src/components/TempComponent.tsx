@@ -48,9 +48,10 @@ export default function TempComponent() {
         </div>
 
         <div
+          onMouseLeave={() => setIsCountrySelect(false)}
           className={`${
             isCountrySelect
-              ? "absolute w-full top-16 h-90 overflow-y-auto z-10 flex-col border bg-primary-foreground rounded-md border-primary shadow-xl"
+              ? "absolute w-full top-10 h-90 overflow-y-auto z-10 flex-col border bg-primary-foreground rounded-md border-primary shadow-xl"
               : "hidden"
           }`}
         >

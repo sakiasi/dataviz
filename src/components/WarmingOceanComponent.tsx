@@ -2,9 +2,9 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { handleSelectCountries } from "../services/handleSelectCountries";
 import { useWarmingOceanAnalysis } from "../services/useWarningOceanAnalysis";
-import { Switch } from "./ui/Switch";
 import WarmingOceanChart from "./WarmingOceanChart";
-import OceanInfluenceChart from "./OceanInfluenceChart";
+import { Switch } from "./ui/Switch";
+import OceanCorrelationChart from "./OceanCorrelationChart";
 
 const WarmingOceanComponent = () => {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
@@ -105,7 +105,7 @@ const WarmingOceanComponent = () => {
       </div>
 
       <div>
-        <OceanInfluenceChart selectedCountries={selectedCountries} />
+        <OceanCorrelationChart selectedCountries={selectedCountries} />
       </div>
 
       <p className="text-sm">

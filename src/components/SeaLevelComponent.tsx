@@ -4,6 +4,7 @@ import { handleSelectCountries } from "../services/handleSelectCountries";
 import { useSeaLevelAnalysis } from "../services/seaLevelAnalysis";
 import SeaChart from "./SeaLevelChart";
 import { Switch } from "./ui/Switch";
+import SeaCorrelationChart from "./SeaCorrelationChart";
 
 export default function SeaLevelComponent() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
@@ -49,7 +50,7 @@ export default function SeaLevelComponent() {
         </div>
 
         <div
-          onMouseLeave={()=>setIsCountrySelect(false)}
+          onMouseLeave={() => setIsCountrySelect(false)}
           className={`${
             isCountrySelect
               ? "absolute w-full top-10 h-96 overflow-y-auto z-10 flex-col border bg-primary-foreground rounded-md border-primary shadow-xl"
@@ -101,6 +102,29 @@ export default function SeaLevelComponent() {
         rising the quickest. On the other hand, places like Tokelau and the
         Northern Mariana Islands have the slowest rise, meaning their changes
         are happening at a much more gradual pace.
+      </div>
+
+      <div>
+        <SeaCorrelationChart selectedCountries={selectedCountries} />
+      </div>
+
+      <p className="text-sm">
+        <span className="font-bold">Note: </span>We used statistical
+        calculations on sea level and temperature data to determine the warming
+        rates and connection strengths for each island nation.
+      </p>
+
+      <div>
+        <p>
+          Data shows that rising surface heat are closely tied to sea level
+          increases across most of the Pacific, with surface heat and sea level
+          changes matching up to 50% of the time in the hardest-hit areas.
+          Islands like Micronesia and Palau see the strongest impact, where
+          temperature shifts account for nearly half of their sea level changes.
+          On the flip side, the Marshall Islands is a major exception, showing
+          virtually no connection (0.1%) between temperature and sea level
+          shifts, proving that local ocean conditions play a massive role there.
+        </p>
       </div>
     </div>
   );

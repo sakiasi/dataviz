@@ -102,7 +102,7 @@ export const useWarmingOceanAnalysis=(externalSelectedCountries?:string[])=>{
         return {country:d.country,slope:slope.m,lineFunction,predictYear,correlation}
     })
 
-   // STEP 1: Create a Lookup Dictionary using a native Map for performance
+    //correlation
     const tempLookup = useMemo(() => {
         const map = new Map<string, number>();
         tempData.forEach(d => {
@@ -118,7 +118,6 @@ export const useWarmingOceanAnalysis=(externalSelectedCountries?:string[])=>{
         return map;
     }, []);
 
-    // STEP 2 & 3: Filter, align, and group paired data by country
     const { countryInfluence } = useMemo(() => {
         const countryGroups: Record<string, { xTemp: number[]; ySea: number[]; pairs: [number, number][] }> = {};
         const yearlyRows: Record<number, Record<string, { sea: number; temp: number }>> = {};
@@ -188,11 +187,10 @@ export const useWarmingOceanAnalysis=(externalSelectedCountries?:string[])=>{
         return countryInfluence.filter(d => selectedCountries.length === 0 || selectedCountries.includes(d.country));
     }, [countryInfluence, selectedCountries]);
 
-    console.log('FILTERED INFLUENCE:', countryInfluence)
 
     //which has the most/least influence from temperature(regression)
 
-    return {selectedCountries, setSelectedCountries, countryList, chartData, lineData, slope, countryInfluence,  influenceAnalysis: filteredInfluence }
+    return {selectedCountries, setSelectedCountries, countryInfluence, countryList, chartData, lineData, slope,  influenceAnalysis: filteredInfluence }
 
 }
 

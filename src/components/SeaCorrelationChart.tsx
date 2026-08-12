@@ -12,27 +12,26 @@ import {
 import { countryColor } from "../constants/colors";
 import { CustomToolTip } from "./CustomToolTip";
 import { cn } from "../lib/util";
-import { useWarmingOceanAnalysis } from "../services/useWarningOceanAnalysis";
+import { useSeaLevelAnalysis } from "../services/seaLevelAnalysis";
 
 interface ScatterChartProps {
   selectedCountries: string[];
 }
 
-const OceanInfluenceChart = ({ selectedCountries }: ScatterChartProps) => {
-  // Pull data from your actual hook containing the 21 country stats log
-  const { countryInfluence: rawData } =
-    useWarmingOceanAnalysis(selectedCountries);
+const SeaCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
+  const { countryInfluence: rawData } = useSeaLevelAnalysis(selectedCountries);
   const toolTipUnits = "%";
 
-  // FIX: Scale raw decimals (0.795) into percentages (79.5%) so they sit inside your [75, 100] grid
+  // Safely scale decimals to percentages and cap at 100% max
   const chartData =
-    rawData?.map((d) => ({
-      ...d,
-      // If the value is a raw decimal ratio, multiply it by 100. Otherwise, leave it as is.
-      rSquared: d.rSquared <= 1 ? d.rSquared * 100 : d.rSquared,
-    })) || [];
+    rawData?.map((d) => {
+      const rawVal = d.rSquared <= 1 ? d.rSquared * 100 : d.rSquared;
+      return {
+        ...d,
+        rSquared: Math.min(Math.max(rawVal, 0), 100), // Keeps values strictly between 0 and 100
+      };
+    }) || [];
 
-  // Guard clause to prevent engine load failures if array is completely empty
   if (chartData.length === 0) {
     return (
       <div className="flex items-center justify-center h-48 border border-dashed rounded-md text-muted-foreground">
@@ -43,7 +42,7 @@ const OceanInfluenceChart = ({ selectedCountries }: ScatterChartProps) => {
 
   return (
     <div className="flex flex-col gap-5">
-      <h1>Relationship between surface heat and ocean warming</h1>
+      <h1>Relationship between surface heat and sea level</h1>
       <p className="text-xs">Strength</p>
       <ResponsiveContainer className={cn("w-full h-full min-h-[350px]")}>
         <ScatterChart margin={{ top: 15, right: 15, bottom: 5, left: 5 }}>
@@ -52,19 +51,19 @@ const OceanInfluenceChart = ({ selectedCountries }: ScatterChartProps) => {
             type="number"
             dataKey="slope"
             name="Warming Rate"
-            domain={[0.6, 1.1]}
+            domain={[0, 0.3]} // Adjust this to match your actual slope range, or remove domain entirely for auto-scaling
             stroke="#64748b"
             tick={{ fontSize: 11, fill: cn("text-primary") }}
             axisLine={false}
             tickLine={false}
-            tickFormatter={(value) => `${value}°C`}
+            tickFormatter={(value) => `${Number(value).toFixed(2)}°C`} // Rounds to 2 decimal places
           />
 
           <YAxis
             type="number"
             dataKey="rSquared"
             name="Connection Strength"
-            domain={[75, 100]} // This now lines up perfectly with values like 79.5 and 99.6
+            domain={[0, 100]} // Expanded to fit the 0% to 100% data range properly
             stroke="#94a3b8"
             tick={{ fontSize: 11, fill: cn("text-primary") }}
             tickFormatter={(value) => `${value}${toolTipUnits}`}
@@ -97,4 +96,4 @@ const OceanInfluenceChart = ({ selectedCountries }: ScatterChartProps) => {
   );
 };
 
-export default OceanInfluenceChart;
+export default SeaCorrelationChart;

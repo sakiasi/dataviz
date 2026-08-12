@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import * as ss from 'simple-statistics';
 import tempData from '../../public/data/surface-temperature-anomalies.json';
-import * as ss from 'simple-statistics'
 import type { DataPoint } from '../types';
 
 export const useTemperature = (externalSelectedCountries?: string[]) => {

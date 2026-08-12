@@ -13,7 +13,7 @@ export const TemperatureChart = ({
     <div className="h-100 w-full flex flex-col gap-5">
       <h1>Rising surface heat anomalies over time</h1>
       <p className="text-xs">Temperature</p>
-      <ChartComponent chartData={chartData} lineData={lineData} />
+      <ChartComponent chartData={chartData} toolTipUnits="°C" lineData={lineData} />
       <p className="text-xs text-center">Year</p>
     </div>
   );

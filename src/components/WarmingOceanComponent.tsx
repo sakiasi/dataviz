@@ -4,6 +4,7 @@ import { handleSelectCountries } from "../services/handleSelectCountries";
 import { useWarmingOceanAnalysis } from "../services/useWarningOceanAnalysis";
 import { Switch } from "./ui/Switch";
 import WarmingOceanChart from "./WarmingOceanChart";
+import OceanInfluenceChart from "./OceanInfluenceChart";
 
 const WarmingOceanComponent = () => {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
@@ -47,7 +48,7 @@ const WarmingOceanComponent = () => {
         </div>
 
         <div
-          onMouseLeave={()=> setIsCountrySelect(false)}
+          onMouseLeave={() => setIsCountrySelect(false)}
           className={`${
             isCountrySelect
               ? "absolute w-full top-10 h-96 overflow-y-auto z-10 flex-col border bg-primary-foreground rounded-md border-primary shadow-xl"
@@ -102,7 +103,29 @@ const WarmingOceanComponent = () => {
           are experiencing the slowest warming rates.
         </p>
       </div>
-      
+
+      <div>
+        <OceanInfluenceChart selectedCountries={selectedCountries} />
+      </div>
+
+      <p className="text-sm">
+        <span className="font-bold">Note: </span>20 out of 21 nations clustering
+        tightly in the top-right corner. French Polynesia sits uniquely lower as
+        the region's only slow-warming outlier.
+      </p>
+
+      <div>
+        <p>
+          Data shows a powerful relationship between rising surface heat
+          and ocean warming across the Pacific. In 20 out of 21 nations,
+          atmospheric fluctuations closely match over 91% of marine heat
+          trends—clustering tightly in a near-perfect, 1:1 thermal lockstep
+          where every 1°C of air warming corresponds to roughly 1°C of sea
+          warming. French Polynesia sits uniquely lower as the region's only
+          slow-warming outlier, experiencing an ocean temperature increase of
+          0.65°C per degree of air warming.
+        </p>
+      </div>
     </div>
   );
 };

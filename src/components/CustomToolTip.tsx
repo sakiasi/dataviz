@@ -17,7 +17,9 @@ export const CustomToolTip = ({ active, payload, label,units }: CustomTooltipPro
                 <div key={i} className="flex items-center gap-2">
                     <div style={{ backgroundColor: d.color }} className="w-3 h-3 rounded-full"></div> 
                     <p className=" text-sm">
-                      {d.name} : <span className="font-semibold">{d.value.toLocaleString()} </span> {units}                  
+                      {d.name} : <span className="font-semibold">{d.value.toLocaleString()} </span> {units} 
+                      {d.name.includes('Connection Strength') ? '%' : null}  
+                      {d.name.includes('Warming Rate') ? '°C' : null }  
                     </p>
                 </div>
             )

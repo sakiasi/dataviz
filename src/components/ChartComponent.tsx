@@ -43,6 +43,7 @@ const ChartComponent = ({ chartData, lineData, units, toolTipUnits }: ChartProps
           stroke="#94a3b8"
           tick={{ fontSize: 11, fill: cn('text-primary') }}
           tickFormatter={(value) => {
+
             // Skip formatting if it's temperature or small values
             if (units === "°C" || units?.includes("°")) {
               return `${value} ${units ?? ""}`;
@@ -50,8 +51,9 @@ const ChartComponent = ({ chartData, lineData, units, toolTipUnits }: ChartProps
 
             // Format large numbers into thousands (k) or millions (M)
             if (value >= 1_000_000) {
-              return `${(value / 1_000_000).toFixed(1)}M ${units ?? ""}`.trim();
+              return `${(value / 1_000_000).toFixed(1)} ${units ?? ""}`.trim();
             }
+            
             if (value >= 1_000) {
               return `${(value / 1_000).toFixed(0)}k ${units ?? ""}`.trim();
             }

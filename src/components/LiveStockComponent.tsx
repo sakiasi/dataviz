@@ -4,6 +4,7 @@ import { handleSelectCountries } from "../services/handleSelectCountries";
 import { useLivestockAnalysis } from "../services/liveStockAnalysis";
 import LiveStockChart from "./LivestockChart";
 import { Switch } from "./ui/Switch";
+import LivestockCorrelationChart from "./LivestockCorrelationChart";
 
 export default function LiveStockComponent() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
@@ -51,7 +52,7 @@ export default function LiveStockComponent() {
         </div>
 
         <div
-          onMouseLeave={()=>setIsCountrySelect(false)}
+          onMouseLeave={() => setIsCountrySelect(false)}
           className={`${
             isCountrySelect
               ? "absolute w-full top-10 h-96 overflow-y-auto z-10 flex-col border bg-primary-foreground rounded-md border-primary shadow-xl"
@@ -104,6 +105,24 @@ export default function LiveStockComponent() {
         countries such as Fiji, French Polynesia, the Cook Islands, and Tuvalu
         face steep downward slopes in their livestock metrics.
       </div>
+
+      <LivestockCorrelationChart selectedCountries={selectedCountries} />
+      <p className="text-sm">
+        <span className="font-bold">Fig 4.1: </span>The X-axis measures the
+        ratio of livestock yield change relative to surface heat change. Expressed in
+        kilograms per animal per degree Celsius ((kg/animal)/°C), it indicates how
+        much the livestock yield changes for every unit increase in surface heat.
+      </p>
+      <p>
+        Data shows a varied pattern in how rising temperatures affect livestock
+        yield across the Pacific. In Micronesia, warmer weather is tied to a
+        sharp increase in livestock yield, adding about 839 kg per animal for
+        every degree of temperature rise. On the other hand, countries like
+        Fiji, Cook Islands, and Tuvalu face significant drops, with yields
+        plunging by 1,200 to over 1,500 kg per animal per degree of warming.
+        Meanwhile, places like Papua New Guinea show practically no change at
+        all, remaining steady regardless of temperature shifts.
+      </p>
     </div>
   );
 }

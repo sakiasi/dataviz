@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
-import seaData from '../../public/data/Livestock Yield.json'
+import liveStockData from '../../public/data/Livestock Yield.json'
+import tempData from '../../public/data/surface-temperature-anomalies.json'
 import * as ss from 'simple-statistics'
 
 export interface SeaInterface {
@@ -21,12 +22,12 @@ export const useLivestockAnalysis = (externalSelectedCountries?: string[]) => {
 
     // 1. Memoize country list so it only computes once
     const countryList = useMemo(() => {
-        return Array.from(new Set(seaData.map(d => d['Pacific Island Countries and territories'])));
+        return Array.from(new Set(liveStockData.map(d => d['Pacific Island Countries and territories'])));
     }, []);
 
     // 2. Memoize cleanData and groupByCountry to prevent 25k row recalculations on every render
     const { chartData, lineData } = useMemo(() => {
-        const cleanData = seaData.filter(d => 
+        const cleanData = liveStockData.filter(d => 
             d.TIME_PERIOD != null &&
             d.OBS_VALUE != null &&
             (selectedCountries.length === 0 || selectedCountries.includes(d['Pacific Island Countries and territories'])) &&
@@ -61,7 +62,7 @@ export const useLivestockAnalysis = (externalSelectedCountries?: string[]) => {
 
     // 3. Memoize regression/slope calculation
     const slope = useMemo(() => {
-        const dataSlope = seaData.filter(d => 
+        const dataSlope = liveStockData.filter(d => 
             d.TIME_PERIOD != null &&
             d.OBS_VALUE != null &&
             d.TIME_PERIOD % 20
@@ -90,5 +91,93 @@ export const useLivestockAnalysis = (externalSelectedCountries?: string[]) => {
     }, []);
 
 
-    return { selectedCountries, setSelectedCountries, countryList, chartData, lineData, slope };
+     //correlation
+        const tempLookup = useMemo(() => {
+            const map = new Map<string, number>();
+            tempData.forEach(d => {
+                const country = d['Pacific Island Countries and territories']
+                const year = d.TIME_PERIOD
+                const value = d.OBS_VALUE
+    
+                if (country && year !== undefined && value !== undefined && value !== null) {
+                    // Compound key format: "CountryName-Year"
+                    map.set(`${country}-${year}`, value);
+                }
+            });
+            return map;
+        }, []);
+    
+        const { countryInfluence } = useMemo(() => {
+            const countryGroups: Record<string, { xTemp: number[]; yLivestock: number[]; pairs: [number, number][] }> = {};
+            const yearlyRows: Record<number, Record<string, { livestock: number; temp: number }>> = {};
+    
+            liveStockData.forEach(livestock => {
+                const country = livestock['Pacific Island Countries and territories'];
+                const year = livestock.TIME_PERIOD;
+                const livestockValue = livestock.OBS_VALUE;
+    
+                if (!country || year === undefined || livestockValue === undefined || livestockValue === null) return;
+    
+                // Generate matching key for the temperature dictionary
+                const key = `${country}-${year}`;
+                if (tempLookup.has(key)) {
+                    const tempValue = tempLookup.get(key)!;
+    
+                    // Group for statistical calculation
+                    if (!countryGroups[country]) {
+                        countryGroups[country] = { xTemp: [], yLivestock: [], pairs: [] };
+                    }
+                    countryGroups[country].xTemp.push(tempValue);
+                    countryGroups[country].yLivestock.push(livestockValue);
+                    countryGroups[country].pairs.push([tempValue, livestockValue]); // [X, Y] for regression
+    
+                    // Group for chronological UI charting options
+                    if (!yearlyRows[year]) yearlyRows[year] = {};
+                    yearlyRows[year][country] = { livestock: livestockValue, temp: tempValue };
+                }
+            });
+    
+            // Format chronological timeline chart data for components like Recharts
+            const formattedChartData = Object.entries(yearlyRows)
+                .map(([yearStr, countries]) => {
+                    const row: Record<string, any> = { year: Number(yearStr) };
+                    Object.entries(countries).forEach(([cName, vals]) => {
+                        row[`${cName}_livestock`] = vals.livestock;
+                        row[`${cName}_temp`] = vals.temp;
+                    });
+                    return row;
+                })
+                .sort((a, b) => a.year - b.year);
+    
+            // STEP 4: Run cross-dataset statistics (Air Temp vs Ocean Temp)
+            const influenceAnalysis = Object.entries(countryGroups)
+                .filter(([_, data]) => data.pairs.length > 1) // Simple statistics requires at least 2 points
+                .map(([country, data]) => {
+                    const regression = ss.linearRegression(data.pairs);
+                    const rValue = ss.sampleCorrelation(data.xTemp, data.yLivestock);
+                    const rSquared = Math.pow(rValue, 2);
+    
+                    return {
+                        country,
+                        dataPointsCount: data.pairs.length,
+                        slope: regression.m,          // Livestock yield decreases per 1°C air increase
+                        intercept: regression.b,      // Theoretical baseline livestock level anomaly
+                        correlation: rValue,          // r value (-1 to +1)
+                        rSquared: rSquared            // R² value (0 to 1): percentage of variation explained
+                    };
+                });
+    
+            return { tempLivestockChartData: formattedChartData, countryInfluence: influenceAnalysis };
+    
+        }, [tempLookup]);
+    
+        // Filtered lists matching current selections for your frontend view
+        const filteredInfluence = useMemo(() => {
+            return countryInfluence.filter(d => selectedCountries.length === 0 || selectedCountries.includes(d.country));
+        }, [countryInfluence, selectedCountries]);
+
+        console.log('COUNTRY INFLUENCE:', countryInfluence)
+
+    return {selectedCountries, setSelectedCountries, countryInfluence, countryList, chartData, lineData, slope,  influenceAnalysis: filteredInfluence }
+
 }

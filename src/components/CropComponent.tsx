@@ -4,6 +4,7 @@ import { useCropAnalysis } from "../services/cropAnalysis";
 import { handleSelectCountries } from "../services/handleSelectCountries";
 import CropChart from "./CropChart";
 import { Switch } from "./ui/Switch";
+import CropCorrelationChart from "./CropCorrelationChart";
 
 export default function CropComponent() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
@@ -47,7 +48,7 @@ export default function CropComponent() {
         </div>
 
         <div
-        onMouseLeave={()=>setIsCountrySelect(false)}
+          onMouseLeave={() => setIsCountrySelect(false)}
           className={`${
             isCountrySelect
               ? "absolute w-full top-10 h-96 overflow-y-auto z-10 flex-col border bg-primary-foreground rounded-md border-primary shadow-xl"
@@ -100,6 +101,28 @@ export default function CropComponent() {
         yields per hectare, whereas Micronesia and Fiji face severe, sharp
         declines in harvest efficiency over time.
       </div>
+
+      <div>
+        <CropCorrelationChart selectedCountries={selectedCountries} />
+      </div>
+
+      <p className="text-sm">
+        <span className="font-bold">Fig 3.1: </span>The X-axis measures the
+        ratio of crop yield change relative to surface heat change. Expressed in
+        kilograms per hectare per degree Celsius ((kg/ha)/°C), it indicates how
+        much the crop yield changes for every unit increase in surface heat.
+      </p>
+
+      <p>
+        Data shows a dramatic split in how rising temperatures affect crop
+        yields across the Pacific. In countries like Papua New Guinea, warmer
+        weather brings a significant boost, yielding an extra 3,795 kilograms of
+        crops per hectare for every degree of temperature increase. On the flip
+        side, Micronesia faces a severe toll, where crops plummet by over 64,800
+        kilograms per hectare per degree of warming. Meanwhile, French Polynesia
+        stands completely apart as a steady outlier, showing virtually zero
+        change in crop yields no matter how much the temperature shifts.
+      </p>
     </div>
   );
 }

@@ -12,16 +12,21 @@ import {
 import { countryColor } from "../constants/colors";
 import { CustomToolTip } from "./CustomToolTip";
 import { cn } from "../lib/util";
-import { useWarmingOceanAnalysis } from "../services/useWarningOceanAnalysis";
+import { useCropAnalysis } from "../services/cropAnalysis";
 
 interface ScatterChartProps {
   selectedCountries: string[];
 }
 
+// Clean compact number formatter (e.g., -65k, 50k, 0) without cluttering ticks with units
+const formatCompactNumber = (value: number) => {
+  if (value === 0) return "0";
+  return `${(value / 1000).toFixed(0)}k`;
+};
+
 const OceanCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
-  const { countryInfluence: rawData } =
-    useWarmingOceanAnalysis(selectedCountries);
-    
+  const { countryInfluence: rawData } = useCropAnalysis(selectedCountries);
+
   // Safely scale decimals to percentages and cap at 100% max
   const chartData =
     rawData?.map((d) => {
@@ -42,28 +47,28 @@ const OceanCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
 
   return (
     <div className="flex flex-col gap-5">
-      <h1>Relationship between surface heat and ocean warming</h1>
+      <h1>Crop yield response to surface heat by country</h1>
       <p className="text-xs">Strength (%)</p>
       <ResponsiveContainer className={cn("w-full h-full min-h-[350px]")}>
         <ScatterChart margin={{ top: 15, right: 15, bottom: 5, left: 5 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
+          
           <XAxis
             type="number"
             dataKey="slope"
-            name="Warming Rate"
-            domain={[0.6, 1.1]}
+            name="Yield Change Rate"
             stroke="#64748b"
             tick={{ fontSize: 11, fill: cn("text-primary") }}
             axisLine={false}
             tickLine={false}
-            tickFormatter={(value) => `${value}`}
+            tickFormatter={formatCompactNumber}
           />
 
           <YAxis
             type="number"
             dataKey="rSquared"
             name="Connection Strength"
-            domain={[0, 100]} // Expanded to fit the 0% to 100% data range properly
+            domain={[0, 100]}
             stroke="#94a3b8"
             tick={{ fontSize: 11, fill: cn("text-primary") }}
             tickFormatter={(value) => `${value}`}
@@ -91,7 +96,7 @@ const OceanCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
           </Scatter>
         </ScatterChart>
       </ResponsiveContainer>
-      <p className="text-sm text-center">Warming Rate (°C/°C)</p>
+      <p className="text-sm text-center">Kg/Ha per 1°C</p>
     </div>
   );
 };

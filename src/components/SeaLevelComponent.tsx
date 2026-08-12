@@ -109,9 +109,10 @@ export default function SeaLevelComponent() {
       </div>
 
       <p className="text-sm">
-        <span className="font-bold">Note: </span>We used statistical
-        calculations on sea level and temperature data to determine the warming
-        rates and connection strengths for each island nation.
+        <span className="font-bold">Fig 2.1 : </span>The X-axis measures the ratio
+        of sea level change relative to surface heat change. Expressed in meters
+        per degree Celsius (meters/°C), it indicates how much the sea level
+        rises for every unit increase in surface heat.
       </p>
 
       <div>

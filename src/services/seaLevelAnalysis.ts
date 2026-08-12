@@ -185,7 +185,6 @@ export const useSeaLevelAnalysis=(externalSelectedCountries?:string[])=>{
         return countryInfluence.filter(d => selectedCountries.length === 0 || selectedCountries.includes(d.country));
     }, [countryInfluence, selectedCountries]);
 
-    console.log('FILTERED INFLUENCE:', countryInfluence)
 
     //which has the most/least influence from temperature(regression)
 

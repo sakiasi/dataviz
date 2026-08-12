@@ -109,21 +109,22 @@ const WarmingOceanComponent = () => {
       </div>
 
       <p className="text-sm">
-        <span className="font-bold">Note: </span>20 out of 21 nations clustering
-        tightly in the top-right corner. French Polynesia sits uniquely lower as
-        the region's only slow-warming outlier.
+        <span className="font-bold">Fig 1.1 : </span>The X-axis measures the ratio
+        of sea surface temperature change relative to surface heat change.
+        Expressed in degrees Celsius per degree Celsius (°C/°C), it indicates
+        how much the ocean warms for every unit increase in surface heat.
       </p>
 
       <div>
         <p>
-          Data shows a powerful relationship between rising surface heat
-          and ocean warming across the Pacific. In 20 out of 21 nations,
-          atmospheric fluctuations closely match over 91% of marine heat
-          trends—clustering tightly in a near-perfect, 1:1 thermal lockstep
-          where every 1°C of air warming corresponds to roughly 1°C of sea
-          warming. French Polynesia sits uniquely lower as the region's only
-          slow-warming outlier, experiencing an ocean temperature increase of
-          0.65°C per degree of air warming.
+          Data shows a powerful relationship between rising surface heat and
+          ocean warming across the Pacific. In 20 out of 21 nations, atmospheric
+          fluctuations closely match over 91% of marine heat trends—clustering
+          tightly in a near-perfect, 1:1 thermal lockstep where every 1°C of air
+          warming corresponds to roughly 1°C of sea warming. French Polynesia
+          sits uniquely lower as the region's only slow-warming outlier,
+          experiencing an ocean temperature increase of 0.65°C per degree of air
+          warming.
         </p>
       </div>
     </div>

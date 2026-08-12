@@ -20,7 +20,6 @@ interface ScatterChartProps {
 
 const SeaCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
   const { countryInfluence: rawData } = useSeaLevelAnalysis(selectedCountries);
-  const toolTipUnits = "%";
 
   // Safely scale decimals to percentages and cap at 100% max
   const chartData =
@@ -42,8 +41,8 @@ const SeaCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
 
   return (
     <div className="flex flex-col gap-5">
-      <h1>Relationship between surface heat and sea level</h1>
-      <p className="text-xs">Strength</p>
+      <h1>Sea level response to surface heat by country</h1>
+      <p className="text-xs">Strength (%)</p>
       <ResponsiveContainer className={cn("w-full h-full min-h-[350px]")}>
         <ScatterChart margin={{ top: 15, right: 15, bottom: 5, left: 5 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
@@ -56,7 +55,7 @@ const SeaCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
             tick={{ fontSize: 11, fill: cn("text-primary") }}
             axisLine={false}
             tickLine={false}
-            tickFormatter={(value) => `${Number(value).toFixed(2)}°C`} // Rounds to 2 decimal places
+            tickFormatter={(value) => `${Number(value).toFixed(2)}`} // Rounds to 2 decimal places
           />
 
           <YAxis
@@ -66,7 +65,7 @@ const SeaCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
             domain={[0, 100]} // Expanded to fit the 0% to 100% data range properly
             stroke="#94a3b8"
             tick={{ fontSize: 11, fill: cn("text-primary") }}
-            tickFormatter={(value) => `${value}${toolTipUnits}`}
+            tickFormatter={(value) => `${value}`}
             width={40}
             axisLine={false}
             tickLine={false}
@@ -74,7 +73,7 @@ const SeaCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
 
           <Tooltip
             content={<CustomToolTip />}
-            cursor={{ fill: "rgba(255, 255, 255, 0.03)" }}
+            cursor={{ fill:  "rgba(255, 255, 255, 0.03)" }}
           />
 
           <Scatter
@@ -91,7 +90,7 @@ const SeaCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
           </Scatter>
         </ScatterChart>
       </ResponsiveContainer>
-      <p className="text-sm text-center">Warming Rate</p>
+      <p className="text-sm text-center">Meters per °C</p>
     </div>
   );
 };

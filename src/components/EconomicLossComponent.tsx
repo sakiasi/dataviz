@@ -49,7 +49,7 @@ export default function EconomicLossComponent() {
         </div>
 
         <div
-          onMouseLeave={() => setIsCountrySelect(false) }
+          onMouseLeave={() => setIsCountrySelect(false)}
           className={`${
             isCountrySelect
               ? "absolute w-full top-10 h-96 overflow-y-auto z-10 flex-col border bg-primary-foreground rounded-md border-primary shadow-xl"
@@ -79,18 +79,9 @@ export default function EconomicLossComponent() {
 
       <EconomicLossChart selectedCountries={selectedCountries} />
 
-      <p
-        style={{
-          fontSize: "0.85rem",
-          color: "#6c757d",
-          fontStyle: "italic",
-          marginTop: "8px",
-          lineHeight: "1.4",
-        }}
-      >
-        <strong>Note.</strong> Livestock yield data (Kg/Ha) spanning 1962–2022
-        generated from <em className="underline decoration-primary">Surface Temperature anomalies.csv</em> and{" "}
-        <em>Sea Level Anomalies.csv</em>.
+      <p className="text-sm text-slate-600 mt-2">
+        <span className="font-bold text-slate-800">Fig 7.0 : </span>The X-axis
+        represents the monitoring years, while the Y-axis tracks observed cost of damage from natural disasters.
       </p>
 
       <div className="">

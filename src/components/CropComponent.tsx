@@ -80,18 +80,10 @@ export default function CropComponent() {
         <CropChart selectedCountries={selectedCountries} />
       </div>
 
-      <p
-        style={{
-          fontSize: "0.85rem",
-          color: "#6c757d",
-          fontStyle: "italic",
-          marginTop: "8px",
-          lineHeight: "1.4",
-        }}
-      >
-        <strong>Note.</strong> Livestock yield data (Kg/Ha) spanning 1962–2022
-        generated from <em>Surface Temperature anomalies.csv</em> and{" "}
-        <em>Sea Level Anomalies.csv</em>.
+      <p className="text-sm text-slate-600 mt-2">
+        <span className="font-bold text-slate-800">Fig 4.0 : </span>The X-axis
+        represents the monitoring years, while the Y-axis tracks observed crop
+        yield in kilograms per hectare. 
       </p>
 
       <div className="">
@@ -107,7 +99,7 @@ export default function CropComponent() {
       </div>
 
       <p className="text-sm">
-        <span className="font-bold">Fig 3.1: </span>The X-axis measures the
+        <span className="font-bold">Fig 4.1: </span>The X-axis measures the
         ratio of crop yield change relative to surface heat change. Expressed in
         kilograms per hectare per degree Celsius ((kg/ha)/°C), it indicates how
         much the crop yield changes for every unit increase in surface heat.

@@ -80,18 +80,10 @@ const WarmingOceanComponent = () => {
         <WarmingOceanChart selectedCountries={selectedCountries} />
       </div>
 
-      <p
-        style={{
-          fontSize: "0.85rem",
-          color: "#6c757d",
-          fontStyle: "italic",
-          marginTop: "8px",
-          lineHeight: "1.4",
-        }}
-      >
-        <strong>Note.</strong> Livestock yield data (Kg/Ha) spanning 1962–2022
-        generated from <em>Surface Temperature anomalies.csv</em> and{" "}
-        <em>Sea Level Anomalies.csv</em>.
+      <p className="text-sm text-slate-600 mt-2">
+        <span className="font-bold text-slate-800">Fig 2.0 : </span>The X-axis
+        represents the monitoring years, while the Y-axis tracks observed
+        sea surface temperature anomalies relative to the baseline.
       </p>
 
       <div>
@@ -109,8 +101,8 @@ const WarmingOceanComponent = () => {
       </div>
 
       <p className="text-sm">
-        <span className="font-bold">Fig 1.1 : </span>The X-axis measures the ratio
-        of sea surface temperature change relative to surface heat change.
+        <span className="font-bold">Fig 2.1 : </span>The X-axis measures the
+        ratio of sea surface temperature change relative to surface heat change.
         Expressed in degrees Celsius per degree Celsius (°C/°C), it indicates
         how much the ocean warms for every unit increase in surface heat.
       </p>

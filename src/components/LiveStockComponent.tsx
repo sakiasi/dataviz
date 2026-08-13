@@ -84,18 +84,9 @@ export default function LiveStockComponent() {
         <LiveStockChart selectedCountries={selectedCountries} />
       </div>
 
-      <p
-        style={{
-          fontSize: "0.85rem",
-          color: "#6c757d",
-          fontStyle: "italic",
-          marginTop: "8px",
-          lineHeight: "1.4",
-        }}
-      >
-        <strong>Note.</strong> Livestock yield data (Kg/Ha) spanning 1962–2022
-        generated from <em>Surface Temperature anomalies.csv</em> and{" "}
-        <em>Sea Level Anomalies.csv</em>.
+      <p className="text-sm text-slate-600 mt-2">
+        <span className="font-bold text-slate-800">Fig 5.0 : </span>The X-axis
+        represents the monitoring years, while the Y-axis tracks observed livestock yield in kilograms per hectare.
       </p>
 
       <div className="">
@@ -108,10 +99,11 @@ export default function LiveStockComponent() {
 
       <LivestockCorrelationChart selectedCountries={selectedCountries} />
       <p className="text-sm">
-        <span className="font-bold">Fig 4.1: </span>The X-axis measures the
-        ratio of livestock yield change relative to surface heat change. Expressed in
-        kilograms per animal per degree Celsius ((kg/animal)/°C), it indicates how
-        much the livestock yield changes for every unit increase in surface heat.
+        <span className="font-bold">Fig 5.1: </span>The X-axis measures the
+        ratio of livestock yield change relative to surface heat change.
+        Expressed in kilograms per animal per degree Celsius ((kg/animal)/°C),
+        it indicates how much the livestock yield changes for every unit
+        increase in surface heat.
       </p>
       <p>
         Data shows a varied pattern in how rising temperatures affect livestock

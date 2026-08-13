@@ -80,18 +80,10 @@ export default function SeaLevelComponent() {
 
       <SeaChart selectedCountries={selectedCountries} />
 
-      <p
-        style={{
-          fontSize: "0.85rem",
-          color: "#6c757d",
-          fontStyle: "italic",
-          marginTop: "8px",
-          lineHeight: "1.4",
-        }}
-      >
-        <strong>Note.</strong> Livestock yield data (Kg/Ha) spanning 1962–2022
-        generated from <em>Surface Temperature anomalies.csv</em> and{" "}
-        <em>Sea Level Anomalies.csv</em>.
+      <p className="text-sm text-slate-600 mt-2">
+        <span className="font-bold text-slate-800">Fig 3.0 : </span>The X-axis
+        represents the monitoring years, while the Y-axis tracks observed sea
+        level anomalies relative to the baseline.
       </p>
 
       <div className="">
@@ -109,10 +101,10 @@ export default function SeaLevelComponent() {
       </div>
 
       <p className="text-sm">
-        <span className="font-bold">Fig 2.1 : </span>The X-axis measures the ratio
-        of sea level change relative to surface heat change. Expressed in meters
-        per degree Celsius (meters/°C), it indicates how much the sea level
-        rises for every unit increase in surface heat.
+        <span className="font-bold">Fig 3.1 : </span>The X-axis measures the
+        ratio of sea level change relative to surface heat change. Expressed in
+        meters per degree Celsius (meters/°C), it indicates how much the sea
+        level rises for every unit increase in surface heat.
       </p>
 
       <div>

@@ -70,7 +70,7 @@ export default function TempComponent() {
                   );
                 }}
               >
-                <Switch checked={selectedCountries.includes(d)}/>
+                <Switch checked={selectedCountries.includes(d)} />
                 <span>{d}</span>
               </div>
             ))}
@@ -79,18 +79,10 @@ export default function TempComponent() {
 
       <TemperatureChart selectedCountries={selectedCountries} />
 
-      <p
-        style={{
-          fontSize: "0.85rem",
-          color: "#6c757d",
-          fontStyle: "italic",
-          marginTop: "8px",
-          lineHeight: "1.4",
-        }}
-      >
-        <strong>Note.</strong> Livestock yield data (Kg/Ha) spanning 1962–2022
-        generated from <em>Surface Temperature anomalies.csv</em> and{" "}
-        <em>Sea Level Anomalies.csv</em>.
+      <p className="text-sm text-slate-600 mt-2">
+        <span className="font-bold text-slate-800">Fig 1.1 : </span>The X-axis represents the monitoring years,
+        while the Y-axis tracks observed temperature anomalies relative to the
+        baseline.
       </p>
 
       <p>

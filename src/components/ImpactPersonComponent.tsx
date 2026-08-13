@@ -49,7 +49,7 @@ export default function ImpactPersonComponent() {
         </div>
 
         <div
-          onMouseLeave={()=>setIsCountrySelect(false)}
+          onMouseLeave={() => setIsCountrySelect(false)}
           className={`${
             isCountrySelect
               ? "absolute w-full top-10 h-96 overflow-y-auto z-10 flex-col border bg-primary-foreground rounded-md border-primary shadow-xl"
@@ -81,21 +81,13 @@ export default function ImpactPersonComponent() {
         <ImpactPersonChart selectedCountries={selectedCountries} />
       </div>
 
-      <p
-        style={{
-          fontSize: "0.85rem",
-          color: "#6c757d",
-          fontStyle: "italic",
-          marginTop: "8px",
-          lineHeight: "1.4",
-        }}
-      >
-        <strong>Note.</strong> Livestock yield data (Kg/Ha) spanning 1962–2022
-        generated from <em>Surface Temperature anomalies.csv</em> and{" "}
-        <em>Sea Level Anomalies.csv</em>.
+      <p className="text-sm text-slate-600 mt-2">
+        <span className="font-bold text-slate-800">Fig 6.0 : </span>The X-axis
+        represents the monitoring years, while the Y-axis tracks observed
+        individuals affected by natural disaster.
       </p>
 
-      <div className="">
+      <div>
         The data highlights sharp contrasts in the human impact of disasters
         across the Pacific: nations like Fiji, the Solomon Islands, and Tonga
         experience massive, steeply rising numbers of directly affected

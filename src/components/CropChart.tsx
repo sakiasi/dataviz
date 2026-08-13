@@ -7,7 +7,7 @@ const CropChart = ({ selectedCountries }: { selectedCountries: string[] }) => {
 
   return (
     <div className="h-100 w-full flex flex-col gap-5">
-      <h1>Crop yield over time</h1>
+      <h1 className="text-center font-bold">Crop yield over time</h1>
       <p className="text-xs">Yield (Kg/ha)</p>
       <ChartComponent toolTipUnits="kg/ha" chartData={chartData} lineData={lineData} />
       <p className="text-xs text-center">Years</p>

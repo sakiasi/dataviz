@@ -11,7 +11,7 @@ export default function ImpactPersonComponent() {
 
   return (
     <div className=" flex flex-col gap-5">
-      <h1 className="text-2xl font-bold tracking-tight">
+      <h1 className="text-2xl font-bold tracking-tight text-center md:text-start">
         Does surface heat impact human lives ?
       </h1>
 

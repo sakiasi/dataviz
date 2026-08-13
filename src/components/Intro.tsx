@@ -3,7 +3,7 @@ import me from "../../public/me.png";
 export const IntroComponent = () => {
   return (
     <div className="flex flex-col gap-5 pt-20">
-      <h1 className="text-4xl font-bold tracking-tight">
+      <h1 className="text-4xl font-bold tracking-tight text-center">
         The Pacific Climate
         <span className="block text-2xl text-primary mt-1 font-medium">
           Analyzing Regional Shifts & Socio-Economic Impact

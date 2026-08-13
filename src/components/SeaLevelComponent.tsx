@@ -14,7 +14,7 @@ export default function SeaLevelComponent() {
 
   return (
     <div className=" flex flex-col gap-5">
-      <h1 className="text-2xl font-bold tracking-tight">
+      <h1 className="text-2xl font-bold tracking-tight text-center md:text-start">
         Is the sea level rising ?
       </h1>
 

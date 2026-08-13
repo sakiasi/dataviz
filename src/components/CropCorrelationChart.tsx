@@ -30,7 +30,7 @@ const OceanCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
 
   return (
     <div className="flex flex-col gap-5">
-      <h1>Crop yield response to surface heat by country</h1>
+      <h1 className="text-center font-bold">Crop yield response to surface heat by country</h1>
       <p className="text-xs">Strength (%)</p>
       <CorrelationChart chartData={chartData} />
       <p className="text-xs text-center">Kg/Ha per 1°C</p>

@@ -28,7 +28,7 @@ const SeaCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
 
   return (
     <div className="flex flex-col gap-5">
-      <h1>Sea level response to surface heat by country</h1>
+      <h1 className="text-center font-bold">Sea level response to surface heat by country</h1>
       <p className="text-xs">Strength (%)</p>
       <CorrelationChart chartData={chartData} />
       <p className="text-xs text-center">Meters per °C</p>

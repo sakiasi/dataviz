@@ -11,7 +11,7 @@ const EconomicLossChart = ({
 
   return (
     <div className="h-100 w-full flex flex-col gap-5">
-      <h1>Cost of damages over time</h1>
+      <h1 className="text-center font-bold">Cost of damages over time</h1>
       <p className="text-xs">US Dollars</p>
       <ChartComponent toolTipUnits="USD" chartData={chartData} lineData={lineData} />
       <p className="text-xs text-center">Years</p>

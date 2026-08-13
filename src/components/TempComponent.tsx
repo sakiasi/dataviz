@@ -12,7 +12,7 @@ export default function TempComponent() {
 
   return (
     <div className="text-foreground flex flex-col gap-5">
-      <h1 className="text-2xl font-bold tracking-tight normal-case">
+      <h1 className="text-2xl font-bold tracking-tight normal-case text-center md:text-start">
         Is the surface heat rising ?
       </h1>
 
@@ -43,7 +43,7 @@ export default function TempComponent() {
           setSelectedCountries={setSelectedCountries}
         />
       </div>
-
+      
       <TemperatureChart selectedCountries={selectedCountries} />
 
       <p className="text-sm  mt-2">

@@ -12,7 +12,7 @@ export interface CropInterface {
 export const useCropAnalysis=(externalSelectedCountries?:string[])=>{
 
     const [internalSelected, setInternalSelected] = useState<string[]>([
-  'Marshall Islands',
+  "Marshall Islands",
   'Kiribati',
   'Papua New Guinea',
   'Micronesia, Federated State of',
@@ -191,6 +191,8 @@ export const useCropAnalysis=(externalSelectedCountries?:string[])=>{
         const filteredInfluence = useMemo(() => {
             return countryInfluence.filter(d => selectedCountries.length === 0 || selectedCountries.includes(d.country));
         }, [countryInfluence, selectedCountries]);
+
+        console.log('COUNTRY INFLUENCE:', countryInfluence)
 
     return {selectedCountries, setSelectedCountries, countryInfluence, countryList, chartData, lineData, slope,  influenceAnalysis: filteredInfluence }
 

@@ -80,8 +80,8 @@ const WarmingOceanComponent = () => {
         <WarmingOceanChart selectedCountries={selectedCountries} />
       </div>
 
-      <p className="text-sm text-slate-600 mt-2">
-        <span className="font-bold text-slate-800">Fig 2.0 : </span>The X-axis
+      <p className="text-sm  mt-2">
+        <span className="font-bold ">Fig 2.0 : </span>The X-axis
         represents the monitoring years, while the Y-axis tracks observed
         sea surface temperature anomalies relative to the baseline.
       </p>

@@ -9,54 +9,57 @@ import ReferenceComponent from "./components/ReferenceComponent.tsx";
 import SeaLevelComponent from "./components/SeaLevelComponent.tsx";
 import TempComponent from "./components/TempComponent.tsx";
 import WarmingOceanComponent from "./components/WarmingOceanComponent.tsx";
+import { ThemeProvider } from "./ThemeProvider.tsx";
 
 const App = () => {
   return (
-    <div className="mx-auto max-w-prose mt-5 mb-10 p-2 flex flex-col gap-5 ">
-      <div>
-        <IntroComponent />
-      </div>
+    <ThemeProvider>
+      <div className="mx-auto max-w-prose mt-5 mb-10 p-2 flex flex-col gap-5 ">
+        <div>
+          <IntroComponent />
+        </div>
 
-      <div>
-        <TempComponent />
-      </div>
+        <div>
+          <TempComponent />
+        </div>
 
-      <div>
-        <WarmingOceanComponent />
-      </div>
+        <div>
+          <WarmingOceanComponent />
+        </div>
 
-      <div>
-        <SeaLevelComponent />
-      </div>
+        <div>
+          <SeaLevelComponent />
+        </div>
 
-      <div>
-        <CropComponent />
-      </div>
+        <div>
+          <CropComponent />
+        </div>
 
-      <div>
-        <LiveStockComponent />
-      </div>
+        <div>
+          <LiveStockComponent />
+        </div>
 
-      <div>
-        <ImpactPersonChart />
-      </div>
+        <div>
+          <ImpactPersonChart />
+        </div>
 
-      <div>
-        <EconomicLossComponent />
-      </div>
+        <div>
+          <EconomicLossComponent />
+        </div>
 
-      <div>
-        <ConclusionComponent />
-      </div>
+        <div>
+          <ConclusionComponent />
+        </div>
 
-      <div>
-        <ReferenceComponent />
-      </div>
+        <div>
+          <ReferenceComponent />
+        </div>
 
-      <div>
-        <MethodologyComponent />
+        <div>
+          <MethodologyComponent />
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 };
 

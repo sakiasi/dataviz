@@ -1,28 +1,10 @@
-import {
-  CartesianGrid,
-  Cell,
-  ResponsiveContainer,
-  Scatter,
-  ScatterChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 
-import { countryColor } from "../constants/colors";
-import { CustomToolTip } from "./CustomToolTip";
-import { cn } from "../lib/util";
 import { useLivestockAnalysis } from "../services/liveStockAnalysis";
+import CorrelationChart from "./CorrelationChart";
 
 interface ScatterChartProps {
   selectedCountries: string[];
 }
-
-// Clean compact number formatter (e.g., -65k, 50k, 0) without cluttering ticks with units
-const formatCompactNumber = (value: number) => {
-  if (value === 0) return "0";
-  return `${(value / 1000).toFixed(0)}k`;
-};
 
 const LivestockCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
   const { countryInfluence: rawData } = useLivestockAnalysis(selectedCountries);
@@ -49,54 +31,8 @@ const LivestockCorrelationChart = ({ selectedCountries }: ScatterChartProps) => 
     <div className="flex flex-col gap-5">
       <h1>Livestock yield response to surface heat by country</h1>
       <p className="text-xs">Strength (%)</p>
-      <ResponsiveContainer className={cn("w-full h-full min-h-[350px]")}>
-        <ScatterChart margin={{ top: 15, right: 15, bottom: 5, left: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          
-          <XAxis
-            type="number"
-            dataKey="slope"
-            name="Yield Change Rate"
-            stroke="#64748b"
-            tick={{ fontSize: 11, fill: cn("text-primary") }}
-            axisLine={false}
-            tickLine={false}
-            tickFormatter={formatCompactNumber}
-          />
-
-          <YAxis
-            type="number"
-            dataKey="rSquared"
-            name="Connection Strength"
-            domain={[0, 100]}
-            stroke="#94a3b8"
-            tick={{ fontSize: 11, fill: cn("text-primary") }}
-            tickFormatter={(value) => `${value}`}
-            width={40}
-            axisLine={false}
-            tickLine={false}
-          />
-
-          <Tooltip
-            content={<CustomToolTip isCorrelation />}
-            cursor={{ fill: "rgba(255, 255, 255, 0.03)" }}
-          />
-
-          <Scatter
-            name="Pacific Island Nations"
-            data={chartData}
-            shape="circle"
-          >
-            {chartData.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={countryColor[entry.country] || "#0284c7"}
-              />
-            ))}
-          </Scatter>
-        </ScatterChart>
-      </ResponsiveContainer>
-      <p className="text-sm text-center">Kg/Animal per 1°C</p>
+      <CorrelationChart chartData={chartData} />
+      <p className="text-xs text-center">Kg/Animal per 1°C</p>
     </div>
   );
 };

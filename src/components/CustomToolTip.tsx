@@ -30,7 +30,7 @@ export const CustomToolTip = ({
 }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-primary-foreground border border-primary p-3 rounded shadow-xl">
+      <div className="bg-foreground text-background p-2">
         {isCorrelation && (
           <div className="flex items-center gap-2">
             <div

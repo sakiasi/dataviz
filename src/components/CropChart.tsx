@@ -8,9 +8,9 @@ const CropChart = ({ selectedCountries }: { selectedCountries: string[] }) => {
   return (
     <div className="h-100 w-full flex flex-col gap-5">
       <h1>Crop yield over time</h1>
-      <p className="text-xs text-slate-500">Yield (Kg/ha)</p>
+      <p className="text-xs">Yield (Kg/ha)</p>
       <ChartComponent toolTipUnits="kg/ha" chartData={chartData} lineData={lineData} />
-      <p className="text-xs text-center text-slate-500">Years</p>
+      <p className="text-xs text-center">Years</p>
     </div>
   );
 };

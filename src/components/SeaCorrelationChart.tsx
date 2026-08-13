@@ -1,18 +1,6 @@
-import {
-  CartesianGrid,
-  Cell,
-  ResponsiveContainer,
-  Scatter,
-  ScatterChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 
-import { countryColor } from "../constants/colors";
-import { CustomToolTip } from "./CustomToolTip";
-import { cn } from "../lib/util";
 import { useSeaLevelAnalysis } from "../services/seaLevelAnalysis";
+import CorrelationChart from "./CorrelationChart";
 
 interface ScatterChartProps {
   selectedCountries: string[];
@@ -21,7 +9,6 @@ interface ScatterChartProps {
 const SeaCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
   const { countryInfluence: rawData } = useSeaLevelAnalysis(selectedCountries);
 
-  // Safely scale decimals to percentages and cap at 100% max
   const chartData =
     rawData?.map((d) => {
       const rawVal = d.rSquared <= 1 ? d.rSquared * 100 : d.rSquared;
@@ -43,54 +30,8 @@ const SeaCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
     <div className="flex flex-col gap-5">
       <h1>Sea level response to surface heat by country</h1>
       <p className="text-xs">Strength (%)</p>
-      <ResponsiveContainer className={cn("w-full h-full min-h-[350px]")}>
-        <ScatterChart margin={{ top: 15, right: 15, bottom: 5, left: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis
-            type="number"
-            dataKey="slope"
-            name="Warming Rate"
-            domain={[0, 0.3]} // Adjust this to match your actual slope range, or remove domain entirely for auto-scaling
-            stroke="#64748b"
-            tick={{ fontSize: 11, fill: cn("text-primary") }}
-            axisLine={false}
-            tickLine={false}
-            tickFormatter={(value) => `${Number(value).toFixed(2)}`} // Rounds to 2 decimal places
-          />
-
-          <YAxis
-            type="number"
-            dataKey="rSquared"
-            name="Connection Strength"
-            domain={[0, 100]} // Expanded to fit the 0% to 100% data range properly
-            stroke="#94a3b8"
-            tick={{ fontSize: 11, fill: cn("text-primary") }}
-            tickFormatter={(value) => `${value}`}
-            width={40}
-            axisLine={false}
-            tickLine={false}
-          />
-
-          <Tooltip
-            content={<CustomToolTip isCorrelation />}
-            cursor={{ fill:  "rgba(255, 255, 255, 0.03)" }}
-          />
-
-          <Scatter
-            name="Pacific Island Nations"
-            data={chartData}
-            shape="circle"
-          >
-            {chartData.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={countryColor[entry.country] || "#0284c7"}
-              />
-            ))}
-          </Scatter>
-        </ScatterChart>
-      </ResponsiveContainer>
-      <p className="text-sm text-center">Meters per °C</p>
+      <CorrelationChart chartData={chartData} />
+      <p className="text-xs text-center">Meters per °C</p>
     </div>
   );
 };

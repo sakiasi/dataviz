@@ -13,6 +13,7 @@ import { countryColor } from "../constants/colors";
 import { CustomToolTip } from "./CustomToolTip";
 import { cn } from "../lib/util";
 import { useCropAnalysis } from "../services/cropAnalysis";
+import CorrelationChart from "./CorrelationChart";
 
 interface ScatterChartProps {
   selectedCountries: string[];
@@ -49,54 +50,8 @@ const OceanCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
     <div className="flex flex-col gap-5">
       <h1>Crop yield response to surface heat by country</h1>
       <p className="text-xs">Strength (%)</p>
-      <ResponsiveContainer className={cn("w-full h-full min-h-[350px]")}>
-        <ScatterChart margin={{ top: 15, right: 15, bottom: 5, left: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          
-          <XAxis
-            type="number"
-            dataKey="slope"
-            name="Yield Change Rate"
-            stroke="#64748b"
-            tick={{ fontSize: 11, fill: cn("text-primary") }}
-            axisLine={false}
-            tickLine={false}
-            tickFormatter={formatCompactNumber}
-          />
-
-          <YAxis
-            type="number"
-            dataKey="rSquared"
-            name="Connection Strength"
-            domain={[0, 100]}
-            stroke="#94a3b8"
-            tick={{ fontSize: 11, fill: cn("text-primary") }}
-            tickFormatter={(value) => `${value}`}
-            width={40}
-            axisLine={false}
-            tickLine={false}
-          />
-
-          <Tooltip
-            content={<CustomToolTip isCorrelation />}
-            cursor={{ fill: "rgba(255, 255, 255, 0.03)" }}
-          />
-
-          <Scatter
-            name="Pacific Island Nations"
-            data={chartData}
-            shape="circle"
-          >
-            {chartData.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={countryColor[entry.country] || "#0284c7"}
-              />
-            ))}
-          </Scatter>
-        </ScatterChart>
-      </ResponsiveContainer>
-      <p className="text-sm text-center">Kg/Ha per 1°C</p>
+      <CorrelationChart chartData={chartData} />
+      <p className="text-xs text-center">Kg/Ha per 1°C</p>
     </div>
   );
 };

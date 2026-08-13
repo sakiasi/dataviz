@@ -1,10 +1,8 @@
-import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
-import { handleSelectCountries } from "../services/handleSelectCountries";
 import { useLivestockAnalysis } from "../services/liveStockAnalysis";
 import LiveStockChart from "./LivestockChart";
-import { Switch } from "./ui/Switch";
 import LivestockCorrelationChart from "./LivestockCorrelationChart";
+import SelectCountryComponent from "./SelectCountryComponent";
 
 export default function LiveStockComponent() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
@@ -43,49 +41,21 @@ export default function LiveStockComponent() {
       </div>
 
       <div className="relative">
-        <div
-          onMouseDown={() => setIsCountrySelect((prev) => !prev)}
-          className="flex hover:text-secondary justify-around md:w-3/6 p-2 hover:cursor-pointer hover:bg-primary items-center border-primary border-b"
-        >
-          <p> Select Country ({selectedCountries.length} selected) </p>
-          {isCountrySelect ? <ChevronUp /> : <ChevronDown />}
-        </div>
-
-        <div
-          onMouseLeave={() => setIsCountrySelect(false)}
-          className={`${
-            isCountrySelect
-              ? "absolute w-full top-10 h-96 overflow-y-auto z-10 flex-col border bg-primary-foreground rounded-md border-primary shadow-xl"
-              : "hidden"
-          }`}
-        >
-          {countryList
-            .sort((a, b) => a.localeCompare(b))
-            .map((d, index) => (
-              <div
-                key={index}
-                className="hover:cursor-pointer hover:bg-secondary p-2 border-b border-secondary flex items-center gap-5"
-                onMouseDown={() => {
-                  handleSelectCountries(
-                    d,
-                    setSelectedCountries,
-                    selectedCountries,
-                  );
-                }}
-              >
-                <Switch checked={selectedCountries.includes(d)} />
-                <span>{d}</span>
-              </div>
-            ))}
-        </div>
+        <SelectCountryComponent
+          countryList={countryList}
+          isCountrySelect={isCountrySelect}
+          selectedCountries={selectedCountries}
+          setIsCountrySelect={setIsCountrySelect}
+          setSelectedCountries={setSelectedCountries}
+        />
       </div>
 
       <div>
         <LiveStockChart selectedCountries={selectedCountries} />
       </div>
 
-      <p className="text-sm text-slate-600 mt-2">
-        <span className="font-bold text-slate-800">Fig 5.0 : </span>The X-axis
+      <p className="text-sm mt-2">
+        <span className="font-bold">Fig 5.0 : </span>The X-axis
         represents the monitoring years, while the Y-axis tracks observed livestock yield in kilograms per animal.
       </p>
 

@@ -189,6 +189,7 @@ export const useWarmingOceanAnalysis=(externalSelectedCountries?:string[])=>{
 
 
     //which has the most/least influence from temperature(regression)
+    console.log('country influence:', countryInfluence)
 
     return {selectedCountries, setSelectedCountries, countryInfluence, countryList, chartData, lineData, slope,  influenceAnalysis: filteredInfluence }
 

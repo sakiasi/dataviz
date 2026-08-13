@@ -176,8 +176,6 @@ export const useLivestockAnalysis = (externalSelectedCountries?: string[]) => {
             return countryInfluence.filter(d => selectedCountries.length === 0 || selectedCountries.includes(d.country));
         }, [countryInfluence, selectedCountries]);
 
-        console.log('COUNTRY INFLUENCE:', countryInfluence)
-
     return {selectedCountries, setSelectedCountries, countryInfluence, countryList, chartData, lineData, slope,  influenceAnalysis: filteredInfluence }
 
 }

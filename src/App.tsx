@@ -8,7 +8,6 @@ import MethodologyComponent from "./components/MethodologyComponent.tsx";
 import ReferenceComponent from "./components/ReferenceComponent.tsx";
 import SeaLevelComponent from "./components/SeaLevelComponent.tsx";
 import TempComponent from "./components/TempComponent.tsx";
-import EnergyTimeline from "./components/TimeLine";
 import WarmingOceanComponent from "./components/WarmingOceanComponent.tsx";
 
 const App = () => {
@@ -16,10 +15,6 @@ const App = () => {
     <div className="mx-auto max-w-prose mt-5 mb-10 p-2 flex flex-col gap-5 ">
       <div>
         <IntroComponent />
-      </div>
-
-      <div>
-        <EnergyTimeline />
       </div>
 
       <div>

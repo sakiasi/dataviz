@@ -86,7 +86,7 @@ export default function LiveStockComponent() {
 
       <p className="text-sm text-slate-600 mt-2">
         <span className="font-bold text-slate-800">Fig 5.0 : </span>The X-axis
-        represents the monitoring years, while the Y-axis tracks observed livestock yield in kilograms per hectare.
+        represents the monitoring years, while the Y-axis tracks observed livestock yield in kilograms per animal.
       </p>
 
       <div className="">

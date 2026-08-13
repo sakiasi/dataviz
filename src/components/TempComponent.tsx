@@ -32,10 +32,7 @@ export default function TempComponent() {
           </a>
           , 2025 was the third warmest year on record since 1850, trailing only
           2024 and 2023, with global annual averages reaching 1.44 ± 0.09 °C
-          above pre-industrial levels. Despite beginning and ending with a
-          modest La Niña event, the year experienced continued extreme warmth
-          driven by greenhouse gases, natural variability, and factors like
-          reduced cloud cover and sulfur aerosols.
+          above pre-industrial levels.
         </p>
       </div>
 

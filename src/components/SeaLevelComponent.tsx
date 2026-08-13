@@ -32,11 +32,7 @@ export default function SeaLevelComponent() {
             Nunn, P. D. (2013)
           </a>
           , as the oceans absorb excess atmospheric heat, thermal expansion and
-          melting ice drive sea levels steadily upward. For low-lying island
-          communities, this creeping tide directly threatens coastal
-          infrastructure, freshwater sources, and agricultural land—establishing
-          the physical catalyst for the displacement and economic losses seen
-          across the region.
+          melting ice drive sea levels steadily upward.
         </p>
       </div>
 

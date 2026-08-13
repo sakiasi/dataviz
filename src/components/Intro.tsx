@@ -1,4 +1,4 @@
-import me from '../../public/me.png'
+import me from "../../public/me.png";
 
 export const IntroComponent = () => {
   return (
@@ -12,7 +12,7 @@ export const IntroComponent = () => {
 
       <div className="flex items-center gap-3 pt-2  text-sm">
         <div className="h-10 w-10 rounded-full flex items-center justify-center font-semibold text-sky-400">
-          <img className='rounded-full' height={90} width={90} src={`${me}`} />
+          <img className="rounded-full" height={90} width={90} src={`${me}`} />
         </div>
         <div>
           <p className="font-medium ">Sakiasi B. Komai</p>
@@ -30,9 +30,9 @@ export const IntroComponent = () => {
         </li>
         <li>
           <strong className=" font-semibold">Limitations:</strong> We are
-          analyzing long-term historical trends and variations across Pacific
-          island nations rather than performing direct statistical causation or
-          regression modeling between variables.
+          analyzing observed historical trends and linear associations across
+          Pacific island nations to establish directional relationships, rather
+          than proving complete multi-factor causation.
         </li>
       </ul>
     </div>

@@ -50,8 +50,4 @@ export const countryColor = countries.reduce((acc,value,index) => {
 
 }, {} as Record<string, string>)
 
-console.log('COUNTRY COLOR:', countryColor)
-
-
-
 

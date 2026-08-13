@@ -42,7 +42,7 @@ const OceanCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
 
   return (
     <div className="flex flex-col gap-5">
-      <h1>Relationship between surface heat and ocean warming</h1>
+      <h1>Sea surface temperature response to surface heat by country</h1>
       <p className="text-xs">Strength (%)</p>
       <ResponsiveContainer className={cn("w-full h-full min-h-[350px]")}>
         <ScatterChart margin={{ top: 15, right: 15, bottom: 5, left: 5 }}>

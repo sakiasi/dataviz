@@ -1,17 +1,4 @@
-import {
-  CartesianGrid,
-  Cell,
-  ResponsiveContainer,
-  Scatter,
-  ScatterChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 
-import { countryColor } from "../constants/colors";
-import { CustomToolTip } from "./CustomToolTip";
-import { cn } from "../lib/util";
 import { useCropAnalysis } from "../services/cropAnalysis";
 import CorrelationChart from "./CorrelationChart";
 
@@ -19,11 +6,6 @@ interface ScatterChartProps {
   selectedCountries: string[];
 }
 
-// Clean compact number formatter (e.g., -65k, 50k, 0) without cluttering ticks with units
-const formatCompactNumber = (value: number) => {
-  if (value === 0) return "0";
-  return `${(value / 1000).toFixed(0)}k`;
-};
 
 const OceanCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
   const { countryInfluence: rawData } = useCropAnalysis(selectedCountries);

@@ -1,25 +1,25 @@
-import { Sun } from "lucide-react";
 import ConclusionComponent from "./components/ConclusionComponent.tsx";
 import CropComponent from "./components/CropComponent.tsx";
 import EconomicLossComponent from "./components/EconomicLossComponent.tsx";
 import ImpactPersonChart from "./components/ImpactPersonComponent.tsx";
 import { IntroComponent } from "./components/Intro.tsx";
+import LightComponent from "./components/LightComponent.tsx";
 import LiveStockComponent from "./components/LiveStockComponent.tsx";
 import MethodologyComponent from "./components/MethodologyComponent.tsx";
 import ReferenceComponent from "./components/ReferenceComponent.tsx";
 import SeaLevelComponent from "./components/SeaLevelComponent.tsx";
 import TempComponent from "./components/TempComponent.tsx";
 import WarmingOceanComponent from "./components/WarmingOceanComponent.tsx";
+import useScrollDirection from "./services/useScrollDirection.tsx";
 import { ThemeProvider } from "./ThemeProvider.tsx";
-import LightComponent from "./components/LightComponent.tsx";
 
 const App = () => {
+  const scrollDirection = useScrollDirection();
+
   return (
     <ThemeProvider>
       <div className="mx-auto max-w-prose mt-5 mb-10 p-2 flex flex-col gap-5 ">
-
-        <LightComponent/>
-
+        {scrollDirection === "up" && <LightComponent />}
         <div>
           <IntroComponent />
         </div>

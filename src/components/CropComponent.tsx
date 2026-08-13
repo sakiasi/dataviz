@@ -1,9 +1,6 @@
-import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { useCropAnalysis } from "../services/cropAnalysis";
-import { handleSelectCountries } from "../services/handleSelectCountries";
 import CropChart from "./CropChart";
-import { Switch } from "./ui/Switch";
 import CropCorrelationChart from "./CropCorrelationChart";
 import SelectCountryComponent from "./SelectCountryComponent";
 

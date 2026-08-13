@@ -10,16 +10,14 @@ import ReferenceComponent from "./components/ReferenceComponent.tsx";
 import SeaLevelComponent from "./components/SeaLevelComponent.tsx";
 import TempComponent from "./components/TempComponent.tsx";
 import WarmingOceanComponent from "./components/WarmingOceanComponent.tsx";
-import useScrollDirection from "./services/useScrollDirection.tsx";
 import { ThemeProvider } from "./ThemeProvider.tsx";
 
 const App = () => {
-  const scrollDirection = useScrollDirection();
 
   return (
     <ThemeProvider>
       <div className="mx-auto max-w-prose mt-5 mb-10 p-2 flex flex-col gap-5 ">
-        {scrollDirection === "up" && <LightComponent />}
+        <LightComponent />
         <div>
           <IntroComponent />
         </div>

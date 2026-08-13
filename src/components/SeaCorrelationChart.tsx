@@ -72,7 +72,7 @@ const SeaCorrelationChart = ({ selectedCountries }: ScatterChartProps) => {
           />
 
           <Tooltip
-            content={<CustomToolTip />}
+            content={<CustomToolTip isCorrelation />}
             cursor={{ fill:  "rgba(255, 255, 255, 0.03)" }}
           />
 

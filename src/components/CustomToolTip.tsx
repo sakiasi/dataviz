@@ -15,46 +15,57 @@ interface CustomTooltipProps {
     value: number;
     color: string;
     name: string;
-    payload: DataPoint; // This contains your full original country object
+    payload: DataPoint;
   }>;
   label?: string;
   units?: string;
+  isCorrelation?: boolean;
 }
 
 export const CustomToolTip = ({
   active,
   payload,
-  label,
   units,
+  isCorrelation,
 }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-primary-foreground border border-primary p-3 rounded shadow-xl">
-        <div className="flex items-center gap-2">
-          <div
-            style={{
-              backgroundColor:
-                countryColor[payload[0].payload.country] || "#0284c7",
-            }}
-            className="w-3 h-3 rounded-full"
-          ></div>
-          <p className="text-primary font-bold">{payload[0].payload.country}</p>
-        </div>
+        {isCorrelation && (
+          <div className="flex items-center gap-2">
+            <div
+              style={{
+                backgroundColor:
+                  countryColor[payload[0].payload.country] || "#0284c7",
+              }}
+              className="w-3 h-3 rounded-full"
+            ></div>
+            <p className="text-primary font-bold">
+              {payload[0].payload.country}
+            </p>
+          </div>
+        )}
 
         {payload
           .sort((a, b) => b.value - a.value)
           .map((d, i) => {
             return (
               <div key={i} className="flex items-center gap-2 mt-1">
-                <p className="text-sm">
-                  {d.name} :{" "}
+                <div className="text-sm flex gap-2">
+                  <div className="flex items-center gap-2">
+                    <div
+                      className="w-3 h-3 rounded-full"
+                      style={{ backgroundColor: countryColor[d.name] }}
+                    ></div>
+                    {d.name} :
+                  </div>
                   <span className="font-semibold">
                     {d.value.toLocaleString()}
-                  </span>{" "}
+                  </span>
                   {units}
                   {d.name.includes("Connection Strength") ? "%" : null}
                   {d.name.includes("Warming Rate") ? "°C" : null}
-                </p>
+                </div>
               </div>
             );
           })}

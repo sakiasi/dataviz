@@ -178,7 +178,7 @@ export const useWarmingOceanAnalysis=(externalSelectedCountries?:string[])=>{
                 };
             });
 
-        return { tempseaChartData: formattedChartData, countryInfluence: influenceAnalysis };
+        return { tempSeaChartData: formattedChartData, countryInfluence: influenceAnalysis };
 
     }, [tempLookup]);
 

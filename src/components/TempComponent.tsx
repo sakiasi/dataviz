@@ -1,9 +1,7 @@
-import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
-import { handleSelectCountries } from "../services/handleSelectCountries";
 import { useTemperature } from "../services/tempAnalysis";
+import SelectCountryComponent from "./SelectCountryComponent";
 import { TemperatureChart } from "./TempChart";
-import { Switch } from "./ui/Switch";
 
 export default function TempComponent() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
@@ -37,41 +35,13 @@ export default function TempComponent() {
       </div>
 
       <div className="relative">
-        <div
-          onMouseDown={() => setIsCountrySelect((prev) => !prev)}
-          className="flex justify-around md:w-3/6 p-2 hover:cursor-pointer hover:text-secondary hover:bg-primary items-center border-primary border-b"
-        >
-          <p> Select Country ({selectedCountries.length} selected) </p>
-          {isCountrySelect ? <ChevronUp /> : <ChevronDown />}
-        </div>
-
-        <div
-          onMouseLeave={() => setIsCountrySelect(false)}
-          className={`${
-            isCountrySelect
-              ? "absolute w-full top-10 h-90 overflow-y-auto z-10 flex-col border bg-primary-foreground rounded-md border-primary shadow-xl"
-              : "hidden"
-          }`}
-        >
-          {countryList
-            .sort((a, b) => a.localeCompare(b))
-            .map((d, index) => (
-              <div
-                key={index}
-                className="hover:cursor-pointer hover:bg-secondary p-2 border-b border-secondary flex items-center gap-5"
-                onMouseDown={() => {
-                  handleSelectCountries(
-                    d,
-                    setSelectedCountries,
-                    selectedCountries,
-                  );
-                }}
-              >
-                <Switch checked={selectedCountries.includes(d)} />
-                <span>{d}</span>
-              </div>
-            ))}
-        </div>
+        <SelectCountryComponent
+          countryList={countryList}
+          isCountrySelect={isCountrySelect}
+          selectedCountries={selectedCountries}
+          setIsCountrySelect={setIsCountrySelect}
+          setSelectedCountries={setSelectedCountries}
+        />
       </div>
 
       <TemperatureChart selectedCountries={selectedCountries} />

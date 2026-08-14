@@ -1,13 +1,7 @@
-import { useState } from "react";
-import { useEconomicLossAnalysis } from "../services/economicLossAnalysis";
 import EconomicLossChart from "./EconomicLossChart";
-import SelectCountryComponent from "./SelectCountryComponent";
 
 export default function EconomicLossComponent() {
-  const [isCountrySelect, setIsCountrySelect] = useState(false);
 
-  const { selectedCountries, setSelectedCountries, countryList } =
-    useEconomicLossAnalysis();
 
   return (
     <div className=" flex flex-col gap-5">
@@ -37,22 +31,7 @@ export default function EconomicLossComponent() {
         </p>
       </div>
 
-      <div className="relative">
-        <SelectCountryComponent
-          countryList={countryList}
-          isCountrySelect={isCountrySelect}
-          selectedCountries={selectedCountries}
-          setIsCountrySelect={setIsCountrySelect}
-          setSelectedCountries={setSelectedCountries}
-        />
-      </div>
-
-      <EconomicLossChart selectedCountries={selectedCountries} />
-
-      <p className="text-sm mt-2">
-        <span className="font-bold">Fig 7.0 : </span>The X-axis
-        represents the monitoring years, while the Y-axis tracks observed cost of damage from natural disasters.
-      </p>
+      <EconomicLossChart />
 
       <div className="">
         The financial data reveals massive differences in how much disasters

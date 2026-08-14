@@ -2,17 +2,23 @@ import { useState } from "react";
 import { useEconomicLossAnalysis } from "../services/economicLossAnalysis";
 import ChartComponent from "./ChartComponent";
 import { Switch } from "./ui/Switch";
+import SlopeChart from "../services/SlopeChart";
+import SelectCountryComponent from "./SelectCountryComponent";
 
-const EconomicLossChart = ({
-  selectedCountries,
-}: {
-  selectedCountries: string[];
-}) => {
-  const { lineData, chartData } = useEconomicLossAnalysis(selectedCountries);
+const EconomicLossChart = () => {
+  const {
+    countryList,
+    selectedCountries,
+    lineData,
+    chartData,
+    slope,
+    setSelectedCountries,
+  } = useEconomicLossAnalysis();
   const [isChartFlip, setIsChartFlip] = useState(false);
+  const [isCountrySelect, setIsCountrySelect] = useState(false);
 
   return (
-    <div className="h-100 w-full flex flex-col gap-5">
+    <div className="h-full w-full flex flex-col gap-5">
       <div className="flex items-center gap-5 justify-end">
         <p className="text-sm">Timeseries</p>
         <Switch
@@ -21,14 +27,38 @@ const EconomicLossChart = ({
           checked={isChartFlip}
         />
       </div>
-      <h1 className="text-center font-bold">Cost of damages over time</h1>
-      <p className="text-xs">US Dollars</p>
-      <ChartComponent
-        toolTipUnits="USD"
-        chartData={chartData}
-        lineData={lineData}
-      />
-      <p className="text-xs text-center">Years</p>
+      {isChartFlip ? (
+        <div className="flex flex-col gap-5">
+          <div className="relative">
+            <SelectCountryComponent
+              countryList={countryList}
+              isCountrySelect={isCountrySelect}
+              selectedCountries={selectedCountries}
+              setIsCountrySelect={setIsCountrySelect}
+              setSelectedCountries={setSelectedCountries}
+            />
+          </div>
+          <h1 className="text-center font-bold">Cost of damages over time</h1>
+          <p className="text-xs">US Dollars</p>
+          <div className="h-100">
+            <ChartComponent
+              toolTipUnits="USD"
+              chartData={chartData}
+              lineData={lineData}
+            />
+          </div>
+          <p className="text-xs text-center">Years</p>
+          <p className="text-sm mt-2">
+            <span className="font-bold">Fig 7.0 : </span>The X-axis represents
+            the monitoring years, while the Y-axis tracks observed cost of
+            damage from natural disasters.
+          </p>
+        </div>
+      ) : (
+        <div className="h-150">
+          <SlopeChart slope={slope} />
+        </div>
+      )}
     </div>
   );
 };

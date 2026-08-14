@@ -1,9 +1,9 @@
 import { useState } from "react";
+import SlopeChart from "../services/SlopeChart";
 import { useTemperature } from "../services/tempAnalysis";
-import TempSlopeChart from "../services/TempSlopeChart";
 import ChartComponent from "./ChartComponent";
-import { Switch } from "./ui/Switch";
 import SelectCountryComponent from "./SelectCountryComponent";
+import { Switch } from "./ui/Switch";
 
 export const TemperatureChart = () => {
   const [isChartFlip, setIsChartFlip] = useState(false);
@@ -20,7 +20,7 @@ export const TemperatureChart = () => {
   return (
     <div className="h-full w-full flex flex-col gap-5">
       <div className="flex items-center gap-5 justify-end">
-        <p className="text-sm">Line chart</p>
+        <p className="text-sm">Timeseries</p>
         <Switch
           className={"hover:cursor-pointer"}
           onClick={() => setIsChartFlip((prev) => !prev)}
@@ -58,7 +58,7 @@ export const TemperatureChart = () => {
         </div>
       ) : (
         <div className="h-150">
-          <TempSlopeChart slope={slope} />
+          <SlopeChart slope={slope} />
         </div>
       )}
     </div>

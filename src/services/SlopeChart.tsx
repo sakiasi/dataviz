@@ -14,7 +14,7 @@ import { countryColor } from "../constants/colors";
 import type { ChartProps } from "../types";
 import { cn } from "../lib/util";
 
-const TempSlopeChart = ({ units, toolTipUnits, slope }: ChartProps) => {
+const SlopeChart = ({ units, toolTipUnits, slope }: ChartProps) => {
   return (
     <ResponsiveContainer className={"w-full h-150"}>
       <BarChart barCategoryGap={"10"} layout="vertical" data={slope}>
@@ -71,7 +71,7 @@ const TempSlopeChart = ({ units, toolTipUnits, slope }: ChartProps) => {
             dataKey="country"
             position="insideLeft"
             content={(props: any) => {
-              const { x, y, width, height, value } = props;
+              const { x, y, height, value } = props;
               return (
                 <foreignObject
                   x={x + 5}
@@ -86,7 +86,7 @@ const TempSlopeChart = ({ units, toolTipUnits, slope }: ChartProps) => {
                         "inline-flex items-center px-1.5 py-0.5 rounded text-[11px]  bg-background/80",
                       )}
                     >
-                      {value.includes('Micronesia') ? 'Micronesia' : value}
+                      {value.includes("Micronesia") ? "Micronesia" : value}
                     </div>
                   </div>
                 </foreignObject>
@@ -99,4 +99,4 @@ const TempSlopeChart = ({ units, toolTipUnits, slope }: ChartProps) => {
   );
 };
 
-export default TempSlopeChart;
+export default SlopeChart;

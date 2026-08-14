@@ -1,15 +1,6 @@
-import { useState } from "react";
-import { useTemperature } from "../services/tempAnalysis";
-import SelectCountryComponent from "./SelectCountryComponent";
 import { TemperatureChart } from "./TempChart";
 
 export default function TempComponent() {
-  const [isCountrySelect, setIsCountrySelect] = useState(false);
-
-  // Pass selectedCountries into the hook so it re-filters dynamically
-  const { countryList, selectedCountries, setSelectedCountries } =
-    useTemperature();
-
   return (
     <div className="text-foreground flex flex-col gap-5">
       <h1 className="text-2xl font-bold tracking-tight normal-case text-center md:text-start">
@@ -34,33 +25,19 @@ export default function TempComponent() {
         </p>
       </div>
 
-      <div className="relative">
-        <SelectCountryComponent
-          countryList={countryList}
-          isCountrySelect={isCountrySelect}
-          selectedCountries={selectedCountries}
-          setIsCountrySelect={setIsCountrySelect}
-          setSelectedCountries={setSelectedCountries}
-        />
-      </div>
-      
-      <TemperatureChart selectedCountries={selectedCountries} />
-
-      <p className="text-sm  mt-2">
-        <span className="font-bold ">Fig 1.1 : </span>The X-axis represents the monitoring years,
-        while the Y-axis tracks observed temperature anomalies relative to the
-        baseline.
-      </p>
+      <TemperatureChart />
 
       <p>
         Every Pacific Island territory and nation in the dataset shows
         continuous temperature increases year after year, confirming a
-        widespread, regional warming trend without exception. French Polynesia,
-        Tokelau, and Papua New Guinea are heating up at the fastest rates, while
-        Pitcairn experiences the most gradual increase. The tight clustering of
-        growth speeds across nearly all the other islands points to a systemic
-        climate impact affecting the entire Pacific region rather than isolated
-        local variations.
+        widespread, regional warming trend without exception.{" "}
+      </p>
+      <p>
+        French Polynesia, Tokelau, Vanuatu, and the Marshall Islands are heating
+        up at the fastest rates, while Pitcairn experiences the most gradual
+        increase. The tight clustering of growth speeds across nearly all the
+        other islands points to a systemic climate impact affecting the entire
+        Pacific region rather than isolated local variations.
       </p>
     </div>
   );

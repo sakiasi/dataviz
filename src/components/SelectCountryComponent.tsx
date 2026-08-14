@@ -17,7 +17,7 @@ const SelectCountryComponent = ({setSelectedCountries,countryList, isCountrySele
     <div className="relative">
       <div
         onMouseDown={() => setIsCountrySelect((prev) => !prev)}
-        className="flex justify-around md:w-3/6 p-2 hover:text-secondary hover:cursor-pointer hover:bg-primary items-center border-primary border-b"
+        className="flex justify-end p-2 ml-auto w-fit hover:text-secondary hover:cursor-pointer hover:bg-primary items-center border-primary border-b"
       >
         <p> Select Country ({selectedCountries.length} selected) </p>
         {isCountrySelect ? <ChevronUp /> : <ChevronDown />}

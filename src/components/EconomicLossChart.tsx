@@ -4,6 +4,7 @@ import ChartComponent from "./ChartComponent";
 import { Switch } from "./ui/Switch";
 import SlopeChart from "../services/SlopeChart";
 import SelectCountryComponent from "./SelectCountryComponent";
+import SlopeChartV2 from "../services/SlopeChartV2";
 
 const EconomicLossChart = () => {
   const {
@@ -55,8 +56,11 @@ const EconomicLossChart = () => {
           </p>
         </div>
       ) : (
+        // <div className="h-150">
+        //   <SlopeChart slope={slope} />
+        // </div>
         <div className="h-150">
-          <SlopeChart slope={slope} />
+          <SlopeChartV2 slope={slope} units="USD" toolTipUnits="USD" />
         </div>
       )}
     </div>

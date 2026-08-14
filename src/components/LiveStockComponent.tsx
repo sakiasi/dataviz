@@ -1,14 +1,9 @@
-import { useState } from "react";
 import { useLivestockAnalysis } from "../services/liveStockAnalysis";
 import LiveStockChart from "./LivestockChart";
 import LivestockCorrelationChart from "./LivestockCorrelationChart";
-import SelectCountryComponent from "./SelectCountryComponent";
 
 export default function LiveStockComponent() {
-  const [isCountrySelect, setIsCountrySelect] = useState(false);
-
-  const { selectedCountries, setSelectedCountries, countryList } =
-    useLivestockAnalysis();
+  const { selectedCountries } = useLivestockAnalysis();
 
   return (
     <div className=" flex flex-col gap-5">
@@ -40,23 +35,14 @@ export default function LiveStockComponent() {
         </p>
       </div>
 
-      <div className="relative">
-        <SelectCountryComponent
-          countryList={countryList}
-          isCountrySelect={isCountrySelect}
-          selectedCountries={selectedCountries}
-          setIsCountrySelect={setIsCountrySelect}
-          setSelectedCountries={setSelectedCountries}
-        />
-      </div>
-
       <div>
-        <LiveStockChart selectedCountries={selectedCountries} />
+        <LiveStockChart />
       </div>
 
       <p className="text-sm mt-2">
-        <span className="font-bold">Fig 5.0 : </span>The X-axis
-        represents the monitoring years, while the Y-axis tracks observed livestock yield in kilograms per animal.
+        <span className="font-bold">Fig 5.0 : </span>The X-axis represents the
+        monitoring years, while the Y-axis tracks observed livestock yield in
+        kilograms per animal.
       </p>
 
       <div className="">

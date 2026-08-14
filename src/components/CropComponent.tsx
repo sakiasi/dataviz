@@ -1,14 +1,11 @@
-import { useState } from "react";
-import { useCropAnalysis } from "../services/cropAnalysis";
+import { useWarmingOceanAnalysis } from "../services/useWarningOceanAnalysis";
 import CropChart from "./CropChart";
 import CropCorrelationChart from "./CropCorrelationChart";
-import SelectCountryComponent from "./SelectCountryComponent";
 
 export default function CropComponent() {
-  const [isCountrySelect, setIsCountrySelect] = useState(false);
 
-  const { selectedCountries, setSelectedCountries, countryList } =
-    useCropAnalysis();
+  const { selectedCountries } =
+    useWarmingOceanAnalysis();
 
   return (
     <div className=" flex flex-col gap-5">
@@ -36,27 +33,11 @@ export default function CropComponent() {
         </p>
       </div>
 
-      <div className="relative">
-        <SelectCountryComponent
-          countryList={countryList}
-          isCountrySelect={isCountrySelect}
-          selectedCountries={selectedCountries}
-          setIsCountrySelect={setIsCountrySelect}
-          setSelectedCountries={setSelectedCountries}
-        />
+      <div>
+        <CropChart />
       </div>
 
       <div>
-        <CropChart selectedCountries={selectedCountries} />
-      </div>
-
-      <p className="text-sm mt-2">
-        <span className="font-bold">Fig 4.0 : </span>The X-axis represents the
-        monitoring years, while the Y-axis tracks observed crop yield in
-        kilograms per hectare.
-      </p>
-
-      <div className="">
         The data reveals striking disparities in agricultural productivity
         trends across the Pacific region: nations like the Marshall Islands,
         Kiribati, and Papua New Guinea are experiencing the fastest-growing crop

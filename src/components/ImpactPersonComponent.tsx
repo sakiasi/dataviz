@@ -1,13 +1,6 @@
-import { useState } from "react";
-import { useImpactPersonAnalysis } from "../services/impactPersonAnalysis";
 import ImpactPersonChart from "./ImpactPersonChart";
-import SelectCountryComponent from "./SelectCountryComponent";
 
 export default function ImpactPersonComponent() {
-  const [isCountrySelect, setIsCountrySelect] = useState(false);
-
-  const { selectedCountries, setSelectedCountries, countryList } =
-    useImpactPersonAnalysis();
 
   return (
     <div className=" flex flex-col gap-5">
@@ -37,25 +30,9 @@ export default function ImpactPersonComponent() {
         </p>
       </div>
 
-      <div className="relative">
-        <SelectCountryComponent
-          countryList={countryList}
-          isCountrySelect={isCountrySelect}
-          selectedCountries={selectedCountries}
-          setIsCountrySelect={setIsCountrySelect}
-          setSelectedCountries={setSelectedCountries}
-        />
-      </div>
-
       <div>
-        <ImpactPersonChart selectedCountries={selectedCountries} />
+        <ImpactPersonChart />
       </div>
-
-      <p className="text-sm mt-2">
-        <span className="font-bold">Fig 6.0 : </span>The X-axis represents the
-        monitoring years, while the Y-axis tracks observed individuals affected
-        by natural disaster.
-      </p>
 
       <div>
         The data highlights sharp contrasts in the human impact of disasters

@@ -92,12 +92,15 @@ export const useSeaLevelAnalysis=(externalSelectedCountries?:string[])=>{
     })
  
     //which country is showing the most/least crop decline(slope)
-    const slope = data.map(d => {
+    const slopeX = data.map(d => {
         const slope = ss.linearRegression(d.mData)
         const lineFunction = ss.linearRegressionLine(slope)
         const predictYear = lineFunction(2025)
         return {country:d.country,slope:slope.m,lineFunction,predictYear}
     })
+
+    const slope = slopeX.sort((a,b) => b.slope - a.slope)
+
 
     //correlation
    //correlation

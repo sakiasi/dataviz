@@ -122,8 +122,6 @@ export const useTemperature = (externalSelectedCountries?: string[]) => {
 
     const slope = slopeX.sort((a,b) => b.slope - a.slope)
 
-    console.log('SLOPE:', slope)
-
     return { countryList, chartData, tempdata:data, slope, lineData, selectedCountries, setSelectedCountries };   
 
 };

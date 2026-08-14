@@ -9,13 +9,8 @@ import {
 } from "recharts";
 import { countryColor } from "../constants/colors";
 import { CustomToolTip } from "./CustomToolTip";
+import type { ChartProps } from "../types";
 
-interface ChartProps {
-  lineData: { countryName: string }[];
-  chartData: Record<string, any>[];
-  units?: string;
-  toolTipUnits?: string;
-}
 
 const ChartComponent = ({ chartData, lineData, units, toolTipUnits }: ChartProps) => {
   return (

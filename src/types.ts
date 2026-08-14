@@ -12,3 +12,18 @@ export interface chartData {
     intercept: number;
     correlation: number;
 }
+
+export interface ChartProps {
+  lineData?: { countryName: string }[];
+  chartData?: Record<string, any>[];
+  units?: string;
+  toolTipUnits?: string;
+  slope?: Slope[]
+}
+
+export interface Slope {
+    country: string;
+    slope: number;
+    lineFunction: (x: number) => number;
+    predictYear: number;
+}

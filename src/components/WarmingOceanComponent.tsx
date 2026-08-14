@@ -77,7 +77,7 @@ const WarmingOceanComponent = () => {
       </div>
 
       <div>
-        <WarmingOceanChart selectedCountries={selectedCountries} />
+        <WarmingOceanChart />
       </div>
 
       <p className="text-sm  mt-2">

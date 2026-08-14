@@ -92,7 +92,7 @@ export const useWarmingOceanAnalysis=(externalSelectedCountries?:string[])=>{
     })
  
     //which country is showing the most/least crop decline(slope)
-    const slope = data.map(d => {
+    const slopeX = data.map(d => {
         const years = d.mData.map(d => d[0])
         const values = d.mData.map(d => d[1])
         const slope = ss.linearRegression(d.mData)
@@ -101,6 +101,9 @@ export const useWarmingOceanAnalysis=(externalSelectedCountries?:string[])=>{
         const predictYear = lineFunction(2025)
         return {country:d.country,slope:slope.m,lineFunction,predictYear,correlation}
     })
+
+    const slope = slopeX.sort((a,b) => b.slope - a.slope)
+
 
     //correlation
     const tempLookup = useMemo(() => {

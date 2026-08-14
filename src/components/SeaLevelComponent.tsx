@@ -74,13 +74,7 @@ export default function SeaLevelComponent() {
         </div>
       </div>
 
-      <SeaChart selectedCountries={selectedCountries} />
-
-      <p className="text-sm mt-2">
-        <span className="font-bold">Fig 3.0 : </span>The X-axis
-        represents the monitoring years, while the Y-axis tracks observed sea
-        level anomalies relative to the baseline.
-      </p>
+      <SeaChart />
 
       <div className="">
         Based on the data, the sea levels across all of these Pacific island

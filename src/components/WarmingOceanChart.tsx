@@ -51,9 +51,9 @@ const WarmingOceanChart = () => {
           </div>
           <p className="text-xs text-center">Years</p>
           <p className="text-sm  mt-2">
-            <span className="font-bold ">Fig 1.1 : </span>The X-axis represents
-            the monitoring years, while the Y-axis tracks observed temperature
-            anomalies relative to the baseline.
+            <span className="font-bold ">Fig 2.0 : </span>The X-axis represents
+            the monitoring years, while the Y-axis tracks observed sea surface
+            temperature anomalies relative to the baseline.
           </p>
         </div>
       ) : (

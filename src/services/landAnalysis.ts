@@ -177,6 +177,8 @@ export const useLandAnalysis = (externalSelectedCountries?: string[]) => {
             return countryInfluence.filter(d => selectedCountries.length === 0 || selectedCountries.includes(d.country));
         }, [countryInfluence, selectedCountries]);
 
+        console.log('SLOPE:', slope)
+
     return {selectedCountries, setSelectedCountries, countryInfluence, countryList, chartData, lineData, slope,  influenceAnalysis: filteredInfluence }
 
 }

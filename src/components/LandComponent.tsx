@@ -1,8 +1,16 @@
+import { useLandAnalysis } from "../services/landAnalysis";
 import { LandSlopeChart } from "./LandSlopeChart";
 
 const LandComponent = () => {
+  const { slope } = useLandAnalysis();
+
+  // Extract top positive and negative countries dynamically
+  const topIncreases = slope.slice(0, 2);
+  const topDecreases = [...slope].reverse().slice(0, 2);
+  const nearZero = slope.filter((d) => Math.abs(d.slope) < 0.1);
+
   return (
-    <div className=" flex flex-col gap-5">
+    <div className="flex flex-col gap-5">
       <h1 className="text-2xl font-bold tracking-tight text-center md:text-start">
         Land Cover Index
       </h1>
@@ -11,7 +19,7 @@ const LandComponent = () => {
 
       <div className="leading-relaxed flex flex-col gap-5 max-w-3xl">
         <p>
-          According to the
+          According to the{" "}
           <a
             className="pl-1 hover:text-primary transition-colors underline decoration-primary underline-offset-2"
             href="https://www.ipcc.ch/srccl/"
@@ -38,14 +46,18 @@ const LandComponent = () => {
 
       <div>
         <p>
-          The slope values show how much the Climate Altering Land Cover Index
-          changed each year across Pacific islands from 1992 to 2022. The
-          Solomon Islands (+39.3) and Palau (+35.2) experienced the fastest
-          increases, showing significant land cover changes over time. In
-          contrast, Vanuatu (-341.6) and Guam (-49.9) had the steepest annual
-          decreases. Meanwhile, several places like Tokelau, Nauru, and Tuvalu
-          had slopes near zero, showing almost no change at all across the
-          entire 31-year period.
+          The slope values show the average annual change in the Climate
+          Altering Land Cover Index across Pacific islands from 1992 to 2022.{" "}
+          {topIncreases[0]?.country} ({topIncreases[0]?.slope > 0 ? "+" : ""}
+          {topIncreases[0]?.slope.toFixed(2)}/yr) and {topIncreases[1]?.country}{" "}
+          ({topIncreases[1]?.slope > 0 ? "+" : ""}
+          {topIncreases[1]?.slope.toFixed(2)}/yr) experienced the fastest annual
+          increases. In contrast, {topDecreases[0]?.country} (
+          {topDecreases[0]?.slope.toFixed(2)}/yr) and {topDecreases[1]?.country}{" "}
+          ({topDecreases[1]?.slope.toFixed(2)}/yr) had the steepest annual
+          decreases. Meanwhile, several territories like{" "}
+          {nearZero.map((d) => d.country).slice(0, 3).join(", ")} had annual
+          slopes near zero, indicating minimal land cover shift over the 31-year period.
         </p>
       </div>
     </div>

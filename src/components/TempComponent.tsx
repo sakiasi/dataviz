@@ -4,7 +4,7 @@ export default function TempComponent() {
   return (
     <div className="text-foreground flex flex-col gap-5">
       <h1 className="text-2xl font-bold tracking-tight normal-case text-center md:text-start">
-        Is the surface heat rising ?
+        Continuous Warming Across Every Pacific Territory
       </h1>
 
       <div className="border-b border-primary"></div>

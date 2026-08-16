@@ -1,16 +1,13 @@
-import { useWarmingOceanAnalysis } from "../services/useWarningOceanAnalysis";
-import CropChart from "./CropChart";
+import { useCropAnalysis } from "../services/cropAnalysis";
 import CropCorrelationChart from "./CropCorrelationChart";
 
 export default function CropComponent() {
-
-  const { selectedCountries } =
-    useWarmingOceanAnalysis();
+  const { selectedCountries } = useCropAnalysis();
 
   return (
     <div className=" flex flex-col gap-5">
       <h1 className="text-2xl font-bold tracking-tight text-center md:text-start">
-        Does surface heat reduce crop yield ?
+        Extreme Heat Takes a Heavy, Uneven Toll on Crops
       </h1>
 
       <div className="border-b border-primary"></div>
@@ -28,21 +25,9 @@ export default function CropComponent() {
             rel="noopener noreferrer"
             href="https://doi.org/10.1111/pbi.13946"
           >
-            ( Jin, S. & Zhang, X. , 2022 )
+            (Khan et al., 2022)
           </a>
         </p>
-      </div>
-
-      <div>
-        <CropChart />
-      </div>
-
-      <div>
-        The data reveals striking disparities in agricultural productivity
-        trends across the Pacific region: nations like the Marshall Islands,
-        Kiribati, and Papua New Guinea are experiencing the fastest-growing crop
-        yields per hectare, whereas Micronesia and Fiji face severe, sharp
-        declines in harvest efficiency over time.
       </div>
 
       <div>
@@ -50,21 +35,19 @@ export default function CropComponent() {
       </div>
 
       <p className="text-sm">
-        <span className="font-bold">Fig 4.1: </span>The X-axis measures the
-        ratio of crop yield change relative to surface heat change. Expressed in
-        kilograms per hectare per degree Celsius ((kg/ha)/°C), it indicates how
-        much the crop yield changes for every unit increase in surface heat.
+        <span className="font-bold">Fig 4.1: </span>Chart shows how much crop
+        yield changes for every 1°C increase in surface temperature.
       </p>
 
       <p>
-        Data shows a dramatic split in how rising temperatures affect crop
-        yields across the Pacific. In countries like Papua New Guinea, warmer
-        weather brings a significant boost, yielding an extra 3,795 kilograms of
-        crops per hectare for every degree of temperature increase. On the flip
-        side, Micronesia faces a severe toll, where crops plummet by over 64,800
-        kilograms per hectare per degree of warming. Meanwhile, French Polynesia
-        stands completely apart as a steady outlier, showing virtually zero
-        change in crop yields no matter how much the temperature shifts.
+        Data shows a dramatic split in annual crop yield trends across the
+        Pacific. In countries like the Marshall Islands, agricultural production
+        sees a significant boost, yielding an extra 175 kilograms of crops per
+        hectare each year. On the flip side, Micronesia faces a severe toll,
+        where crop yields plummet by over 1,469 kilograms per hectare per year.
+        Meanwhile, French Polynesia stands completely apart as a steady outlier,
+        showing virtually zero change in crop yields over time (-2.3 kg/ha per
+        year).
       </p>
     </div>
   );

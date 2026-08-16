@@ -2,39 +2,52 @@ import me from "../../public/me.png";
 
 export const IntroComponent = () => {
   return (
-    <div className="flex flex-col gap-5 pt-20">
-      <h1 className="text-4xl font-bold tracking-tight text-center">
-        The Pacific Climate
-        <span className="block text-2xl text-primary mt-1 font-medium">
-          Analyzing Regional Shifts & Socio-Economic Impact
+    <div className="flex flex-col gap-6 pt-20 max-w-3xl mx-auto px-4">
+      {/* Title Header */}
+      <h1 className="text-4xl font-bold tracking-tight text-center text-slate-900 dark:text-white">
+        Cascading Currents
+        <span className="block text-2xl text-primary mt-2 font-semibold">
+          Mapping Heat, Land Cover, and Agricultural Toll in the Pacific
         </span>
       </h1>
 
-      <div className="flex items-center gap-3 pt-2  text-sm">
-        <div className="h-10 w-10 rounded-full flex items-center justify-center font-semibold text-sky-400">
-          <img className="rounded-full" height={90} width={90} src={`${me}`} />
+      {/* Author Meta */}
+      <div className="flex items-center justify-center gap-3 pt-2 text-sm">
+        <div className="h-11 w-11 rounded-full overflow-hidden border border-slate-200 shadow-sm flex-shrink-0">
+          <img
+            className="w-full h-full object-cover"
+            src={me}
+            alt="Sakiasi B. Komai"
+          />
         </div>
-        <div>
-          <p className="font-medium ">Sakiasi B. Komai</p>
-          <p className="text-xs ">Dataviz Challenge 2026</p>
+        <div className="text-left">
+          <p className="font-semibold text-slate-800 dark:text-slate-200">
+            Sakiasi B. Komai
+          </p>
+          <p className="text-xs text-muted-foreground">
+            Dataviz Challenge 2026
+          </p>
         </div>
       </div>
 
-      <ul className="space-y-4 ">
-        <li>
-          In this data driven essay, we will trace the cascading effects of
-          global warming across the Pacific—mapping how atmospheric heating and
-          ocean warming drive sea-level rise, and linking these physical shifts
-          directly to agricultural decline, human displacement, and mounting
-          financial losses.
-        </li>
-        <li>
-          <strong className=" font-semibold">Limitations:</strong> We are
-          analyzing observed historical trends and linear associations across
-          Pacific island nations to establish directional relationships, rather
-          than proving complete multi-factor causation.
-        </li>
-      </ul>
+      {/* Intro Narrative & Limitations */}
+      <div className="space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed pt-4 border-t border-slate-100 dark:border-slate-800">
+        <p>
+          As global temperatures reach historic highs, a critical question
+          emerges across the region: Does atmospheric heating threaten Pacific
+          Island agriculture equally, or does it divide the territory into
+          resilience and risk?
+        </p>
+
+        <p className="text-sm bg-slate-50 dark:bg-slate-900 p-4 rounded-lg border border-slate-200/60 dark:border-slate-800">
+          <strong className="font-semibold text-slate-900 dark:text-slate-100">
+            Limitations:
+          </strong>{" "}
+          This analysis highlights historical regional trajectories to
+          illustrate macro-level systemic trends rather than asserting
+          single-variable causality.
+        </p>
+      </div>
     </div>
   );
 };

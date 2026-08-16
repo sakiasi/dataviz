@@ -1,9 +1,5 @@
 import tempData from '../../public/data/surface-temperature-anomalies.json'
 import cropData from '../../public/data/Crop_Yields.json'
-import seaData from '../../public/data/Sea Level Anomalies.json'
-import oceanData from '../../public/data/WarmingOcean.json'
-import individualImpactData from '../../public/data/Number of directly affected persons attributed to disasters.json'
-import economicLossData from '../../public/data/EconomicLoss.json'
 
 export const colors = [
   "#e6194b", // Vibrant Red
@@ -35,12 +31,8 @@ export const colors = [
 
 const tempCountries = tempData.map(d => d['Pacific Island Countries and territories'])
 const cropCountries = cropData.map(d => d['Pacific Island Countries and territories'])
-const seaCountries = seaData.map(d => d['Pacific Island Countries and territories'])
-const oceanCountries = oceanData.map(d => d['Pacific Island Countries and territories'])
-const individualImpactCountries = individualImpactData.map(d => d['Pacific Island Countries and territories'])
-const economicLossCountries = economicLossData.map(d => d['Pacific Island Countries and territories'])
 
-export const countries = Array.from(new Set([...tempCountries,...cropCountries,...seaCountries,...oceanCountries,...individualImpactCountries,...economicLossCountries]))
+export const countries = Array.from(new Set([...tempCountries,...cropCountries]))
 
 export const countryColor = countries.reduce((acc,value,index) => {
 

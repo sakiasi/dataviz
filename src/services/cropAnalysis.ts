@@ -69,8 +69,7 @@ export const useCropAnalysis=(externalSelectedCountries?:string[])=>{
         d.TIME_PERIOD !== null &&
         d.TIME_PERIOD !== undefined &&
         d.OBS_VALUE !== undefined &&
-        d.OBS_VALUE !== null &&
-        d.TIME_PERIOD % 20
+        d.OBS_VALUE !== null
     )
     .sort((a,b) => a.TIME_PERIOD - b.TIME_PERIOD)
     .reduce<Record<string,CropInterface[]>>((acc,value) => {
@@ -191,9 +190,6 @@ export const useCropAnalysis=(externalSelectedCountries?:string[])=>{
         const filteredInfluence = useMemo(() => {
             return countryInfluence.filter(d => selectedCountries.length === 0 || selectedCountries.includes(d.country));
         }, [countryInfluence, selectedCountries]);
-
-        console.log('SLOPE:', slope)
-
 
     return {selectedCountries, setSelectedCountries, countryInfluence, countryList, chartData, lineData, slope,  influenceAnalysis: filteredInfluence }
 

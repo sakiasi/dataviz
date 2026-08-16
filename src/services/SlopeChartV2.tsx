@@ -1,23 +1,25 @@
 import {
   Bar,
-  ComposedChart,
   CartesianGrid,
   Cell,
-  LabelList,
+  ComposedChart,
   ResponsiveContainer,
   Scatter,
   Tooltip,
   XAxis,
-  YAxis,
+  YAxis
 } from "recharts";
 import { CustomToolTip } from "../components/CustomToolTip";
 import { countryColor } from "../constants/colors";
 import type { ChartProps } from "../types";
 
 const SlopeChartV2 = ({ units, toolTipUnits, slope }: ChartProps) => {
+
   return (
+
     <ResponsiveContainer className={"w-full h-150"}>
       <ComposedChart layout="vertical" data={slope} barCategoryGap={15}>
+
         <CartesianGrid
           stroke="var(--border)"
           strokeDasharray="3 3"

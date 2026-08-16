@@ -63,7 +63,7 @@ const ChartComponent = ({ chartData, lineData, units, toolTipUnits }: ChartProps
           cursor={{ fill: "rgba(255, 255, 255, 0.03)" }}
         />
 
-        {lineData.map((d) => (
+        {lineData?.map((d) => (
           <Line
             key={d.countryName}
             type="linear"

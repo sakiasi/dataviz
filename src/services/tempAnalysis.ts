@@ -80,27 +80,31 @@ export const useTemperature = (externalSelectedCountries?: string[]) => {
 
     }
 
-     const dataSlope = tempData.filter(d => 
-            d.TIME_PERIOD !== null &&
-            d.TIME_PERIOD !== undefined &&
-            d.OBS_VALUE !== undefined &&
-            d.OBS_VALUE !== null &&
-            d.TIME_PERIOD % 20
-        )
-        .sort((a,b) => a.TIME_PERIOD - b.TIME_PERIOD)
-        .reduce<Record<string,DataPoint[]>>((acc,value) => {
-    
-            const country = value['Pacific Island Countries and territories']
-    
-            if(!acc[country]){
-                acc[country] = []
-            }
-    
-            acc[country].push({country,value:value.OBS_VALUE,year:value.TIME_PERIOD})
-    
-            return acc
-    
-        },{})
+    const dataSlope = tempData.filter(d => 
+        d.TIME_PERIOD !== null &&
+        d.TIME_PERIOD !== undefined &&
+        d.OBS_VALUE !== undefined &&
+        d.OBS_VALUE !== null
+    )
+    .sort((a, b) => Number(a.TIME_PERIOD) - Number(b.TIME_PERIOD))
+    .reduce<Record<string, DataPoint[]>>((acc, value) => {
+
+        const country = value['Pacific Island Countries and territories'];
+        if (!country) return acc;
+
+        if (!acc[country]) {
+            acc[country] = [];
+        }
+
+        acc[country].push({ 
+            country, 
+            value: Number(value.OBS_VALUE), 
+            year: Number(value.TIME_PERIOD) 
+        });
+
+        return acc;
+
+    }, {});
 
     const data = Object.entries(dataSlope).map(([country, records]) => {
     
@@ -121,6 +125,7 @@ export const useTemperature = (externalSelectedCountries?: string[]) => {
     })
 
     const slope = slopeX.sort((a,b) => b.slope - a.slope)
+
 
     return { countryList, chartData, tempdata:data, slope, lineData, selectedCountries, setSelectedCountries };   
 

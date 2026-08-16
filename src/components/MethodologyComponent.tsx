@@ -7,35 +7,8 @@ const MethodologyComponent = () => {
 
       <div className="space-y-5 text-sm leading-relaxed">
         <div>
-          <h3 className="font-semibold">Data Sources</h3>
+          <h3 className="font-semibold"> 1. Data Sources</h3>
           <ul className="list-disc decoration-primary underline pl-5 space-y-1 mt-1">
-            <li className="hover:text-primary">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://stats.pacificdata.org/vis?lc=en&df[ds]=SPC2&df[id]=DF_AGRICULTURAL_PRODUCTION&df[ag]=SPC&df[vs]=1.0&av=true&dq=A...&pd=,&to[TIME_PERIOD]=false"
-              >
-                <p>Crop yield - disaggregated</p>
-              </a>
-            </li>
-            <li className="hover:text-primary">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://stats.pacificdata.org/vis?lc=en&df[ds]=SPC2&df[id]=DF_AGRICULTURAL_PRODUCTION&df[ag]=SPC&df[vs]=1.0&av=true&dq=A...&pd=,&to[TIME_PERIOD]=false"
-              >
-                <p>Livestock yield - disaggregated</p>
-              </a>
-            </li>
-            <li className="hover:text-primary">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://stats.pacificdata.org/vis?lc=en&df[ds]=SPC2&df[id]=DF_CLIMATE_CHANGE&df[ag]=SPC&df[vs]=1.0&av=true&dq=A.SST_ANOM.&pd=,&to[TIME_PERIOD]=false"
-              >
-                <p>Mean sea surface temperature anomalies</p>
-              </a>
-            </li>
             <li className="hover:text-primary">
               <a
                 target="_blank"
@@ -49,20 +22,27 @@ const MethodologyComponent = () => {
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://stats.pacificdata.org/vis?lc=en&df[ds]=ds%3ASPC2&df[id]=DF_SDG_11&df[ag]=SPC&df[vs]=3.0&dq=A.VC_DSR_AFFCT.........&pd=,&to[TIME_PERIOD]=false&lb=bt"
+                href="https://stats.pacificdata.org/vis?lc=en&df[ds]=SPC2&df[id]=DF_AGRICULTURAL_PRODUCTION&df[ag]=SPC&df[vs]=1.0&av=true&dq=A...&pd=,&to[TIME_PERIOD]=false"
               >
-                <p>
-                  Number of directly affected persons attributed to disasters
-                </p>
+                <p>Crop yield</p>
               </a>
             </li>
             <li className="hover:text-primary">
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://stats.pacificdata.org/vis?lc=en&df[ds]=ds%3ASPC2&df[id]=DF_SDG_11&df[ag]=SPC&df[vs]=3.0&dq=A.VC_DSR_AALT...._T.....&pd=,&to[TIME_PERIOD]=false"
+                href="https://stats.pacificdata.org/vis?lc=en&df[ds]=SPC2&df[id]=DF_AGRICULTURAL_PRODUCTION&df[ag]=SPC&df[vs]=1.0&av=true&dq=A...&pd=,&to[TIME_PERIOD]=false"
               >
-                <p>Direct disaster economic loss</p>
+                <p>Livestock yield</p>
+              </a>
+            </li>
+            <li className="hover:text-primary">
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://stats.pacificdata.org/vis?lc=en&df[ds]=SPC2&df[id]=DF_CLIMATE_CHANGE&df[ag]=SPC&df[vs]=1.0&av=true&dq=A.ALT_LAND_COVER.&pd=,&to[TIME_PERIOD]=false"
+              >
+                <p>Climate altering land cover index</p>
               </a>
             </li>
           </ul>

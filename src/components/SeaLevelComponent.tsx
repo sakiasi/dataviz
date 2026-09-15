@@ -1,118 +1,71 @@
-import { ChevronDown, ChevronUp } from "lucide-react";
+﻿import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { handleSelectCountries } from "../services/handleSelectCountries";
 import { useSeaLevelAnalysis } from "../services/seaLevelAnalysis";
 import SeaChart from "./SeaLevelChart";
 import { Switch } from "./ui/Switch";
-import SeaCorrelationChart from "./SeaCorrelationChart";
 
 export default function SeaLevelComponent() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
-
-  const { selectedCountries, setSelectedCountries, countryList } =
-    useSeaLevelAnalysis();
+  const { selectedCountries, setSelectedCountries, countryList } = useSeaLevelAnalysis();
 
   return (
-    <div className=" flex flex-col gap-5">
-      <h1 className="text-2xl font-bold tracking-tight text-center md:text-start">
-        Is the sea level rising ?
-      </h1>
-
-      <div className="border-b border-primary"></div>
-
-      <div className=" leading-relaxed max-w-3xl">
-        <p>
-          According to
-          <a
-            className="pl-1 hover:text-primary transition-colors underline decoration-primary underline-offset-2"
-            href="https://doi.org/10.1111/sjtg.12021"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nunn, P. D. (2013)
-          </a>
-          , as the oceans absorb excess atmospheric heat, thermal expansion and
-          melting ice drive sea levels steadily upward.
+    <div className="chapter-layout">
+      <div className="chapter-copy">
+        <p className="section-eyebrow">03 · Rising water</p>
+        <h2 className="chapter-title">Sea level is rising everywhere in this dataset — at unequal rates.</h2>
+        <p className="chapter-lead">
+          Across 21 Pacific countries and territories, the median linear sea-level trend from
+          1993 to 2023 is approximately <strong>4.3 mm per year</strong>.
         </p>
+        <p>
+          Papua New Guinea and Solomon Islands are at the faster end of the observed trends at
+          roughly 5.4 and 5.1 mm per year. Tokelau is slower at roughly 3.2 mm per year.
+        </p>
+        <div className="finding-card">
+          <p className="finding-label">One regional direction, many local rates</p>
+          <p>
+            Local ocean circulation, winds, land motion and measurement variability can change
+            the rate seen at a particular island. Those differences do not erase the regional
+            upward signal.
+          </p>
+        </div>
       </div>
 
-      <div className="relative">
-        <div
-          onMouseDown={() => setIsCountrySelect((prev) => !prev)}
-          className="flex justify-around md:w-3/6 p-2 hover:text-secondary hover:cursor-pointer hover:bg-primary items-center border-primary border-b"
-        >
-          <p> Select Country ({selectedCountries.length} selected) </p>
-          {isCountrySelect ? <ChevronUp /> : <ChevronDown />}
+      <div className="chapter-viz">
+        <div className="chart-heading">
+          <div>
+            <p className="chart-label">Sea-level anomalies</p>
+            <p className="chart-subtitle">Annual observations, 1993–2023</p>
+          </div>
+          <span className="chart-unit">m</span>
         </div>
 
-        <div
-          onMouseLeave={() => setIsCountrySelect(false)}
-          className={`${
-            isCountrySelect
-              ? "absolute w-full top-10 h-96 overflow-y-auto z-10 flex-col border bg-primary-foreground rounded-md border-primary shadow-xl"
-              : "hidden"
-          }`}
-        >
-          {countryList
-            .sort((a, b) => a.localeCompare(b))
-            .map((d, index) => (
+        <div className="relative mt-5">
+          <div onMouseDown={() => setIsCountrySelect((prev) => !prev)} className="country-selector">
+            <p>Select country ({selectedCountries.length} selected)</p>
+            {isCountrySelect ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+          </div>
+          <div onMouseLeave={() => setIsCountrySelect(false)} className={isCountrySelect ? "country-menu" : "hidden"}>
+            {countryList.sort((a, b) => a.localeCompare(b)).map((country) => (
               <div
-                key={index}
-                className="hover:cursor-pointer hover:bg-secondary p-2 border-b border-secondary flex items-center gap-5"
-                onMouseDown={() => {
-                  handleSelectCountries(
-                    d,
-                    setSelectedCountries,
-                    selectedCountries,
-                  );
-                }}
+                key={country}
+                className="country-option"
+                onMouseDown={() => handleSelectCountries(country, setSelectedCountries, selectedCountries)}
               >
-                <Switch checked={selectedCountries.includes(d)} />
-                <span>{d}</span>
+                <Switch checked={selectedCountries.includes(country)} />
+                <span>{country}</span>
               </div>
             ))}
+          </div>
         </div>
-      </div>
 
-      <SeaChart selectedCountries={selectedCountries} />
-
-      <p className="text-sm mt-2">
-        <span className="font-bold">Fig 3.0 : </span>The X-axis
-        represents the monitoring years, while the Y-axis tracks observed sea
-        level anomalies relative to the baseline.
-      </p>
-
-      <div className="">
-        Based on the data, the sea levels across all of these Pacific island
-        regions are steadily going up over time. Some places are seeing a much
-        faster climb than others: Papua New Guinea and the Solomon Islands are
-        experiencing the most rapid increases, meaning their water levels are
-        rising the quickest. On the other hand, places like Tokelau and the
-        Northern Mariana Islands have the slowest rise, meaning their changes
-        are happening at a much more gradual pace.
-      </div>
-
-      <div>
-        <SeaCorrelationChart selectedCountries={selectedCountries} />
-      </div>
-
-      <p className="text-sm">
-        <span className="font-bold">Fig 3.1 : </span>The X-axis measures the
-        ratio of sea level change relative to surface heat change. Expressed in
-        meters per degree Celsius (meters/°C), it indicates how much the sea
-        level rises for every unit increase in surface heat.
-      </p>
-
-      <div>
-        <p>
-          Data shows that rising surface heat are closely tied to sea level
-          increases across most of the Pacific, with surface heat and sea level
-          changes matching up to 50% of the time in the hardest-hit areas.
-          Islands like Micronesia and Palau see the strongest impact, where
-          temperature shifts account for nearly half of their sea level changes.
-          On the flip side, the Marshall Islands is a major exception, showing
-          virtually no connection (0.1%) between temperature and sea level
-          shifts, proving that local ocean conditions play a massive role there.
+        <div className="mt-6 h-[420px]">
+          <SeaChart selectedCountries={selectedCountries} />
+        </div>
+        <p className="figure-note">
+          <strong>Fig. 3.</strong> Sea-level anomalies by country or territory. The regional
+          headline is the median of country-level linear trends, 1993–2023.
         </p>
       </div>
     </div>

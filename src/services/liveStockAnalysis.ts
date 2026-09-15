@@ -30,8 +30,7 @@ export const useLivestockAnalysis = (externalSelectedCountries?: string[]) => {
         const cleanData = liveStockData.filter(d => 
             d.TIME_PERIOD != null &&
             d.OBS_VALUE != null &&
-            (selectedCountries.length === 0 || selectedCountries.includes(d['Pacific Island Countries and territories'])) &&
-            d.TIME_PERIOD % 3 === 0
+            (selectedCountries.length === 0 || selectedCountries.includes(d['Pacific Island Countries and territories']))
         ).sort((a, b) => a.TIME_PERIOD - b.TIME_PERIOD);
 
         const groupByCountry = cleanData.reduce<Record<string, SeaInterface[]>>((acc, value) => {
@@ -65,7 +64,7 @@ export const useLivestockAnalysis = (externalSelectedCountries?: string[]) => {
         const dataSlope = liveStockData.filter(d => 
             d.TIME_PERIOD != null &&
             d.OBS_VALUE != null &&
-            d.TIME_PERIOD % 20
+            true
         )
         .sort((a, b) => a.TIME_PERIOD - b.TIME_PERIOD)
         .reduce<Record<string, SeaInterface[]>>((acc, value) => {

@@ -1,122 +1,79 @@
-import { ChevronDown, ChevronUp } from "lucide-react";
+﻿import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { handleSelectCountries } from "../services/handleSelectCountries";
 import { useWarmingOceanAnalysis } from "../services/useWarningOceanAnalysis";
 import WarmingOceanChart from "./WarmingOceanChart";
 import { Switch } from "./ui/Switch";
-import OceanCorrelationChart from "./OceanCorrelationChart";
 
 const WarmingOceanComponent = () => {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
-
-  const { selectedCountries, setSelectedCountries, countryList } =
-    useWarmingOceanAnalysis();
+  const { selectedCountries, setSelectedCountries, countryList } = useWarmingOceanAnalysis();
 
   return (
-    <div className=" flex flex-col gap-5">
-      <h1 className="text-2xl font-bold tracking-tight text-center md:text-start">
-        Does surface heat warm the ocean ?
-      </h1>
-
-      <div className="border-b border-primary"></div>
-
-      <div className=" leading-relaxed flex flex-col gap-5 max-w-3xl">
-        <p>
-          According to
-          <a
-            className="pl-1 hover:text-primary transition-colors underline decoration-primary underline-offset-2"
-            href="https://www.science.org/doi/10.1126/science.aav7619"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Trenberth, K. E. (2019)
-          </a>
-          , The ocean acts as the Earth’s thermal buffer, absorbing the vast
-          majority of excess atmospheric heat. Consequently, rising mean surface
-          temperatures translate directly into warmer oceans, establishing a
-          clear, ongoing trend in sea surface temperature anomalies.
+    <div className="chapter-layout">
+      <div className="chapter-copy">
+        <p className="section-eyebrow">02 · The ocean</p>
+        <h2 className="chapter-title">The ocean carries the warming signal too.</h2>
+        <p className="chapter-lead">
+          Sea-surface temperatures show positive long-run trends across all 21 Pacific countries
+          and territories in this dataset. From 1970 to 2025, the median trend is also about
+          <strong> 0.16°C per decade</strong>.
         </p>
+        <p>
+          That pattern is consistent with the ocean’s role as a major reservoir for excess heat.
+          In this dataset, the Federated States of Micronesia and Palau are among the faster
+          sea-surface warming trends, while New Caledonia and Kiribati are slower.
+        </p>
+        <div className="finding-card">
+          <p className="finding-label">Why the distinction matters</p>
+          <p>
+            Air and ocean temperatures both trend upward over time. A simple correlation between
+            the two can therefore look very strong even when it does not isolate a causal effect.
+            The story focuses on the observed trends instead of treating correlation as proof.
+          </p>
+        </div>
       </div>
 
-      <div className="relative">
-        <div
-          onMouseDown={() => setIsCountrySelect((prev) => !prev)}
-          className="flex justify-around md:w-3/6 p-2 hover:text-secondary hover:cursor-pointer hover:bg-primary items-center border-primary border-b"
-        >
-          <p> Select Country ({selectedCountries.length} selected) </p>
-          {isCountrySelect ? <ChevronUp /> : <ChevronDown />}
+      <div className="chapter-viz">
+        <div className="chart-heading">
+          <div>
+            <p className="chart-label">Sea-surface temperature anomalies</p>
+            <p className="chart-subtitle">Long-run warming across the Pacific</p>
+          </div>
+          <span className="chart-unit">°C</span>
         </div>
 
-        <div
-          onMouseLeave={() => setIsCountrySelect(false)}
-          className={`${
-            isCountrySelect
-              ? "absolute w-full top-10 h-96 overflow-y-auto z-10 flex-col border bg-primary-foreground rounded-md border-primary shadow-xl"
-              : "hidden"
-          }`}
-        >
-          {countryList
-            .sort((a, b) => a.localeCompare(b))
-            .map((d, index) => (
+        <div className="relative mt-5">
+          <div
+            onMouseDown={() => setIsCountrySelect((prev) => !prev)}
+            className="country-selector"
+          >
+            <p>Select country ({selectedCountries.length} selected)</p>
+            {isCountrySelect ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+          </div>
+          <div
+            onMouseLeave={() => setIsCountrySelect(false)}
+            className={isCountrySelect ? "country-menu" : "hidden"}
+          >
+            {countryList.sort((a, b) => a.localeCompare(b)).map((country) => (
               <div
-                key={index}
-                className="hover:cursor-pointer hover:bg-secondary p-2 border-b border-secondary flex items-center gap-5"
-                onMouseDown={() => {
-                  handleSelectCountries(
-                    d,
-                    setSelectedCountries,
-                    selectedCountries,
-                  );
-                }}
+                key={country}
+                className="country-option"
+                onMouseDown={() => handleSelectCountries(country, setSelectedCountries, selectedCountries)}
               >
-                <Switch checked={selectedCountries.includes(d)} />
-                <span>{d}</span>
+                <Switch checked={selectedCountries.includes(country)} />
+                <span>{country}</span>
               </div>
             ))}
+          </div>
         </div>
-      </div>
 
-      <div>
-        <WarmingOceanChart selectedCountries={selectedCountries} />
-      </div>
-
-      <p className="text-sm  mt-2">
-        <span className="font-bold ">Fig 2.0 : </span>The X-axis
-        represents the monitoring years, while the Y-axis tracks observed
-        sea surface temperature anomalies relative to the baseline.
-      </p>
-
-      <div>
-        <p>
-          The data shows that sea surface temperatures across all of these
-          Pacific island regions are steadily warming over time. While every
-          area is experiencing an upward trend, Kiribati and Tokelau are seeing
-          the most rapid increases in sea temperatures, whereas Palau and Nauru
-          are experiencing the slowest warming rates.
-        </p>
-      </div>
-
-      <div>
-        <OceanCorrelationChart selectedCountries={selectedCountries} />
-      </div>
-
-      <p className="text-sm">
-        <span className="font-bold">Fig 2.1 : </span>The X-axis measures the
-        ratio of sea surface temperature change relative to surface heat change.
-        Expressed in degrees Celsius per degree Celsius (°C/°C), it indicates
-        how much the ocean warms for every unit increase in surface heat.
-      </p>
-
-      <div>
-        <p>
-          Data shows a powerful relationship between rising surface heat and
-          ocean warming across the Pacific. In 20 out of 21 nations, atmospheric
-          fluctuations closely match over 91% of marine heat trends—clustering
-          tightly in a near-perfect, 1:1 thermal lockstep where every 1°C of air
-          warming corresponds to roughly 1°C of sea warming. French Polynesia
-          sits uniquely lower as the region's only slow-warming outlier,
-          experiencing an ocean temperature increase of 0.65°C per degree of air
-          warming.
+        <div className="mt-6 h-[420px]">
+          <WarmingOceanChart selectedCountries={selectedCountries} />
+        </div>
+        <p className="figure-note">
+          <strong>Fig. 2.</strong> Annual sea-surface temperature anomalies. Headline regional
+          summary uses all valid annual observations from 1970–2025.
         </p>
       </div>
     </div>

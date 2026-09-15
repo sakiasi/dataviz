@@ -1,69 +1,59 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { useImpactPersonAnalysis } from "../services/impactPersonAnalysis";
 import ImpactPersonChart from "./ImpactPersonChart";
 import SelectCountryComponent from "./SelectCountryComponent";
 
 export default function ImpactPersonComponent() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
-
-  const { selectedCountries, setSelectedCountries, countryList } =
-    useImpactPersonAnalysis();
+  const { selectedCountries, setSelectedCountries, countryList } = useImpactPersonAnalysis();
 
   return (
-    <div className=" flex flex-col gap-5">
-      <h1 className="text-2xl font-bold tracking-tight text-center md:text-start">
-        Does surface heat impact human lives ?
-      </h1>
-
-      <div className="border-b border-primary"></div>
-
-      <div className=" leading-relaxed max-w-3xl">
-        <p>
-          According to
-          <a
-            className=" pl-1 hover:text-primary transition-colors underline decoration-primary underline-offset-2"
-            href="https://www.undrr.org/media/89310/download"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            United Nations Office for Disaster Risk Reduction [UNDRR] (2023)
-          </a>
-          , intensifying climate hazards translate directly into frequent
-          extreme weather events across the Pacific. As rising seas and changing
-          climatic patterns destabilize vulnerable communities, a growing number
-          of island residents face immediate displacement, property destruction,
-          and disruption to livelihoods—highlighting the critical human cost of
-          environmental change in the region.
+    <div className="chapter-layout">
+      <div className="chapter-copy">
+        <p className="section-eyebrow">05 · People</p>
+        <h2 className="chapter-title">Climate pressure becomes human impact through disasters and exposure.</h2>
+        <p className="chapter-lead">
+          The number of people directly affected by disasters is not a smooth climate indicator.
+          It arrives in sharp event-driven spikes — and those spikes can dominate a country’s record.
         </p>
+        <p>
+          A cyclone, flood or other hazard becomes a disaster through the interaction of the
+          event with where people live, the assets exposed and the capacity to prepare and recover.
+          Reporting coverage also differs across places and years.
+        </p>
+        <div className="finding-card">
+          <p className="finding-label">Read spikes, not a straight line</p>
+          <p>
+            This view is most useful for seeing the scale and timing of recorded impacts. A simple
+            long-run slope can hide the episodic nature of disasters.
+          </p>
+        </div>
       </div>
 
-      <div className="relative">
-        <SelectCountryComponent
-          countryList={countryList}
-          isCountrySelect={isCountrySelect}
-          selectedCountries={selectedCountries}
-          setIsCountrySelect={setIsCountrySelect}
-          setSelectedCountries={setSelectedCountries}
-        />
-      </div>
-
-      <div>
-        <ImpactPersonChart selectedCountries={selectedCountries} />
-      </div>
-
-      <p className="text-sm mt-2">
-        <span className="font-bold">Fig 6.0 : </span>The X-axis represents the
-        monitoring years, while the Y-axis tracks observed individuals affected
-        by natural disaster.
-      </p>
-
-      <div>
-        The data highlights sharp contrasts in the human impact of disasters
-        across the Pacific: nations like Fiji, the Solomon Islands, and Tonga
-        experience massive, steeply rising numbers of directly affected
-        individuals over time, whereas countries like Papua New Guinea show a
-        downward slope, and several territories report minimal or flat trend
-        lines.
+      <div className="chapter-viz">
+        <div className="chart-heading">
+          <div>
+            <p className="chart-label">People directly affected by disasters</p>
+            <p className="chart-subtitle">Recorded annual counts</p>
+          </div>
+          <span className="chart-unit">people</span>
+        </div>
+        <div className="relative mt-5">
+          <SelectCountryComponent
+            countryList={countryList}
+            isCountrySelect={isCountrySelect}
+            selectedCountries={selectedCountries}
+            setIsCountrySelect={setIsCountrySelect}
+            setSelectedCountries={setSelectedCountries}
+          />
+        </div>
+        <div className="mt-6 h-[420px]">
+          <ImpactPersonChart selectedCountries={selectedCountries} />
+        </div>
+        <p className="figure-note">
+          <strong>Fig. 6.</strong> Recorded people directly affected by disasters. Missing or zero
+          values should not automatically be interpreted as proof that no impact occurred.
+        </p>
       </div>
     </div>
   );

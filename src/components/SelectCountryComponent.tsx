@@ -1,54 +1,50 @@
-import { ChevronUp, ChevronDown } from "lucide-react";
-import { handleSelectCountries } from "../services/handleSelectCountries";
+﻿import { ChevronDown, ChevronUp } from "lucide-react";
 import type React from "react";
-import {Switch} from '../components/ui/Switch'
+import { handleSelectCountries } from "../services/handleSelectCountries";
+import { Switch } from "./ui/Switch";
 
 type SelectCountryType = {
-    setIsCountrySelect: React.Dispatch<React.SetStateAction<boolean>>,
-    selectedCountries: string[],
-    isCountrySelect: boolean,
-    countryList: string[],
-    setSelectedCountries: React.Dispatch<React.SetStateAction<string[]>>
-}
+  setIsCountrySelect: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedCountries: string[];
+  isCountrySelect: boolean;
+  countryList: string[];
+  setSelectedCountries: React.Dispatch<React.SetStateAction<string[]>>;
+};
 
-const SelectCountryComponent = ({setSelectedCountries,countryList, isCountrySelect, setIsCountrySelect ,selectedCountries}:SelectCountryType) => {
-
+const SelectCountryComponent = ({
+  setSelectedCountries,
+  countryList,
+  isCountrySelect,
+  setIsCountrySelect,
+  selectedCountries,
+}: SelectCountryType) => {
   return (
     <div className="relative">
-      <div
-        onMouseDown={() => setIsCountrySelect((prev) => !prev)}
-        className="flex justify-around md:w-3/6 p-2 hover:text-secondary hover:cursor-pointer hover:bg-primary items-center border-primary border-b"
+      <button
+        type="button"
+        onClick={() => setIsCountrySelect((prev) => !prev)}
+        className="country-selector"
+        aria-expanded={isCountrySelect}
       >
-        <p> Select Country ({selectedCountries.length} selected) </p>
-        {isCountrySelect ? <ChevronUp /> : <ChevronDown />}
-      </div>
+        <span>Select country ({selectedCountries.length} selected)</span>
+        {isCountrySelect ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+      </button>
 
       <div
         onMouseLeave={() => setIsCountrySelect(false)}
-        className={`${
-          isCountrySelect
-            ? "absolute w-full top-10 h-96 overflow-y-auto z-10 flex-col border bg-primary-foreground rounded-md border-primary shadow-xl"
-            : "hidden"
-        }`}
+        className={isCountrySelect ? "country-menu" : "hidden"}
       >
-        {countryList
-          .sort((a, b) => a.localeCompare(b))
-          .map((d, index) => (
-            <div
-              key={index}
-              className="hover:cursor-pointer bg-foreground text-accent hover:bg-accent-foreground p-2 border-b border-secondary flex items-center gap-5"
-              onMouseDown={() => {
-                handleSelectCountries(
-                  d,
-                  setSelectedCountries,
-                  selectedCountries,
-                );
-              }}
-            >
-              <Switch checked={selectedCountries.includes(d)} />
-              <p>{d}</p>
-            </div>
-          ))}
+        {countryList.sort((a, b) => a.localeCompare(b)).map((country) => (
+          <button
+            type="button"
+            key={country}
+            className="country-option"
+            onClick={() => handleSelectCountries(country, setSelectedCountries, selectedCountries)}
+          >
+            <Switch checked={selectedCountries.includes(country)} />
+            <span>{country}</span>
+          </button>
+        ))}
       </div>
     </div>
   );

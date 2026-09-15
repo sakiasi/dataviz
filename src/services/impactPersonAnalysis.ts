@@ -26,8 +26,7 @@ export const useImpactPersonAnalysis=(externalSelectedCountries?:string[])=>{
         d.TIME_PERIOD !== undefined &&
         d.OBS_VALUE !== undefined &&
         d.OBS_VALUE !== null &&
-        (selectedCountries.length === 0 || selectedCountries.includes(d['Pacific Island Countries and territories']) ) &&
-        d.TIME_PERIOD % 3 === 0
+        (selectedCountries.length === 0 || selectedCountries.includes(d['Pacific Island Countries and territories']) )
     )
     .sort((a,b) => a.TIME_PERIOD - b.TIME_PERIOD)    
 
@@ -68,7 +67,7 @@ export const useImpactPersonAnalysis=(externalSelectedCountries?:string[])=>{
         d.TIME_PERIOD !== undefined &&
         d.OBS_VALUE !== undefined &&
         d.OBS_VALUE !== null &&
-        d.TIME_PERIOD % 20
+        true
     )
     .sort((a,b) => a.TIME_PERIOD - b.TIME_PERIOD)
     .reduce<Record<string,SeaInterface[]>>((acc,value) => {

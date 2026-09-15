@@ -1,41 +1,71 @@
-import me from "../../public/me.png";
+﻿import me from "../../public/me.png";
+
+const metrics = [
+  {
+    value: "+0.16°C",
+    label: "surface warming per decade",
+    detail: "Median linear trend across 22 Pacific Island countries and territories, 1970–2025",
+  },
+  {
+    value: "+0.16°C",
+    label: "ocean warming per decade",
+    detail: "Median sea-surface trend across 21 Pacific Island countries and territories, 1970–2025",
+  },
+  {
+    value: "+4.3 mm",
+    label: "sea-level rise per year",
+    detail: "Median linear trend across 21 Pacific Island countries and territories, 1993–2023",
+  },
+];
 
 export const IntroComponent = () => {
   return (
-    <div className="flex flex-col gap-5 pt-20">
-      <h1 className="text-4xl font-bold tracking-tight text-center">
-        The Pacific Climate
-        <span className="block text-2xl text-primary mt-1 font-medium">
-          Analyzing Regional Shifts & Socio-Economic Impact
-        </span>
-      </h1>
-
-      <div className="flex items-center gap-3 pt-2  text-sm">
-        <div className="h-10 w-10 rounded-full flex items-center justify-center font-semibold text-sky-400">
-          <img className="rounded-full" height={90} width={90} src={`${me}`} />
+    <header className="story-hero">
+      <div className="story-hero-glow" aria-hidden="true" />
+      <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+        <div className="max-w-4xl">
+          <p className="story-kicker">Pacific Dataviz Challenge 2026 · Climate change</p>
+          <h1 className="story-title">
+            One Ocean.
+            <span>Unequal Risk.</span>
+          </h1>
+          <p className="story-deck">
+            A data story tracing a warming Pacific from the atmosphere to the ocean,
+            rising seas, food systems, people and recorded disaster losses.
+          </p>
+          <p className="story-thesis">
+            The regional climate signal is clear. The consequences are not evenly shared.
+          </p>
         </div>
-        <div>
-          <p className="font-medium ">Sakiasi B. Komai</p>
-          <p className="text-xs ">Dataviz Challenge 2026</p>
+
+        <div className="mt-12 grid gap-4 md:grid-cols-3" aria-label="Key findings">
+          {metrics.map((metric) => (
+            <article key={metric.label} className="metric-card">
+              <p className="metric-value">{metric.value}</p>
+              <p className="metric-label">{metric.label}</p>
+              <p className="metric-detail">{metric.detail}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-6 border-t border-white/15 pt-6">
+          <div className="flex items-center gap-3">
+            <img
+              className="h-11 w-11 rounded-full border border-white/20 object-cover"
+              src={me}
+              alt="Sakiasi B. Komai"
+            />
+            <div>
+              <p className="text-sm font-semibold text-white">Sakiasi B. Komai</p>
+              <p className="text-xs text-white/65">Interactive data story · 2026</p>
+            </div>
+          </div>
+          <a className="story-cta" href="#story-roadmap">
+            Follow the evidence <span aria-hidden="true">↓</span>
+          </a>
         </div>
       </div>
-
-      <ul className="space-y-4 ">
-        <li>
-          In this data driven essay, we will trace the cascading effects of
-          global warming across the Pacific—mapping how atmospheric heating and
-          ocean warming drive sea-level rise, and linking these physical shifts
-          directly to agricultural decline, human displacement, and mounting
-          financial losses.
-        </li>
-        <li>
-          <strong className=" font-semibold">Limitations:</strong> We are
-          analyzing observed historical trends and linear associations across
-          Pacific island nations to establish directional relationships, rather
-          than proving complete multi-factor causation.
-        </li>
-      </ul>
-    </div>
+    </header>
   );
 };
 

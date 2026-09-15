@@ -1,67 +1,62 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { useTemperature } from "../services/tempAnalysis";
 import SelectCountryComponent from "./SelectCountryComponent";
 import { TemperatureChart } from "./TempChart";
 
 export default function TempComponent() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
-
-  // Pass selectedCountries into the hook so it re-filters dynamically
-  const { countryList, selectedCountries, setSelectedCountries } =
-    useTemperature();
+  const { countryList, selectedCountries, setSelectedCountries } = useTemperature();
 
   return (
-    <div className="text-foreground flex flex-col gap-5">
-      <h1 className="text-2xl font-bold tracking-tight normal-case text-center md:text-start">
-        Is the surface heat rising ?
-      </h1>
-
-      <div className="border-b border-primary"></div>
-
-      <div className="text-foreground leading-relaxed max-w-3xl">
-        <p>
-          {" "}
-          According to{" "}
-          <a
-            className=" hover:text-primary transition-colors underline decoration-primary underline-offset-2"
-            href="https://berkeleyearth.org/global-temperature-report-for-2025/"
-          >
-            Berkeley Earth's 2025 report
-          </a>
-          , 2025 was the third warmest year on record since 1850, trailing only
-          2024 and 2023, with global annual averages reaching 1.44 ± 0.09 °C
-          above pre-industrial levels.
+    <div className="chapter-layout">
+      <div className="chapter-copy">
+        <p className="section-eyebrow">01 · The signal</p>
+        <h2 className="chapter-title">Every territory in the dataset is warming over the long run.</h2>
+        <p className="chapter-lead">
+          Across 22 Pacific Island countries and territories, the linear surface-temperature
+          trend from 1970 to 2025 is positive. The median trend is about
+          <strong> 0.16°C per decade</strong>.
+        </p>
+        <div className="finding-card">
+          <p className="finding-label">What stands out</p>
+          <p>
+            The Federated States of Micronesia, Palau and Solomon Islands sit toward the faster
+            end of the observed trends, while Pitcairn is slower. The direction, however, is
+            consistent across the regional dataset.
+          </p>
+        </div>
+        <p className="chapter-caveat">
+          This is a long-run trend, not a claim that every individual year was hotter than the
+          year before it. Annual anomalies still move up and down.
         </p>
       </div>
 
-      <div className="relative">
-        <SelectCountryComponent
-          countryList={countryList}
-          isCountrySelect={isCountrySelect}
-          selectedCountries={selectedCountries}
-          setIsCountrySelect={setIsCountrySelect}
-          setSelectedCountries={setSelectedCountries}
-        />
+      <div className="chapter-viz">
+        <div className="chart-heading">
+          <div>
+            <p className="chart-label">Surface temperature anomalies</p>
+            <p className="chart-subtitle">Explore individual Pacific countries and territories</p>
+          </div>
+          <span className="chart-unit">°C</span>
+        </div>
+        <div className="relative mt-5">
+          <SelectCountryComponent
+            countryList={countryList}
+            isCountrySelect={isCountrySelect}
+            selectedCountries={selectedCountries}
+            setIsCountrySelect={setIsCountrySelect}
+            setSelectedCountries={setSelectedCountries}
+          />
+        </div>
+        <div className="mt-6 h-[420px]">
+          <TemperatureChart selectedCountries={selectedCountries} />
+        </div>
+        <p className="figure-note">
+          <strong>Fig. 1.</strong> Annual surface temperature anomalies. Country selection changes
+          the display only; the headline trend above uses all valid annual observations from
+          1970–2025.
+        </p>
       </div>
-      
-      <TemperatureChart selectedCountries={selectedCountries} />
-
-      <p className="text-sm  mt-2">
-        <span className="font-bold ">Fig 1.1 : </span>The X-axis represents the monitoring years,
-        while the Y-axis tracks observed temperature anomalies relative to the
-        baseline.
-      </p>
-
-      <p>
-        Every Pacific Island territory and nation in the dataset shows
-        continuous temperature increases year after year, confirming a
-        widespread, regional warming trend without exception. French Polynesia,
-        Tokelau, and Papua New Guinea are heating up at the fastest rates, while
-        Pitcairn experiences the most gradual increase. The tight clustering of
-        growth speeds across nearly all the other islands points to a systemic
-        climate impact affecting the entire Pacific region rather than isolated
-        local variations.
-      </p>
     </div>
   );
 }

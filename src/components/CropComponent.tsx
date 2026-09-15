@@ -1,90 +1,60 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { useCropAnalysis } from "../services/cropAnalysis";
 import CropChart from "./CropChart";
-import CropCorrelationChart from "./CropCorrelationChart";
 import SelectCountryComponent from "./SelectCountryComponent";
 
 export default function CropComponent() {
   const [isCountrySelect, setIsCountrySelect] = useState(false);
-
-  const { selectedCountries, setSelectedCountries, countryList } =
-    useCropAnalysis();
+  const { selectedCountries, setSelectedCountries, countryList } = useCropAnalysis();
 
   return (
-    <div className=" flex flex-col gap-5">
-      <h1 className="text-2xl font-bold tracking-tight text-center md:text-start">
-        Does surface heat reduce crop yield ?
-      </h1>
-
-      <div className="border-b border-primary"></div>
-
-      <div className=" leading-relaxed  max-w-3xl">
+    <div className="chapter-layout">
+      <div className="chapter-copy">
+        <p className="section-eyebrow">04 · Food systems</p>
+        <h2 className="chapter-title">Crop outcomes do not move in one Pacific-wide direction.</h2>
+        <p className="chapter-lead">
+          The crop-yield record is mixed. Some countries show rising yields over time, while
+          others decline or fluctuate. That contrast is as important as the climate trend itself.
+        </p>
         <p>
-          Extreme heat is one of the biggest threats to the world's food supply
-          because it damages how plants grow and reproduce, often making them
-          sterile. When plants get too hot, important internal processes—like
-          how they handle sugars, fats, and natural hormones—break down, which
-          drastically lowers the amount of food they can produce.
-          <a
-            className=" pl-1 hover:text-primary transition-colors underline decoration-primary underline-offset-2"
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://doi.org/10.1111/pbi.13946"
-          >
-            ( Jin, S. & Zhang, X. , 2022 )
-          </a>
+          Agricultural output responds to temperature, rainfall and extreme events, but also to
+          crop mix, land use, technology, pests, markets and changes in farming practice. A simple
+          temperature-to-yield regression cannot separate those influences.
+        </p>
+        <div className="finding-card">
+          <p className="finding-label">The responsible reading</p>
+          <p>
+            Use this chart to compare observed yield histories — not to claim that one degree of
+            warming mechanically produces a fixed gain or loss in every country.
+          </p>
+        </div>
+      </div>
+
+      <div className="chapter-viz">
+        <div className="chart-heading">
+          <div>
+            <p className="chart-label">Crop yield</p>
+            <p className="chart-subtitle">Observed kilograms per hectare</p>
+          </div>
+          <span className="chart-unit">kg/ha</span>
+        </div>
+        <div className="relative mt-5">
+          <SelectCountryComponent
+            countryList={countryList}
+            isCountrySelect={isCountrySelect}
+            selectedCountries={selectedCountries}
+            setIsCountrySelect={setIsCountrySelect}
+            setSelectedCountries={setSelectedCountries}
+          />
+        </div>
+        <div className="mt-6 h-[420px]">
+          <CropChart selectedCountries={selectedCountries} />
+        </div>
+        <p className="figure-note">
+          <strong>Fig. 4.</strong> Crop yields from the Pacific Data Hub. Coverage and production
+          systems differ by country, so cross-country comparisons should be interpreted with care.
         </p>
       </div>
-
-      <div className="relative">
-        <SelectCountryComponent
-          countryList={countryList}
-          isCountrySelect={isCountrySelect}
-          selectedCountries={selectedCountries}
-          setIsCountrySelect={setIsCountrySelect}
-          setSelectedCountries={setSelectedCountries}
-        />
-      </div>
-
-      <div>
-        <CropChart selectedCountries={selectedCountries} />
-      </div>
-
-      <p className="text-sm mt-2">
-        <span className="font-bold">Fig 4.0 : </span>The X-axis represents the
-        monitoring years, while the Y-axis tracks observed crop yield in
-        kilograms per hectare.
-      </p>
-
-      <div className="">
-        The data reveals striking disparities in agricultural productivity
-        trends across the Pacific region: nations like the Marshall Islands,
-        Kiribati, and Papua New Guinea are experiencing the fastest-growing crop
-        yields per hectare, whereas Micronesia and Fiji face severe, sharp
-        declines in harvest efficiency over time.
-      </div>
-
-      <div>
-        <CropCorrelationChart selectedCountries={selectedCountries} />
-      </div>
-
-      <p className="text-sm">
-        <span className="font-bold">Fig 4.1: </span>The X-axis measures the
-        ratio of crop yield change relative to surface heat change. Expressed in
-        kilograms per hectare per degree Celsius ((kg/ha)/°C), it indicates how
-        much the crop yield changes for every unit increase in surface heat.
-      </p>
-
-      <p>
-        Data shows a dramatic split in how rising temperatures affect crop
-        yields across the Pacific. In countries like Papua New Guinea, warmer
-        weather brings a significant boost, yielding an extra 3,795 kilograms of
-        crops per hectare for every degree of temperature increase. On the flip
-        side, Micronesia faces a severe toll, where crops plummet by over 64,800
-        kilograms per hectare per degree of warming. Meanwhile, French Polynesia
-        stands completely apart as a steady outlier, showing virtually zero
-        change in crop yields no matter how much the temperature shifts.
-      </p>
     </div>
   );
 }

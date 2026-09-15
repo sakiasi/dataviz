@@ -85,7 +85,7 @@ export const useEconomicLossAnalysis = (externalSelectedCountries?: string[]) =>
                 d.TIME_PERIOD !== null &&
                 d.TIME_PERIOD !== undefined &&
                 val !== null &&
-                d.TIME_PERIOD % 20
+                true
             );
         })
         .sort((a: any, b: any) => a.TIME_PERIOD - b.TIME_PERIOD)

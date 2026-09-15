@@ -1,145 +1,54 @@
-const MethodologyComponent = () => {
+﻿const MethodologyComponent = () => {
   return (
-    <div className=" space-y-5 max-w-3xl">
-      <h1 className="text-2xl font-bold tracking-tight">Methodology</h1>
+    <div className="max-w-4xl">
+      <p className="section-eyebrow">Methods & limitations</p>
+      <h2 className="chapter-title">How the story was built</h2>
 
-      <div className="border-b border-primary"></div>
+      <div className="methods-grid mt-8">
+        <article>
+          <h3>Trend method</h3>
+          <p>
+            Headline climate metrics use ordinary least-squares linear trends on all valid annual
+            observations in each country or territory. The regional figure is the median of those
+            country-level trends: 1970–2025 for surface and sea-surface temperature, and 1993–2023
+            for sea level.
+          </p>
+        </article>
+        <article>
+          <h3>Interactive charts</h3>
+          <p>
+            Country filters change what is displayed, not the underlying source data. Charts show
+            the available annual observations and preserve gaps rather than estimating missing values.
+          </p>
+        </article>
+        <article>
+          <h3>Association is not causation</h3>
+          <p>
+            Two variables can correlate simply because both trend over time. For that reason, the
+            main narrative does not use raw temperature correlations to claim causal effects on sea
+            level, agriculture, people or economic losses.
+          </p>
+        </article>
+        <article>
+          <h3>Coverage differs</h3>
+          <p>
+            Climate series are comparatively dense; disaster and economic-loss records are much
+            sparser and event-driven. Zeros and missing observations may reflect reporting as well
+            as real conditions, so they are interpreted cautiously.
+          </p>
+        </article>
+      </div>
 
-      <div className="space-y-5 text-sm leading-relaxed">
-        <div>
-          <h3 className="font-semibold">Data Sources</h3>
-          <ul className="list-disc decoration-primary underline pl-5 space-y-1 mt-1">
-            <li className="hover:text-primary">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://stats.pacificdata.org/vis?lc=en&df[ds]=SPC2&df[id]=DF_AGRICULTURAL_PRODUCTION&df[ag]=SPC&df[vs]=1.0&av=true&dq=A...&pd=,&to[TIME_PERIOD]=false"
-              >
-                <p>Crop yield - disaggregated</p>
-              </a>
-            </li>
-            <li className="hover:text-primary">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://stats.pacificdata.org/vis?lc=en&df[ds]=SPC2&df[id]=DF_AGRICULTURAL_PRODUCTION&df[ag]=SPC&df[vs]=1.0&av=true&dq=A...&pd=,&to[TIME_PERIOD]=false"
-              >
-                <p>Livestock yield - disaggregated</p>
-              </a>
-            </li>
-            <li className="hover:text-primary">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://stats.pacificdata.org/vis?lc=en&df[ds]=SPC2&df[id]=DF_CLIMATE_CHANGE&df[ag]=SPC&df[vs]=1.0&av=true&dq=A.SST_ANOM.&pd=,&to[TIME_PERIOD]=false"
-              >
-                <p>Mean sea surface temperature anomalies</p>
-              </a>
-            </li>
-            <li className="hover:text-primary">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://stats.pacificdata.org/vis?lc=en&df[ds]=SPC2&df[id]=DF_CLIMATE_CHANGE&df[ag]=SPC&df[vs]=1.0&av=true&dq=A.ST_ANOM.&pd=,&to[TIME_PERIOD]=false"
-              >
-                <p>Mean surface temperature anomalies</p>
-              </a>
-            </li>
-            <li className="hover:text-primary">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://stats.pacificdata.org/vis?lc=en&df[ds]=ds%3ASPC2&df[id]=DF_SDG_11&df[ag]=SPC&df[vs]=3.0&dq=A.VC_DSR_AFFCT.........&pd=,&to[TIME_PERIOD]=false&lb=bt"
-              >
-                <p>
-                  Number of directly affected persons attributed to disasters
-                </p>
-              </a>
-            </li>
-            <li className="hover:text-primary">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://stats.pacificdata.org/vis?lc=en&df[ds]=ds%3ASPC2&df[id]=DF_SDG_11&df[ag]=SPC&df[vs]=3.0&dq=A.VC_DSR_AALT...._T.....&pd=,&to[TIME_PERIOD]=false"
-              >
-                <p>Direct disaster economic loss</p>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="font-semibold">2. Technology Stack</h3>
-          <ul className="list-disc pl-5 space-y-1 mt-1">
-            <li>
-              <p>
-                Development:{" "}
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="decoration-primary underline"
-                  href="https://react.dev/"
-                >
-                  React
-                </a>
-                ,{" "}
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="decoration-primary underline"
-                  href="https://vite.dev/"
-                >
-                  Vite
-                </a>
-                ,{" "}
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="decoration-primary underline"
-                  href="https://tailwindcss.com/"
-                >
-                  Tailwind CSS
-                </a>
-                , and{" "}
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="decoration-primary underline"
-                  href="https://ui.shadcn.com/"
-                >
-                  shadcn/ui components.
-                </a>
-              </p>
-            </li>
-            <li>
-              <p>
-                Visualizations:{" "}
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="decoration-primary underline"
-                  href="https://recharts.github.io/"
-                >
-                  Recharts
-                </a>{" "}
-                for rendering interactive graphs and charts.
-              </p>
-            </li>
-            <li>
-              <p>
-                Source Code: Available on GitHub at{" "}
-                <a
-                  className=" hover:text-primary transition-colors underline decoration-primary underline-offset-2"
-                  href="https://github.com/sakiasi/dataviz.git"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  https://github.com/sakiasi/dataviz.git
-                </a>
-              </p>
-            </li>
-          </ul>
-        </div>
+      <div className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6 text-sm leading-6 text-slate-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300">
+        <h3 className="font-semibold text-slate-900 dark:text-stone-100">Technology & authorship</h3>
+        <p className="mt-2">
+          Built with React, TypeScript, Vite, Tailwind CSS and Recharts. AI tools were used
+          supportively for code review, narrative editing and visual refinement. Dataset selection,
+          analytical interpretation, verification and final editorial judgement remain the author’s.
+        </p>
+        <p className="mt-3">
+          Source code: <a className="story-link" href="https://github.com/sakiasi/dataviz" target="_blank" rel="noopener noreferrer">github.com/sakiasi/dataviz</a>
+        </p>
       </div>
     </div>
   );
